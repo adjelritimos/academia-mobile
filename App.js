@@ -1,20 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import Home from "./src/screens/home.js"
+import Lemma from "./src/screens/lemma.js"
+import CommandVoice from "./src/screens/command.js"
+import CommandSpecification from "./src/screens/commandSpecification.js"
+import IndexGame from "./src/screens/IndexGame.js"
+import Instrucion from "./src/screens/game/instruction.js"
+import LemmaGame from "./src/screens/game/lemmaGame.js"
+import CommandGame from "./src/screens/game/commandGame.js"
+import GameOver from "./src/screens/game/gameOver.js"
+import { TouchableOpacity, Alert } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
 
-export default function App() {
+
+
+const Stack = createStackNavigator()
+
+const App = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer >
+      <Stack.Navigator>
+        <Stack.Screen options={{ title: "Academia Evangelística" }} name="Home" component={Home} />
+        <Stack.Screen options={{ title: "Lema" }} name="Lemma" component={Lemma} />
+        <Stack.Screen options={{ title: "Comando de voz" }} name="CommandVoice" component={CommandVoice} />
+        <Stack.Screen options={{ title: "Especificação do Comando" }} name="CommandSpecification" component={CommandSpecification} />
+        <Stack.Screen options={{ title: "Praticas" }} name="IndexGame" component={IndexGame} />
+        <Stack.Screen options={{ title: "Instruções" }} name="Instrution" component={Instrucion} />
+        <Stack.Screen options={({ navigation }) => ({
+          title: "Jogo do Lema",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() =>
+              Alert.alert(
+                "Desistir do jogo",
+                "Tem certeza de que deseja sair?",
+                [
+                  { text: "Cancelar", style: "cancel" },
+                  { text: "Sim", onPress: () => navigation.navigate('Home') },
+                ]
+              )
+            }
+       style={{ marginLeft: 15, marginEnd: 15 }}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          )
+        })} name="GameLemma" component={LemmaGame} />
+        <Stack.Screen options={{ title: "Jogo dos Comandos" }} name="GameCommand" component={CommandGame} />
+        <Stack.Screen options={{ title: "Fim do Jogo" }} name="GameOver" component={GameOver} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App

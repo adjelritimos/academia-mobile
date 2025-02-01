@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "evangelistic_academy",
-    "slug": "evangelistic_academy",
+    "slug": "academy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,10 +19,14 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.renion.evangelistic_academy",
+      "versionCode": 1
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "extra": {
+      "eas": {
+        "projectId": "e018a680-45b5-4ae7-8959-e7d1c6a34022"
+      }
     }
   }
 }
