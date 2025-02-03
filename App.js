@@ -21,7 +21,7 @@ const App = ({ navigation }) => {
   return (
     <NavigationContainer >
       <Stack.Navigator>
-        <Stack.Screen options={{ title: "Academia Evangelística" }} name="Home" component={Home} />
+        <Stack.Screen options={{ title: "Academia Evangelística", headerLeft: () => null }} name="Home" component={Home} />
         <Stack.Screen options={{ title: "Lema" }} name="Lemma" component={Lemma} />
         <Stack.Screen options={{ title: "Comando de voz" }} name="CommandVoice" component={CommandVoice} />
         <Stack.Screen options={{ title: "Especificação do Comando" }} name="CommandSpecification" component={CommandSpecification} />

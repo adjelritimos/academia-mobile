@@ -1,7 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import globalStyles from "../styles/home"
 
+
 const Home = ( {navigation} ) => {
+
+
 
     return (
         <View style={globalStyles.container}>
