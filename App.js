@@ -40,7 +40,7 @@ const App = ({ navigation }) => {
                 ]
               )
             }
-       style={{ marginLeft: 15, marginEnd: 15 }}>
+              style={{ marginLeft: 15, marginEnd: 15 }}>
               <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
           )

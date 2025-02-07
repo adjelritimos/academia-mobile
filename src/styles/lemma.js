@@ -52,6 +52,7 @@ const lemmaStyles = StyleSheet.create({
         marginBottom: 'auto',
         color: '#0dcaf0',
         fontWeight: 'medium',
+        textAlign: 'justify'
     }
 })
 

@@ -9,14 +9,21 @@ const CommandGame = ( { navigation } ) => {
     const [command, setCommand] = useState(getQuestionAndAnswerCommands(Math.floor(Math.random() * 15)))
     const [isAnswer, setIsAnswer] = useState(false)
     const [showNextButton, setShowNextButton] = useState(true)
+    const [itemSelect, setItemSelect] = useState(-1)
+    const [colorSelect, setColorSelect] = useState('#0dcaf0')
 
     const verifyAnswer = (answer) => {
         if (answer === command.answer && !isAnswer) {
             setShowNextButton(false)
             setIsAnswer(true)
+            setItemSelect(command.options.indexOf(answer))
+            setColorSelect('green')
         }
-        else{
-            navigation.navigate('GameOver', {from: 'GameCommand', imagePath: './../../../assets/lose.png'})
+        else {
+            setItemSelect(command.options.indexOf(answer))
+            setIsAnswer(true)
+            setColorSelect('red')
+            navigation.replace('GameOver', { from: 'GameCommand', imagePath: './../../../assets/lose.png' })
         }
     }
 
@@ -24,6 +31,7 @@ const CommandGame = ( { navigation } ) => {
     const nextQuestion = () => {
         setShowNextButton(true)
         setIsAnswer(false)
+        setItemSelect(-1)
         setCommand(getQuestionAndAnswerCommands(Math.floor(Math.random() * 16)))
     }
 
@@ -39,9 +47,9 @@ const CommandGame = ( { navigation } ) => {
                     data={command.options}
                     keyExtractor={(item, index) => index}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={gameCommandtyles.item}>
-                            <Text style={gameCommandtyles.itemText}>{item}</Text>
-                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={{ minHeight: 60, width: '100%', borderRadius: 10, borderColor: '#0dcaf0', borderWidth: 1, backgroundColor: itemSelect === command.options.indexOf(item) ? colorSelect : '#f8f9fa', marginBottom: 2, padding: 10, alignItems: 'center' }}>
+                        <Text style={gameCommandtyles.itemText}>{item}</Text>
+                    </TouchableOpacity>
                     )}
                 />
             </View>
