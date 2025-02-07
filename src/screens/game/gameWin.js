@@ -6,21 +6,13 @@ const GameWin = ({navigation}) => {
 
     return (
         <View style={gameWinStyles.container}>
-            <Text style={gameWinStyles.title}>🎉 Parabéns! 🎉</Text>
-            <Text style={gameWinStyles.message}>
-                Você acertou todas as 10 questões! Você é um verdadeiro mestre!
-            </Text>
-
             <Image 
-                source={require("./../../../assets/win.gif")} 
+                source={require("./../../../assets/win.png")} 
                 style={gameWinStyles.image} 
             />
 
-            <TouchableOpacity 
-                style={gameWinStyles.button} 
-                onPress={() => navigation.replace("IndexGame")}
-            >
-                <Text style={gameWinStyles.buttonText}>Voltar ao Menu</Text>
+            <TouchableOpacity style={gameWinStyles.button} onPress={() => navigation.replace("IndexGame")}>
+                <Text style={gameWinStyles.buttonText}>VOLTAR AO MENU</Text>
             </TouchableOpacity>
         </View>
     )
