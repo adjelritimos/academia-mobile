@@ -34,8 +34,8 @@ const App = ({ navigation }) => {
           headerLeft: () => (
             <TouchableOpacity onPress={() =>
               Alert.alert(
-                "Desistir do jogo",
-                "Tem certeza de que deseja sair?",
+                "Desistir da prática",
+                "Tem certeza de que deseja abandonar a sua prática dos lemas?",
                 [
                   { text: "Cancelar", style: "cancel" },
                   { text: "Sim", onPress: () => navigation.replace('IndexGame') },
@@ -47,7 +47,24 @@ const App = ({ navigation }) => {
             </TouchableOpacity>
           )
         })} name="GameLemma" component={LemmaGame} />
-        <Stack.Screen options={{ title: "Jogo dos Comandos" }} name="GameCommand" component={CommandGame} />
+        <Stack.Screen options={({ navigation }) => ({
+          title: "Jogo do Lema",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() =>
+              Alert.alert(
+                "Desistir da prática",
+                "Tem certeza de que deseja abandonar a sua prática dos comandos de voz?",
+                [
+                  { text: "Cancelar", style: "cancel" },
+                  { text: "Sim", onPress: () => navigation.replace('IndexGame') },
+                ]
+              )
+            }
+              style={{ marginLeft: 15, marginEnd: 15 }}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          )
+        })} name="GameCommand" component={CommandGame} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver}/>
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
         <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
