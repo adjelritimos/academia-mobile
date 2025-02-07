@@ -91,7 +91,7 @@ const CommandGame = ({ navigation }) => {
                         {countdown}s
                     </Text>
                 </View>
-                <View style={gameCommandStyles.question_1}>
+                <View style={gameCommandStyles.questions}>
                     <Text style={gameCommandStyles.questionText}>{command.question}</Text>
                 </View>
             </View>

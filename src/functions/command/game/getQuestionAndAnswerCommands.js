@@ -457,9 +457,9 @@ const getQuestionAndAnswerCommands = (number) => {
             question: "Qual o limite de passos reta-guarda?",
             answer: "4",
             options: [
-                "2",
-                "1",
                 "4",
+                "1",
+                "2",
                 "ilimitado",
                 "infinito",
                 "5",

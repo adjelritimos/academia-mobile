@@ -93,7 +93,7 @@ const LemmaGame = ({ navigation }) => {
                     </Text>
                 </View>
 
-                <View style={gameLemmaStyles.question_1}>
+                <View style={gameLemmaStyles.questions}>
                     <Text style={gameLemmaStyles.questionText}>{lemmas.question}</Text>
                 </View>
             </View>

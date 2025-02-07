@@ -30,21 +30,21 @@ const gameLemmaStyles = StyleSheet.create({
         marginBottom: 50
     },
 
-    question_1:{
+    questions: {
         minHeight: 100,
         width: '100%',
-        borderRadius: 10,
-        backgroundColor: '#f8f9fa',
-        padding: 10,
+        backgroundColor: '#EAEAEA',
         alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        marginTop: 4
     },
 
     questionText:{
        fontSize: 18,
        color: '#0dcaf0',
-       marginTop: 'auto',
-       marginBottom: 'auto',
-       fontWeight: 'bold'     
+       fontWeight: 'bold',
+       textAlign: 'center'   
     },
 
     item: {

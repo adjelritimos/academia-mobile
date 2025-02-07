@@ -30,14 +30,21 @@ const gameCommandtyles = StyleSheet.create({
         marginBottom: 20
     },
 
+    questions: {
+        minHeight: 100,
+        width: '100%',
+        backgroundColor: '#EAEAEA',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        marginTop: 4
+    },
+
     questionText:{
        fontSize: 18,
        color: '#0dcaf0',
-       marginTop: 'auto',
-       marginBottom: 'auto',
        fontWeight: 'bold',
        textAlign: 'center',
-       alignSelf: 'center'   
     },
 
     item: {
@@ -58,6 +65,7 @@ const gameCommandtyles = StyleSheet.create({
         marginBottom: 'auto',
         color: '#0dcaf0',
         fontWeight: 'bold',
+        textAlign: 'center',
     }, 
 
     buttonText: {
