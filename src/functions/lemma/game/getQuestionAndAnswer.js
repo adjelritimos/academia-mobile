@@ -2,9 +2,10 @@ import _ from "lodash"
 
 const onlyFourAnswer = (elemnts) => {
     let answers = []
+    
     while (answers.length < 3) {
         const randomIndex = Math.floor(Math.random() * elemnts.length)
-        if (randomIndex != 0) {
+        if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex])) {
             answers.push(elemnts[randomIndex])
         }
     }
@@ -13,6 +14,10 @@ const onlyFourAnswer = (elemnts) => {
 
     return answers
 
+}
+
+const existElements = (elements, element)=>{
+    return elements.includes(element)
 }
 
 const getQuestionAndAnswer = (number) => {
@@ -31,14 +36,26 @@ const getQuestionAndAnswer = (number) => {
                 "Jesus é o Filho de Deus",
                 "Jesus é um mestre espiritual",
                 "Jesus é uma representação divina",
-                "Jesus é uma personalidade histórica importante"
-            ]
+                "Jesus é uma personalidade histórica importante",
+                "Jesus é a manifestação de Deus na Terra",
+                "Jesus é o Salvador da humanidade",
+                "Jesus é a luz do mundo",
+                "Jesus é o caminho para a salvação",
+                "Jesus é a verdade e a vida",
+                "Jesus é a encarnação do amor divino",
+                "Jesus é o Messias prometido",
+                "Jesus é a chave para a redenção",
+                "Jesus é o Filho de Maria e José",
+                "Jesus é o guia espiritual dos cristãos",
+                "Jesus é a personificação da graça"
+              ]
+              
         },
         {
             id: 2,
             question: "Porquê que ELE é Deus?",
             answer: "Porque ELE é o criador de todas as coisas e antes que tudo existisse ele já existiu",
-            options: [
+            options:[
                 "Porque ELE é o criador de todas as coisas e antes que tudo existisse ele já existiu",
                 "Porque ELE é o filho de Maria",
                 "Porque ELE foi escolhido por um deus superior",
@@ -48,8 +65,18 @@ const getQuestionAndAnswer = (number) => {
                 "Porque ELE é o senhor de tudo",
                 "Porque ELE tem autoridade sobre tudo",
                 "Porque ELE é uma manifestação divina",
-                "Porque ELE é o único ser verdadeiro"
-            ]
+                "Porque ELE é o único ser verdadeiro",
+                "Porque ELE é a luz do mundo",
+                "Porque ELE é a fonte da sabedoria",
+                "Porque ELE tem o poder de transformar tudo",
+                "Porque ELE é a verdade encarnada",
+                "Porque ELE é a chave para a salvação",
+                "Porque ELE é a perfeição em forma humana",
+                "Porque ELE é o caminho para a eternidade",
+                "Porque ELE é a voz de Deus na Terra",
+                "Porque ELE é a redenção dos pecadores",
+                "Porque ELE é a manifestação da graça divina"
+              ]              
         },
         {
             id: 3,
@@ -65,8 +92,20 @@ const getQuestionAndAnswer = (number) => {
                 "Somos seres divinos em forma humana",
                 "Somos filhos de uma entidade superior",
                 "Somos criaturas de Deus",
-                "Somos almas em evolução"
-            ]
+                "Somos almas em evolução",
+                "Somos manifestações de uma força superior",
+                "Somos seres destinados à perfeição",
+                "Somos filhos da luz divina",
+                "Somos reflexos da vontade divina",
+                "Somos essência pura em busca de harmonia",
+                "Somos frutos do amor divino",
+                "Somos criados para transcender",
+                "Somos seres de energia divina",
+                "Somos parte de um grande plano celestial",
+                "Somos guiados pela sabedoria universal",
+                "Somos portadores da verdade divina"
+              ]
+              
         },
         {
             id: 4,
@@ -82,8 +121,19 @@ const getQuestionAndAnswer = (number) => {
                 "A nossa autoridade é a fé em Cristo",
                 "A nossa autoridade é a lei divina",
                 "A nossa autoridade é a graça de Deus",
-                "A nossa autoridade é a palavra profética"
-            ]
+                "A nossa autoridade é a palavra profética",
+                "A nossa autoridade é a sabedoria divina",
+                "A nossa autoridade é a verdade revelada",
+                "A nossa autoridade é a justiça divina",
+                "A nossa autoridade é a oração",
+                "A nossa autoridade é o amor de Deus",
+                "A nossa autoridade é a iluminação espiritual",
+                "A nossa autoridade é o conhecimento divino",
+                "A nossa autoridade é o poder da ressurreição",
+                "A nossa autoridade é o testemunho de Cristo",
+                "A nossa autoridade é o exemplo de Jesus"
+              ]
+              
         },
         {
             id: 5,
@@ -99,14 +149,25 @@ const getQuestionAndAnswer = (number) => {
                 "É o tentador",
                 "São os espíritos malignos",
                 "É Satanás",
-                "É a oposição espiritual"
-            ]
+                "É a oposição espiritual",
+                "É a escuridão",
+                "São as tentações do mundo",
+                "É o caos",
+                "São as forças destrutivas",
+                "É a mentira",
+                "São as trevas espirituais",
+                "É o orgulho",
+                "São as forças do egoísmo",
+                "É a corrupção",
+                "São os falsos profetas"
+              ]
+              
         },
         {
             id: 6,
             question: "Ele existe?",
             answer: "Sim",
-            options: [
+            options:[
                 "Sim",
                 "Não",
                 "Talvez",
@@ -116,8 +177,19 @@ const getQuestionAndAnswer = (number) => {
                 "Ele é um mito",
                 "Ele existe espiritualmente",
                 "Ele existe no mundo físico",
-                "Ele é uma presença invisível"
-            ]
+                "Ele é uma presença invisível",
+                "Ele é uma ideia",
+                "Ele é um arquétipo",
+                "Ele é uma construção social",
+                "Ele é um ser celestial",
+                "Ele é uma essência imortal",
+                "Ele é um reflexo de nossas crenças",
+                "Ele está em nossos corações",
+                "Ele é uma manifestação da fé",
+                "Ele existe em nossa consciência",
+                "Ele é uma presença espiritual"
+              ]
+              
         },
         {
             id: 7,
@@ -133,8 +205,19 @@ const getQuestionAndAnswer = (number) => {
                 "Porque ele se revela aos fiéis",
                 "Porque ele está em todos os lugares",
                 "Porque ele age no mundo físico",
-                "Porque ele tem poder sobre o mal"
-            ]
+                "Porque ele tem poder sobre o mal",
+                "Porque ele se manifesta em visões",
+                "Porque ele age nas situações adversas",
+                "Porque ele é percebido por aqueles que buscam",
+                "Porque ele trabalha através das pessoas",
+                "Porque ele opera nas situações de sofrimento",
+                "Porque ele influencia o coração dos homens",
+                "Porque ele se revela nos momentos de crise",
+                "Porque ele é identificado pelas suas obras",
+                "Porque ele age nas escolhas erradas",
+                "Porque ele age na tentação"
+              ]
+              
         },
         {
             id: 8,
@@ -150,8 +233,19 @@ const getQuestionAndAnswer = (number) => {
                 "É o sangue de Cristo",
                 "É a oração de intercessão",
                 "É a proteção divina",
-                "É o poder da palavra"
-            ]
+                "É o poder da palavra",
+                "É o escudo da justiça",
+                "É a força da verdade",
+                "É a armadura de Deus",
+                "É a luz divina",
+                "É o amor de Cristo",
+                "É o fogo purificador",
+                "É a graça de Deus",
+                "É a salvação de Deus",
+                "É o poder da ressurreição",
+                "É o testemunho de Cristo"
+              ]
+              
         },
         {
             id: 9,
@@ -167,8 +261,19 @@ const getQuestionAndAnswer = (number) => {
                 "Tem 62 monições",
                 "Tem 60 monições",
                 "Tem 65 monições",
-                "Tem 68 monições"
-            ]
+                "Tem 68 monições",
+                "Tem 69 monições",
+                "Tem 61 monições",
+                "Tem 67 monições",
+                "Tem 63 monições",
+                "Tem 55 monições",
+                "Tem 59 monições",
+                "Tem 71 monições",
+                "Tem 58 monições",
+                "Tem 56 monições",
+                "Tem 57 monições"
+              ]
+              
         },
         {
             id: 10,
@@ -184,8 +289,17 @@ const getQuestionAndAnswer = (number) => {
                 "Gênesis, Levítico, Samuel, João, Atos...",
                 "Gênesis, Êxodo, Mateus, Romanos, Atos...",
                 "Gênesis, Romanos, Marcos, Efésios, Lucas...",
-                "Gênesis, Lucas, Atos, Hebreus, Apocalipse..."
-            ]
+                "Gênesis, Lucas, Atos, Hebreus, Apocalipse...",
+                "Gênesis, Levítico, Atos, 1 Timóteo, Apocalipse...",
+                "Gênesis, 1 Reis, 2 Crônicas, Romanos, Lucas...",
+                "Gênesis, 2 Tessalonicenses, Mateus, 1 João, Atos...",
+                "Gênesis, Apocalipse, 1 Pedro, Tiago, Lucas...",
+                "Gênesis, 2 Reis, 2 Timóteo, Marcos, Efésios...",
+                "Gênesis, Salmos, Atos, Filipenses, Hebreus...",
+                "Gênesis, 1 Coríntios, Apocalipse, 2 Tessalonicenses, Lucas...",
+                "Gênesis, 1 João, Romanos, 2 Pedro, Apocalipse..."
+              ]
+              
         },
         {
             id: 11,
@@ -201,8 +315,19 @@ const getQuestionAndAnswer = (number) => {
                 "Tem 13 calibres",
                 "Tem 10 calibres",
                 "Tem 8 calibres",
-                "Tem 6 calibres"
-            ]
+                "Tem 6 calibres",
+                "Tem 14 calibres",
+                "Tem 4 calibres",
+                "Tem 15 calibres",
+                "Tem 2 calibres",
+                "Tem 16 calibres",
+                "Tem 17 calibres",
+                "Tem 18 calibres",
+                "Tem 20 calibres",
+                "Tem 19 calibres",
+                "Tem 21 calibres"
+              ]
+              
         },
         {
             id: 12,
@@ -218,8 +343,18 @@ const getQuestionAndAnswer = (number) => {
                 "Pentateuco, Profetas Menores, Revelações, Cartas Paulinas",
                 "Pentateuco, Evangelhos, Cartas Anónimas, Profetas Maiores",
                 "Históricos, Cartas Paulinas, Revelações, Apócrifos",
-                "Pentateuco, Evangelhos, Apócrifos, Revelações"
-            ]
+                "Pentateuco, Evangelhos, Apócrifos, Revelações",
+                "Pentateuco, Sabedoria, Apócrifos, Cartas Paulinas",
+                "Históricos, Profetas Maiores, Sabedoria, Revelações",
+                "Evangelhos, Cartas Gerais, Apócrifos, Históricos",
+                "Profetas Menores, Evangelhos, Revelações, Cartas Gerais",
+                "Históricos, Profetas Menores, Sabedoria, Cartas Paulinas",
+                "Pentateuco, Evangelhos, Profetas Maiores, Revelações",
+                "Sabedoria, Apócrifos, Cartas Anónimas, Evangelhos",
+                "Pentateuco, Revelações, Profetas Maiores, Históricos",
+                "Evangelhos, Sabedoria, Profetas Menores, Revelações"
+              ]
+              
         },
         {
             id: 13,
@@ -235,8 +370,19 @@ const getQuestionAndAnswer = (number) => {
                 "Viver com zelo e determinação",
                 "Viver com sabedoria e prudência",
                 "Viver com paciência e fé",
-                "Viver com autoridade e ousadia"
-            ]
+                "Viver com autoridade e ousadia",
+                "Viver com amor e compaixão",
+                "Viver com propósito e direção",
+                "Viver com alegria e gratidão",
+                "Viver com humildade e integridade",
+                "Viver com esperança e otimismo",
+                "Viver com fé e ação",
+                "Viver com empatia e compreensão",
+                "Viver com foco e disciplina",
+                "Viver com coragem e persistência",
+                "Viver com compaixão e generosidade"
+              ]
+              
         },
         {
             id: 14,
@@ -252,8 +398,18 @@ const getQuestionAndAnswer = (number) => {
                 "Em Marcos 12:30, Jesus disse: 'Amarás o Senhor teu Deus com todo o coração'",
                 "Em Lucas 6:27, Jesus disse: 'Amarás os teus inimigos'",
                 "Em João 15:12, Jesus disse: 'Este é o meu mandamento: Que vos ameis uns aos outros'",
-                "Em Mateus 5:14, Jesus disse: 'Vós sois a luz do mundo'"
-            ]
+                "Em Mateus 5:14, Jesus disse: 'Vós sois a luz do mundo'",
+                "Em João 13:34, Jesus disse: 'Amai-vos uns aos outros como eu vos amei'",
+                "Em Mateus 6:33, Jesus disse: 'Buscai em primeiro lugar o reino de Deus'",
+                "Em Lucas 10:27, Jesus disse: 'Amarás ao Senhor teu Deus de todo o teu coração'",
+                "Em João 8:12, Jesus disse: 'Eu sou a luz do mundo, quem me segue não andará em trevas'",
+                "Em Mateus 7:7, Jesus disse: 'Pedi, e dar-se-vos-á'",
+                "Em Marcos 9:23, Jesus disse: 'Tudo é possível ao que crê'",
+                "Em João 10:10, Jesus disse: 'Eu vim para que tenham vida, e a tenham com abundância'",
+                "Em Mateus 11:28, Jesus disse: 'Vinde a mim, todos os que estais cansados e sobrecarregados'",
+                "Em Lucas 9:23, Jesus disse: 'Se alguém quer vir após mim, negue-se a si mesmo e tome a sua cruz'"
+              ]
+              
         },
         {
             id: 15,
@@ -269,8 +425,18 @@ const getQuestionAndAnswer = (number) => {
                 "Em Atos 2:4, os apóstolos falaram em línguas e realizaram milagres",
                 "Em Mateus 17:20, Jesus disse: 'Se tiverdes fé como um grão de mostarda, fareis milagres'",
                 "Em João 7:38, Jesus disse: 'Quem crer em mim, rios de água viva fluirão de seu interior'",
-                "Em Lucas 11:9, Jesus disse: 'Quem pedir receberá, quem buscar encontrará'"
-            ]
+                "Em Lucas 11:9, Jesus disse: 'Quem pedir receberá, quem buscar encontrará'",
+                "Em João 14:13, Jesus disse: 'Tudo o que pedirdes em meu nome, eu farei'",
+                "Em Marcos 11:24, Jesus disse: 'Tudo o que pedirdes em oração, crede que o recebereis, e assim será'",
+                "Em Lucas 17:6, Jesus disse: 'Se tivésseis fé como um grão de mostarda, diríeis à esta amoreira: Arranca-te e planta-te no mar, e ela vos obedeceria'",
+                "Em Mateus 21:22, Jesus disse: 'E tudo o que pedirdes na oração, crendo, recebereis'",
+                "Em João 15:7, Jesus disse: 'Se vós permanecerdes em mim, e as minhas palavras permanecerem em vós, pedireis o que quiserdes, e vos será feito'",
+                "Em Atos 3:6, Pedro disse: 'Em nome de Jesus Cristo, levanta-te e anda'",
+                "Em Lucas 10:17, Jesus disse: 'Os demônios se submetem a nós em teu nome'",
+                "Em João 11:43-44, Jesus disse: 'Lázaro, sai para fora!' e Lázaro ressuscitou",
+                "Em Marcos 6:13, os discípulos expulsaram muitos demônios e curaram os enfermos, ungindo-os com óleo"
+              ]
+              
         }
     ]
 
