@@ -13,7 +13,7 @@ const GameOver = ({ route,navigation }) => {
      <View style={gameOverStyles.section}>
      <Text style={gameOverStyles.gameOverText}>Derrotado</Text>
       <Image source={require('./../../../assets/lose.png')} style={gameOverStyles.gameOverImage} />
-      <TouchableOpacity style={gameOverStyles.button} onPress={()=> navigation.navigate(from)}>
+      <TouchableOpacity style={gameOverStyles.button} onPress={()=> navigation.replace(from)}>
         <Text style={gameOverStyles.buttonText}>Reiniciar Jogo</Text>
       </TouchableOpacity>
      </View>

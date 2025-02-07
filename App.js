@@ -36,7 +36,7 @@ const App = ({ navigation }) => {
                 "Tem certeza de que deseja sair?",
                 [
                   { text: "Cancelar", style: "cancel" },
-                  { text: "Sim", onPress: () => navigation.navigate('Home') },
+                  { text: "Sim", onPress: () => navigation.replace('IndexGame') },
                 ]
               )
             }
@@ -46,7 +46,7 @@ const App = ({ navigation }) => {
           )
         })} name="GameLemma" component={LemmaGame} />
         <Stack.Screen options={{ title: "Jogo dos Comandos" }} name="GameCommand" component={CommandGame} />
-        <Stack.Screen options={{ title: "Fim do Jogo" }} name="GameOver" component={GameOver} />
+        <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver} />
       </Stack.Navigator>
     </NavigationContainer>
   )

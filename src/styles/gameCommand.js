@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native"
 
 
-const gameLemmaStyles = StyleSheet.create({
+const gameCommandtyles = StyleSheet.create({
+
     container: {
         flex: 1,
         padding: 20,
@@ -13,29 +14,20 @@ const gameLemmaStyles = StyleSheet.create({
         flex: 1,
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 
-    question:{
-        minHeight: 150,
+    question :{
+        height: 400,
         width: '100%',
         borderRadius: 10,
         borderColor: '#0dcaf0',
         borderWidth: 1.5,
         backgroundColor: '#f8f9fa',
-        marginBottom: 10,
+        marginBottom: 20,
         padding: 10,
         alignItems: 'center',
-        marginBottom: 50
-    },
-
-    question_1:{
-        minHeight: 150,
-        width: '100%',
-        borderRadius: 10,
-        backgroundColor: '#f8f9fa',
-        padding: 10,
-        alignItems: 'center',
+        marginBottom: 20
     },
 
     questionText:{
@@ -43,7 +35,8 @@ const gameLemmaStyles = StyleSheet.create({
        color: '#0dcaf0',
        marginTop: 'auto',
        marginBottom: 'auto',
-       fontWeight: 'bold'     
+       fontWeight: 'bold',
+       textAlign: 'center'    
     },
 
     item: {
@@ -55,7 +48,7 @@ const gameLemmaStyles = StyleSheet.create({
         backgroundColor: '#f8f9fa',
         marginBottom: 2,
         padding: 10,
-        alignItems: 'center',
+        alignItems: 'center'
     },
 
     itemText: {
@@ -64,8 +57,6 @@ const gameLemmaStyles = StyleSheet.create({
         marginBottom: 'auto',
         color: '#0dcaf0',
         fontWeight: 'bold',
-        alignItems:'center',
-        textAlign: 'center'
     }, 
 
     buttonText: {
@@ -88,4 +79,4 @@ const gameLemmaStyles = StyleSheet.create({
     }
 })
 
-export default gameLemmaStyles
+export default gameCommandtyles
