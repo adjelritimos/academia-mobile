@@ -76,6 +76,31 @@ const gameCommandtyles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 20,
         padding: 10
+    },
+
+    title: {
+        fontWeight: 'bold',
+        fontSize: 30, 
+        alignSelf: 'flex-end',
+        padding: 0,
+        marginTop: 'auto',
+        marginBottom: 'auto'
+    },
+
+    subtitle: {
+        fontSize: 20, 
+        padding: 0,
+        margin: 0,
+         marginTop: 'auto',
+        marginBottom: 'auto'
+    },
+
+    dflex: {
+        flexDirection: 'row',
+        width: '100%',
+        borderBottomColor: '#0dcaf0',
+        borderBottomWidth: 1,
+       justifyContent: 'space-between'
     }
 })
 
