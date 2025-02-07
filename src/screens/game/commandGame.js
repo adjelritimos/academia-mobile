@@ -3,6 +3,9 @@ import gameCommandStyles from "../../styles/gameLemma"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect } from "react"
 import getQuestionAndAnswerCommands from "../../functions/command/game/getQuestionAndAnswerCommands"
+import playSuccessSound from "../../functions/sounds/playSuccessSound"
+import playErrorSound from "../../functions/sounds/playErrorSound"
+import playTimeSound from "../../functions/sounds/playTimeSound"
 
 const TOTAL_QUESTIONS = 10
 
@@ -20,6 +23,9 @@ const CommandGame = ({ navigation }) => {
     useEffect(() => {
         if (countdown > 0 && !isAnswer) {
             const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
+            if(countdown == 3){
+                playTimeSound()
+            }
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
             navigation.replace('TimeUp', { from: 'GameCommand', command: command })
@@ -44,6 +50,7 @@ const CommandGame = ({ navigation }) => {
             setIsAnswer(true)
             setItemSelect(command.options.indexOf(answer))
             setColorSelect('green')
+            playSuccessSound()
 
             if (questionNumber === TOTAL_QUESTIONS) {
                 navigation.replace('GameWin')
@@ -52,7 +59,11 @@ const CommandGame = ({ navigation }) => {
             setItemSelect(command.options.indexOf(answer))
             setIsAnswer(true)
             setColorSelect('red')
-            navigation.replace('GameOver', { from: 'GameCommand', imagePath: './../../../assets/lose.png' })
+            playErrorSound()
+            setTimeout(() => {
+                navigation.replace('GameOver', { from: 'GameCommand', imagePath: './../../../assets/lose.png' })
+            }, 2000)
+
         }
     }
 

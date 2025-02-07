@@ -3,6 +3,9 @@ import gameLemmaStyles from "../../styles/gameLemma"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect } from "react"
 import getQuestionAndAnswer from "../../functions/lemma/game/getQuestionAndAnswer"
+import playSuccessSound from "../../functions/sounds/playSuccessSound"
+import playErrorSound from "../../functions/sounds/playErrorSound"
+import playTimeSound from "../../functions/sounds/playTimeSound"
 
 const TOTAL_QUESTIONS = 10
 
@@ -17,14 +20,19 @@ const LemmaGame = ({ navigation }) => {
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const [showNextButton, setShowNextButton] = useState(true)
 
+
     useEffect(() => {
         if (countdown > 0 && !isAnswer) {
             const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
+            if(countdown == 3){
+                playTimeSound()
+            }
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
             navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
         }
     }, [countdown, isAnswer, navigation])
+
 
     function getNewQuestion() {
         let newQuestion
@@ -44,7 +52,7 @@ const LemmaGame = ({ navigation }) => {
             setIsAnswer(true)
             setItemSelect(lemmas.options.indexOf(answer))
             setColorSelect('green')
-
+            playSuccessSound()
             if (questionNumber === TOTAL_QUESTIONS) {
                 navigation.replace('GameWin')
             }
@@ -52,7 +60,10 @@ const LemmaGame = ({ navigation }) => {
             setItemSelect(lemmas.options.indexOf(answer))
             setIsAnswer(true)
             setColorSelect('red')
-            navigation.replace('GameOver', { from: 'GameLemma', imagePath: './../../../assets/lose.png' })
+            playErrorSound()
+            setTimeout(()=>{
+                navigation.replace('GameOver', { from: 'GameLemma', imagePath: './../../../assets/lose.png' })
+            }, 2000)
         }
     }
 
