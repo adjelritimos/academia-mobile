@@ -2,15 +2,14 @@ import _ from "lodash"
 
 const onlyFourAnswer = (elemnts) => {
     let answers = []
+    answers.push(elemnts[0])
     
-    while (answers.length < 3) {
+    while (answers.length < 4) {
         const randomIndex = Math.floor(Math.random() * elemnts.length)
         if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex])) {
             answers.push(elemnts[randomIndex])
         }
     }
-
-    answers.push(elemnts[0])
 
     return answers
 

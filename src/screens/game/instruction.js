@@ -21,7 +21,7 @@ const Instrucion = ({ route, navigation }) => {
                 </View>
             </View>
 
-            <TouchableOpacity onPress={()=> navigation.replace(''+whereToGo)} style={instrutionStyles.button}>
+            <TouchableOpacity onPress={()=> navigation.replace(whereToGo)} style={instrutionStyles.button}>
                 <Text style={instrutionStyles.buttonText}>Vamos praticar!</Text>
             </TouchableOpacity>
         </View>
