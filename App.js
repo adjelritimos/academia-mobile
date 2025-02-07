@@ -27,7 +27,14 @@ const App = ({ navigation }) => {
         <Stack.Screen options={{ title: "Lema" }} name="Lemma" component={Lemma} />
         <Stack.Screen options={{ title: "Comando de voz" }} name="CommandVoice" component={CommandVoice} />
         <Stack.Screen options={{ title: "Especificação do Comando" }} name="CommandSpecification" component={CommandSpecification} />
-        <Stack.Screen options={{ title: "Praticas" }} name="IndexGame" component={IndexGame} />
+        <Stack.Screen options={({ navigation }) => ({
+          title: "Jogo do Lema",
+          headerLeft: () => (
+            <TouchableOpacity style={{marginStart: 10}} onPress={() => navigation.replace('Home')}>
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          )
+        })} name="IndexGame" component={IndexGame} />
         <Stack.Screen options={{ title: "Instruções" }} name="Instrution" component={Instrucion} />
         <Stack.Screen options={({ navigation }) => ({
           title: "Jogo do Lema",
@@ -47,6 +54,7 @@ const App = ({ navigation }) => {
             </TouchableOpacity>
           )
         })} name="GameLemma" component={LemmaGame} />
+
         <Stack.Screen options={({ navigation }) => ({
           title: "Jogo do Lema",
           headerLeft: () => (
@@ -65,7 +73,8 @@ const App = ({ navigation }) => {
             </TouchableOpacity>
           )
         })} name="GameCommand" component={CommandGame} />
-        <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver}/>
+
+        <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
         <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
       </Stack.Navigator>

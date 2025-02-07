@@ -4,7 +4,6 @@ import instrutionStyles from "../../styles/instrution"
 const Instrucion = ({ route, navigation }) => {
 
     const whereToGo = route.params.where
-    console.log(whereToGo)
 
     return (
         <View style={instrutionStyles.main}>
@@ -23,7 +22,7 @@ const Instrucion = ({ route, navigation }) => {
             </View>
 
             <TouchableOpacity onPress={()=> navigation.replace(''+whereToGo)} style={instrutionStyles.button}>
-                <Text style={instrutionStyles.buttonText}>Vamos Jogar!</Text>
+                <Text style={instrutionStyles.buttonText}>Vamos praticar!</Text>
             </TouchableOpacity>
         </View>
     )
