@@ -50,7 +50,7 @@ const App = ({ navigation }) => {
         <Stack.Screen options={{ title: "Jogo dos Comandos" }} name="GameCommand" component={CommandGame} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver}/>
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
-        <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWim" component={GameWin} />
+        <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
       </Stack.Navigator>
     </NavigationContainer>
   )

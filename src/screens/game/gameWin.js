@@ -3,8 +3,7 @@ import { useNavigation } from "@react-navigation/native"
 import gameWinStyles from "../../styles/gameWinStyles"
 
 
-const GameWin = () => {
-    const navigation = useNavigation()
+const GameWin = ({navigation}) => {
 
     return (
         <View style={gameWinStyles.container}>
@@ -20,7 +19,7 @@ const GameWin = () => {
 
             <TouchableOpacity 
                 style={gameWinStyles.button} 
-                onPress={() => navigation.replace("Home")}
+                onPress={() => navigation.replace("IndexGame")}
             >
                 <Text style={gameWinStyles.buttonText}>Voltar ao Menu</Text>
             </TouchableOpacity>
