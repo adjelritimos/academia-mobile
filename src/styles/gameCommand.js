@@ -36,7 +36,8 @@ const gameCommandtyles = StyleSheet.create({
        marginTop: 'auto',
        marginBottom: 'auto',
        fontWeight: 'bold',
-       textAlign: 'center'    
+       textAlign: 'center',
+       alignSelf: 'center'   
     },
 
     item: {

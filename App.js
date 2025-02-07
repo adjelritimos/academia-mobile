@@ -56,7 +56,7 @@ const App = ({ navigation }) => {
         })} name="GameLemma" component={LemmaGame} />
 
         <Stack.Screen options={({ navigation }) => ({
-          title: "Jogo do Lema",
+          title: "Jogo do comandos de voz",
           headerLeft: () => (
             <TouchableOpacity onPress={() =>
               Alert.alert(
