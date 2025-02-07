@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 
 const gameLemmaStyles = StyleSheet.create({
+
     container: {
         flex: 1,
         padding: 20,
@@ -30,7 +31,7 @@ const gameLemmaStyles = StyleSheet.create({
     },
 
     question_1:{
-        minHeight: 150,
+        minHeight: 100,
         width: '100%',
         borderRadius: 10,
         backgroundColor: '#f8f9fa',
@@ -85,6 +86,31 @@ const gameLemmaStyles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 20,
         padding: 10
+    },
+
+    title: {
+        fontWeight: 'bold',
+        fontSize: 30, 
+        alignSelf: 'flex-end',
+        padding: 0,
+        marginTop: 'auto',
+        marginBottom: 'auto'
+    },
+
+    subtitle: {
+        fontSize: 20, 
+        padding: 0,
+        margin: 0,
+         marginTop: 'auto',
+        marginBottom: 'auto'
+    },
+
+    dflex: {
+        flexDirection: 'row',
+        width: '100%',
+        borderBottomColor: '#0dcaf0',
+        borderBottomWidth: 1,
+       justifyContent: 'space-between'
     }
 })
 
