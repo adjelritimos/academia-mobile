@@ -46,7 +46,7 @@ const LemmaGame = ({ navigation }) => {
             setColorSelect('green')
 
             if (questionNumber === TOTAL_QUESTIONS) {
-                navigation.replace('GameOver', { from: 'GameLemma', imagePath: './../../../assets/win.png' })
+                navigation.replace('GameWin')
             }
         } else {
             setItemSelect(lemmas.options.indexOf(answer))

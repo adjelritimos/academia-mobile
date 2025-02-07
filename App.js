@@ -13,6 +13,7 @@ import GameOver from "./src/screens/game/gameOver.js"
 import { TouchableOpacity, Alert } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import TimeUp from "./src/screens/game/timeUp.js"
+import GameWin from "./src/screens/game/gameWin.js"
 
 
 
@@ -49,6 +50,7 @@ const App = ({ navigation }) => {
         <Stack.Screen options={{ title: "Jogo dos Comandos" }} name="GameCommand" component={CommandGame} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver}/>
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
+        <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWim" component={GameWin} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -46,7 +46,7 @@ const CommandGame = ({ navigation }) => {
             setColorSelect('green')
 
             if (questionNumber === TOTAL_QUESTIONS) {
-                navigation.replace('GameOver', { from: 'GameCommand', imagePath: './../../../assets/win.png' })
+                navigation.replace('GameWin')
             }
         } else {
             setItemSelect(command.options.indexOf(answer))
