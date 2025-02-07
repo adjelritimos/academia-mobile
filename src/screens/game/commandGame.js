@@ -22,7 +22,7 @@ const CommandGame = ({ navigation }) => {
             const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
-            navigation.replace('GameOver', { from: 'GameCommand', imagePath: './../../../assets/lose.png' })
+            navigation.replace('TimeUp', { from: 'GameCommand', command: command })
         }
     }, [countdown, isAnswer, navigation])
 

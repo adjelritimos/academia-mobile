@@ -22,7 +22,7 @@ const LemmaGame = ({ navigation }) => {
             const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
-            navigation.replace('GameOver', { from: 'GameLemma', imagePath: './../../../assets/lose.png' })
+            navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
         }
     }, [countdown, isAnswer, navigation])
 

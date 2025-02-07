@@ -12,6 +12,7 @@ import CommandGame from "./src/screens/game/commandGame.js"
 import GameOver from "./src/screens/game/gameOver.js"
 import { TouchableOpacity, Alert } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
+import TimeUp from "./src/screens/game/timeUp.js"
 
 
 
@@ -46,7 +47,8 @@ const App = ({ navigation }) => {
           )
         })} name="GameLemma" component={LemmaGame} />
         <Stack.Screen options={{ title: "Jogo dos Comandos" }} name="GameCommand" component={CommandGame} />
-        <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver} />
+        <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver}/>
+        <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
       </Stack.Navigator>
     </NavigationContainer>
   )
