@@ -73,6 +73,18 @@ const globalStyles = StyleSheet.create({
         justifyContent: 'center',
     },
 
+    buttonToContent: {
+        width: '100%',
+        height: 100,
+        marginTop: 10,
+        backgroundColor: 'white',
+        borderColor: '#0dcaf0',
+        borderWidth: 1,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     content:{
         fontSize: 15,
         color: '#1ef4f1',

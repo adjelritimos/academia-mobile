@@ -2,7 +2,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native"
 import globalStyles from "../styles/home"
 
 
-const Home = ( {navigation} ) => {
+const Home = ({ navigation }) => {
 
 
 
@@ -19,9 +19,13 @@ const Home = ( {navigation} ) => {
                 </TouchableOpacity>
             </View>
 
+            <TouchableOpacity style={globalStyles.buttonToContent} onPress={() => navigation.navigate('ContentIndex')}>
+                <Text style={globalStyles.textInitButtons}>Conteúdos</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity style={globalStyles.buttonToGame} onPress={() => navigation.navigate('IndexGame')}>
-                    <Text style={globalStyles.textGameButtons}>Praticar</Text>
-                </TouchableOpacity>
+                <Text style={globalStyles.textGameButtons}>Praticar</Text>
+            </TouchableOpacity>
         </View>
     )
 }
