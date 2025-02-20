@@ -28,7 +28,7 @@ const App = ({ navigation }) => {
         <Stack.Screen options={{ title: "Comando de voz" }} name="CommandVoice" component={CommandVoice} />
         <Stack.Screen options={{ title: "Especificação do Comando" }} name="CommandSpecification" component={CommandSpecification} />
         <Stack.Screen options={({ navigation }) => ({
-          title: "Jogo do Lema",
+          title: "Prática",
           headerLeft: () => (
             <TouchableOpacity style={{marginStart: 10}} onPress={() => navigation.replace('Home')}>
               <Ionicons name="arrow-back" size={24} color="black" />
