@@ -64,7 +64,7 @@ const globalStyles = StyleSheet.create({
     buttonToGame: {
         width: '100%',
         height: 100,
-        marginTop: 10,
+        marginTop: 3,
         backgroundColor: '#0dcaf0',
         color: '',
         fontSize: 16,
@@ -76,7 +76,7 @@ const globalStyles = StyleSheet.create({
     buttonToContent: {
         width: '100%',
         height: 100,
-        marginTop: 10,
+        marginTop: 3,
         backgroundColor: 'white',
         borderColor: '#0dcaf0',
         borderWidth: 1,

@@ -48,6 +48,13 @@ const instrutionStyles = StyleSheet.create({
         textAlign: 'justify'
     },
 
+    text_1: {
+        fontSize: 20,
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'justify'
+    },
+
     buttonText: {
         fontSize: 30,
         color: 'white',
@@ -81,6 +88,15 @@ const instrutionStyles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         fontWeight: 'bold',
+    },
+
+    text_2: {
+        fontSize: 30,
+        color: '#0dcaf0',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        alignSelf: 'center',
+        marginTop: 15
     }
 })
 

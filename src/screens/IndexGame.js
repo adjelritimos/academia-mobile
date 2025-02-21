@@ -14,7 +14,7 @@ const IndexGame = ({ navigation }) => {
                     <Text style={indexGameStyles.text}>COMANDO DE VOZ</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={() => navigation.replace('ContentIndex')} style={indexGameStyles.buttonContent} >
+            <TouchableOpacity onPress={() => navigation.replace('GameContentIndex')} style={indexGameStyles.buttonContent} >
                 <Text style={indexGameStyles.text}>QUESTÕES SOBRE CONTEÚDOS</Text>
             </TouchableOpacity>
         </View>

@@ -16,7 +16,8 @@ import TimeUp from "./src/screens/game/timeUp.js"
 import GameWin from "./src/screens/game/gameWin.js"
 import ContentIndex from "./src/screens/contents/ContentIndex.js"
 import Content from "./src/screens/contents/content.js"
-
+import GameContentIndex from "./src/screens/game/contents/index.js"
+import QuestionContent from "./src/screens/game/contents/question.js"
 const Stack = createStackNavigator()
 
 const App = ({ navigation }) => {
@@ -79,6 +80,8 @@ const App = ({ navigation }) => {
         <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
         <Stack.Screen options={{ title: "Conteúdos" }} name="ContentIndex" component={ContentIndex} />
         <Stack.Screen options={{ title: "Conteúdo" }} name="Content" component={Content} />
+        <Stack.Screen options={{ title: "Conteúdos de prática" }} name="GameContentIndex" component={GameContentIndex} />  
+        <Stack.Screen options={{ title: "Questão dos conteúdos" }} name="GameContent" component={QuestionContent} />
       </Stack.Navigator>
     </NavigationContainer>
   )
