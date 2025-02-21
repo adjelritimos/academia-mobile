@@ -18,6 +18,7 @@ const QuestionContent = ({ navigation }) => {
     const [itemSelect, setItemSelect] = useState(-1)
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const [showNextButton, setShowNextButton] = useState(true)
+    const [gameOver, setGameOver] = useState(false)
 
 
     useEffect(() => {
@@ -28,8 +29,12 @@ const QuestionContent = ({ navigation }) => {
             }
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
-            navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
+            //navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
         }
+        if(life <= 0){
+            setGameOver(true)
+        }
+
     }, [countdown, isAnswer, navigation])
 
 
@@ -38,24 +43,27 @@ const QuestionContent = ({ navigation }) => {
     }
 
     const verifyAnswer = (answer) => {
-        if (answer === lemmas.answer && !isAnswer) {
+        if (answer === 'Conteúdo 1') {
             setShowNextButton(false)
             setIsAnswer(true)
-            setItemSelect(lemmas.options.indexOf(answer))
+            setCorrectAnswer(correctAnswer + 1)
+            setLife(life + 3)
+            setItemSelect(answer)
             setColorSelect('green')
             
             if (questionNumber === TOTAL_QUESTIONS) {
                 navigation.replace('GameWin')
             }
         } else {
-            setItemSelect(lemmas.options.indexOf(answer))
+            setItemSelect(answer)
+            setLife(life - 10)
             setIsAnswer(true)
-            setColorSelect('red')
-            
-            setTimeout(()=>{
-                navigation.replace('GameOver', { from: 'GameLemma', imagePath: './../../../assets/lose.png' })
-            }, 2000)
+            setColorSelect('red')               
         }
+
+
+        setShowNextButton(false)
+
     }
 
     const nextQuestion = () => {
@@ -67,7 +75,7 @@ const QuestionContent = ({ navigation }) => {
         if (questionNumber < TOTAL_QUESTIONS) {
             const newQuestion = getNewQuestion()
             setLemmas(newQuestion)
-            setQuestionsAnswered([...questionsAnswered, newQuestion.question])
+            setQuestionsAnswered([...questionsAnswered, 'kkkk'])
             setQuestionNumber(questionNumber + 1)
         }
     }
@@ -117,6 +125,7 @@ const QuestionContent = ({ navigation }) => {
                                 width: '100%',
                                 borderRadius: 10,
                                 borderColor: '#0dcaf0',
+                                backgroundColor: 'white',
                                 borderWidth: 1,
                                 marginBottom: 2,
                                 padding: 10,
@@ -129,8 +138,8 @@ const QuestionContent = ({ navigation }) => {
             </View>
 
             <Collapsible style={{ width: '100%' }} collapsed={showNextButton}>
-                <TouchableOpacity onPress={nextQuestion} style={questionStyles.nextButton}>
-                    <Text style={questionStyles.buttonText}>PRÓXIMA</Text>
+                <TouchableOpacity onPress={nextQuestion} style={[questionStyles.nextButton,  { backgroundColor: gameOver ? 'red' : '#0dcaf0' }]}>
+                    <Text style={questionStyles.buttonText}>{gameOver ? 'FIM DO JOGO' : 'PRÓXIMA'}</Text>
                 </TouchableOpacity>
             </Collapsible>
         </View>
