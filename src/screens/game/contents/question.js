@@ -3,6 +3,10 @@ import questionStyles from "../../../styles/question"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect } from "react"
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import playSuccessSound from "../../../functions/sounds/playSuccessSound"
+import playErrorSound from "../../../functions/sounds/playErrorSound"
+import playTimeSound from "../../../functions/sounds/playTimeSound"
+import TimeUp from "../../../components/timeUp"
 const TOTAL_QUESTIONS = 1000
 
 
@@ -19,19 +23,22 @@ const QuestionContent = ({ navigation }) => {
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const [showNextButton, setShowNextButton] = useState(true)
     const [gameOver, setGameOver] = useState(false)
-
+    const [timeUp, setTimeUp] = useState(false)
 
     useEffect(() => {
         if (countdown > 0 && !isAnswer) {
             const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
-            if(countdown == 3){
-               // playTimeSound()
+            if (countdown == 3) {
+                playTimeSound()
             }
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
-            //navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
+            setLife(life - 10)
+            setIsAnswer(true)
+            setColorSelect('red')
+            setTimeUp(true)
         }
-        if(life <= 0){
+        if (life <= 0) {
             setGameOver(true)
         }
 
@@ -39,31 +46,44 @@ const QuestionContent = ({ navigation }) => {
 
 
     function getNewQuestion() {
-       
+
     }
 
+    
+    function doUpdateTimeUp() {
+        setTimeUp(false)
+        nextQuestion()
+    }
+
+
     const verifyAnswer = (answer) => {
-        if (answer === 'Conteúdo 1') {
-            setShowNextButton(false)
-            setIsAnswer(true)
-            setCorrectAnswer(correctAnswer + 1)
-            setLife(life + 3)
-            setItemSelect(answer)
-            setColorSelect('green')
-            
-            if (questionNumber === TOTAL_QUESTIONS) {
-                navigation.replace('GameWin')
+
+        if (!gameOver && !isAnswer) {
+
+            if (answer === 'Conteúdo 1') {
+                setShowNextButton(false)
+                setIsAnswer(true)
+                setCorrectAnswer(correctAnswer + 1)
+                playSuccessSound()
+                setLife(life + 3)
+                setItemSelect(answer)
+                setColorSelect('green')
+
+                if (questionNumber === TOTAL_QUESTIONS) {
+                    navigation.replace('GameWin')
+                }
+            } else {
+                setItemSelect(answer)
+                setLife(life - 10)
+                setIsAnswer(true)
+                playErrorSound()
+                setColorSelect('red')
             }
-        } else {
-            setItemSelect(answer)
-            setLife(life - 10)
-            setIsAnswer(true)
-            setColorSelect('red')               
+
         }
-
-
-        setShowNextButton(false)
-
+        setTimeout(() => {
+            setShowNextButton(false)
+        }, 1000)
     }
 
     const nextQuestion = () => {
@@ -72,7 +92,11 @@ const QuestionContent = ({ navigation }) => {
         setItemSelect(-1)
         setCountdown(initialTime)
 
-        if (questionNumber < TOTAL_QUESTIONS) {
+        if (gameOver) {
+            navigation.replace('GameContentIndex')
+        }
+
+        else if (questionNumber < TOTAL_QUESTIONS) {
             const newQuestion = getNewQuestion()
             setLemmas(newQuestion)
             setQuestionsAnswered([...questionsAnswered, 'kkkk'])
@@ -89,7 +113,7 @@ const QuestionContent = ({ navigation }) => {
     }
 
     return (
-        <View style={ questionStyles.container}>
+        <View style={questionStyles.container}>
             <View style={questionStyles.question}>
 
                 <View style={questionStyles.dflex}>
@@ -103,7 +127,7 @@ const QuestionContent = ({ navigation }) => {
                     </Text>
 
                     <Text style={[questionStyles.title, { color: getTimeColor() }]}>
-                       <Icon name="clock" solid size={20} color="#0dcaf0" /> {countdown}
+                        <Icon name="clock" solid size={20} color="#0dcaf0" /> {countdown}
                     </Text>
                 </View>
 
@@ -112,33 +136,44 @@ const QuestionContent = ({ navigation }) => {
                 </View>
             </View>
 
-            <View style={questionStyles.list}>
-                <FlatList
-                    style={{ width: '100%' }}
-                    data={['Conteúdo 1', 'Conteúdo 2', 'Conteúdo 3', 'Conteúdo 4']}
-                    keyExtractor={(item, index) => String(index)}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            onPress={() => verifyAnswer(item)}
-                            style={{
-                                minHeight: 60,
-                                width: '100%',
-                                borderRadius: 10,
-                                borderColor: '#0dcaf0',
-                                backgroundColor: 'white',
-                                borderWidth: 1,
-                                marginBottom: 2,
-                                padding: 10,
-                                alignItems: 'center'
-                            }}>
-                            <Text style={questionStyles.itemText}>{item}</Text>
-                        </TouchableOpacity>
-                    )}
-                />
-            </View>
+            {
+                timeUp ?
+                    (
+                        <TimeUp setTimeUp={doUpdateTimeUp} gameOver={gameOver} />
+                    )
+
+                    :
+                    (
+
+                        <View style={questionStyles.list}>
+                            <FlatList
+                                style={{ width: '100%' }}
+                                data={['Conteúdo 1', 'Conteúdo 2', 'Conteúdo 3', 'Conteúdo 4']}
+                                keyExtractor={(index) => String(index)}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity
+                                        onPress={() => verifyAnswer(item)}
+                                        style={{
+                                            minHeight: 60,
+                                            width: '100%',
+                                            borderRadius: 10,
+                                            borderColor: '#0dcaf0',
+                                            backgroundColor: itemSelect === item ? colorSelect : 'white',
+                                            borderWidth: 1,
+                                            marginBottom: 2,
+                                            padding: 10,
+                                            alignItems: 'center'
+                                        }}>
+                                        <Text style={questionStyles.itemText}>{item}</Text>
+                                    </TouchableOpacity>
+                                )}
+                            />
+                        </View>
+                    )
+            }
 
             <Collapsible style={{ width: '100%' }} collapsed={showNextButton}>
-                <TouchableOpacity onPress={nextQuestion} style={[questionStyles.nextButton,  { backgroundColor: gameOver ? 'red' : '#0dcaf0' }]}>
+                <TouchableOpacity onPress={nextQuestion} style={[questionStyles.nextButton, { backgroundColor: gameOver ? 'red' : '#0dcaf0' }]}>
                     <Text style={questionStyles.buttonText}>{gameOver ? 'FIM DO JOGO' : 'PRÓXIMA'}</Text>
                 </TouchableOpacity>
             </Collapsible>
