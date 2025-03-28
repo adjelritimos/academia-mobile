@@ -1,6 +1,4 @@
 const filterLemma =(txt, list, result) => {
-   
-    console.log('\n\n\n',txt, '\n\n\n')
 
     if(!txt){
         result(list) 
