@@ -18,6 +18,9 @@ import ContentIndex from "./src/screens/contents/ContentIndex.js"
 import Content from "./src/screens/contents/content.js"
 import GameContentIndex from "./src/screens/game/contents/index.js"
 import QuestionContent from "./src/screens/game/contents/question.js"
+import alertQuit from "./src/functions/others/alertquit.js"
+import ButtonQuit from "./src/components/buttonQuit.js"
+import ButtonQuitContent from "./src/components/buttonQuitContent.js"
 const Stack = createStackNavigator()
 
 const App = ({ navigation }) => {
@@ -28,60 +31,17 @@ const App = ({ navigation }) => {
         <Stack.Screen options={{ title: "Lema" }} name="Lemma" component={Lemma} />
         <Stack.Screen options={{ title: "Comando de voz" }} name="CommandVoice" component={CommandVoice} />
         <Stack.Screen options={{ title: "Especificação do Comando" }} name="CommandSpecification" component={CommandSpecification} />
-        <Stack.Screen options={({ navigation }) => ({
-          title: "Prática",
-          headerLeft: () => (
-            <TouchableOpacity style={{marginStart: 10}} onPress={() => navigation.replace('Home')}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          )
-        })} name="IndexGame" component={IndexGame} />
+        <Stack.Screen options={{ title: "Prática"}} name="IndexGame" component={IndexGame} />
         <Stack.Screen options={{ title: "Instruções" }} name="Instrution" component={Instrucion} />
-        <Stack.Screen options={({ navigation }) => ({
-          title: "Jogo do Lema",
-          headerLeft: () => (
-            <TouchableOpacity onPress={() =>
-              Alert.alert(
-                "Desistir da prática",
-                "Tem certeza de que deseja abandonar a sua prática dos lemas?",
-                [
-                  { text: "Cancelar", style: "cancel" },
-                  { text: "Sim", onPress: () => navigation.replace('IndexGame') },
-                ]
-              )
-            }
-              style={{ marginLeft: 15, marginEnd: 15 }}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          )
-        })} name="GameLemma" component={LemmaGame} />
-
-        <Stack.Screen options={({ navigation }) => ({
-          title: "Jogo do comandos de voz",
-          headerLeft: () => (
-            <TouchableOpacity onPress={() =>
-              Alert.alert(
-                "Desistir da prática",
-                "Tem certeza de que deseja abandonar a sua prática dos comandos de voz?",
-                [
-                  { text: "Cancelar", style: "cancel" },
-                  { text: "Sim", onPress: () => navigation.replace('IndexGame') },
-                ]
-              )
-            }
-              style={{ marginLeft: 15, marginEnd: 15 }}>
-              <Ionicons name="arrow-back" size={24} color="black" />
-            </TouchableOpacity>
-          )
-        })} name="GameCommand" component={CommandGame} />
-
+        <Stack.Screen options={({ navigation }) => ({ title: "Jogo do Lema", headerLeft: () => ( <ButtonQuit navigation={ navigation }/> ) })} name="GameLemma" component={LemmaGame} />
+        <Stack.Screen options={({ navigation }) => ({ title: "Jogo do comandos de voz", headerLeft: () => ( <ButtonQuit navigation={ navigation }/> ) })} name="GameCommand" component={CommandGame} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
         <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
         <Stack.Screen options={{ title: "Conteúdos" }} name="ContentIndex" component={ContentIndex} />
         <Stack.Screen options={{ title: "Conteúdo" }} name="Content" component={Content} />
-        <Stack.Screen options={{ title: "Conteúdos de prática" }} name="GameContentIndex" component={GameContentIndex} />  
-        <Stack.Screen options={{ title: "Questão dos conteúdos" }} name="GameContent" component={QuestionContent} />
+        <Stack.Screen options={{ title: "Conteúdos de prática" }} name="GameContentIndex" component={GameContentIndex} />
+        <Stack.Screen options={({ navigation }) => ({ title: "Jogo sobre conteúdos", headerLeft: () => ( <ButtonQuitContent navigation={ navigation }/> ) })} name="GameContent" component={QuestionContent} />
       </Stack.Navigator>
     </NavigationContainer>
   )

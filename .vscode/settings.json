@@ -1,8 +1,0 @@
-{
-    "emulator.emulatorPathWindows": "C:\\Users\\adjel\\AppData\\Local\\Android\\Sdk\\emulator",
-    "emulator.emulatorPath": "C:\\Users\\adjel\\AppData\\Local\\Android\\Sdk\\emulator",
-    "emulator.androidExtraBootArgs": "C:\\Users\\adjel\\AppData\\Local\\Android\\Sdk\\emulator",
-    "emulator.emulatorPathWSL": "C:\\Users\\adjel\\AppData\\Local\\Android\\Sdk\\emulator",
-    "emulator.simulatorPath": "C:\\Users\\adjel\\AppData\\Local\\Android\\Sdk\\emulator",
-    "emulator.androidColdBoot": true
-}
