@@ -24,6 +24,7 @@ const Instrucion = ({ route, navigation }) => {
                                     <Text style={instrutionStyles.rule}>Cada resposta certa leva à próxima pergunta.</Text>
                                     <Text style={instrutionStyles.ruleError}>Resposta errada = Fim de jogo!</Text>
                                 </View>
+                                <Text style={instrutionStyles.text_2}>Bom proveito!</Text>
                             </>
                         )
                         :
