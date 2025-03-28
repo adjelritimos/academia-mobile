@@ -23,7 +23,8 @@ const lemmaStyles = StyleSheet.create({
         backgroundColor: '#f8f9fa',
         marginBottom: 10,
         paddingStart: 10,
-        paddingEnd: 10
+        paddingEnd: 10,
+        fontSize: 18
     },
 
     item: {
