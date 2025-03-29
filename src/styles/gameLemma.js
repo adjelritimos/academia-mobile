@@ -111,6 +111,12 @@ const gameLemmaStyles = StyleSheet.create({
         borderBottomColor: '#0dcaf0',
         borderBottomWidth: 1,
        justifyContent: 'space-between'
+    },
+
+    collaps: {
+        width: '100%',
+        backgroundColor: 'transparent !important',
+        background: 'none !important'
     }
 })
 

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native"
+import { View, Text, FlatList, TouchableOpacity, BackHandler } from "react-native"
 import gameCommandStyles from "../../styles/gameLemma"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect } from "react"
@@ -6,6 +6,7 @@ import getQuestionAndAnswerCommands from "../../functions/command/game/getQuesti
 import playSuccessSound from "../../functions/sounds/playSuccessSound"
 import playErrorSound from "../../functions/sounds/playErrorSound"
 import playTimeSound from "../../functions/sounds/playTimeSound"
+import alertQuit from "../../functions/others/alertquit"
 
 const TOTAL_QUESTIONS = 10
 
@@ -31,6 +32,20 @@ const CommandGame = ({ navigation }) => {
             navigation.replace('TimeUp', { from: 'GameCommand', command: command })
         }
     }, [countdown, isAnswer, navigation])
+
+        useEffect(() => {
+    
+            const backHandler = BackHandler.addEventListener(
+                'hardwareBackPress',
+                () => {
+                    alertQuit(navigation)
+                    return true
+                }
+            )
+    
+            return () => backHandler.remove()
+    
+        }, [navigation])
 
     function getNewQuestion() {
         let newQuestion

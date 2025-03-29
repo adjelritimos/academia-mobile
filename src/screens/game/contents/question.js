@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native"
+import { View, Text, FlatList, TouchableOpacity, BackHandler } from "react-native"
 import questionStyles from "../../../styles/question"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect } from "react"
@@ -7,6 +7,7 @@ import playSuccessSound from "../../../functions/sounds/playSuccessSound"
 import playErrorSound from "../../../functions/sounds/playErrorSound"
 import playTimeSound from "../../../functions/sounds/playTimeSound"
 import TimeUp from "../../../components/timeUp"
+import alertQuitContent from "../../../functions/others/alertquitcontent"
 const TOTAL_QUESTIONS = 1000
 
 
@@ -17,7 +18,7 @@ const QuestionContent = ({ navigation }) => {
     const [countdown, setCountdown] = useState(initialTime)
     const [questionsAnswered, setQuestionsAnswered] = useState([])
     const [questionNumber, setQuestionNumber] = useState(1)
-    const [lemmas, setLemmas] = useState(getNewQuestion())
+    const [questions, setQuestions] = useState(getNewQuestion())
     const [isAnswer, setIsAnswer] = useState(false)
     const [itemSelect, setItemSelect] = useState(-1)
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
@@ -44,6 +45,19 @@ const QuestionContent = ({ navigation }) => {
 
     }, [countdown, isAnswer, navigation])
 
+    useEffect(() => {
+
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            () => {
+                alertQuitContent(navigation)
+                return true
+            }
+        )
+
+        return () => backHandler.remove()
+
+    }, [navigation])
 
     function getNewQuestion() {
 
@@ -98,7 +112,7 @@ const QuestionContent = ({ navigation }) => {
 
         else if (questionNumber < TOTAL_QUESTIONS) {
             const newQuestion = getNewQuestion()
-            setLemmas(newQuestion)
+            setQuestions(newQuestion)
             setQuestionsAnswered([...questionsAnswered, 'kkkk'])
             setQuestionNumber(questionNumber + 1)
         }

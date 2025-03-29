@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native"
+import { View, Text, FlatList, TouchableOpacity, BackHandler } from "react-native"
 import gameLemmaStyles from "../../styles/gameLemma"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect } from "react"
@@ -6,6 +6,7 @@ import getQuestionAndAnswer from "../../functions/lemma/game/getQuestionAndAnswe
 import playSuccessSound from "../../functions/sounds/playSuccessSound"
 import playErrorSound from "../../functions/sounds/playErrorSound"
 import playTimeSound from "../../functions/sounds/playTimeSound"
+import alertQuit from "../../functions/others/alertquit"
 
 const TOTAL_QUESTIONS = 10
 
@@ -24,7 +25,7 @@ const LemmaGame = ({ navigation }) => {
     useEffect(() => {
         if (countdown > 0 && !isAnswer) {
             const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
-            if(countdown == 3){
+            if (countdown == 3) {
                 playTimeSound()
             }
             return () => clearTimeout(timer)
@@ -33,6 +34,19 @@ const LemmaGame = ({ navigation }) => {
         }
     }, [countdown, isAnswer, navigation])
 
+    useEffect(() => {
+
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            () => {
+                alertQuit(navigation)
+                return true
+            }
+        )
+
+        return () => backHandler.remove()
+
+    }, [navigation])
 
     function getNewQuestion() {
         let newQuestion
@@ -61,7 +75,7 @@ const LemmaGame = ({ navigation }) => {
             setIsAnswer(true)
             setColorSelect('red')
             playErrorSound()
-            setTimeout(()=>{
+            setTimeout(() => {
                 navigation.replace('GameOver', { from: 'GameLemma', imagePath: './../../../assets/lose.png' })
             }, 2000)
         }
@@ -113,7 +127,7 @@ const LemmaGame = ({ navigation }) => {
                 <FlatList
                     style={{ width: '100%' }}
                     data={lemmas.options}
-                    keyExtractor={(item, index) => String(index)}
+                    keyExtractor={(index) => String(index)}
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             onPress={() => verifyAnswer(item)}
@@ -134,7 +148,7 @@ const LemmaGame = ({ navigation }) => {
                 />
             </View>
 
-            <Collapsible style={{ width: '100%' }} collapsed={showNextButton}>
+            <Collapsible style={gameLemmaStyles.collaps} collapsed={showNextButton}>
                 <TouchableOpacity onPress={nextQuestion} style={gameLemmaStyles.nextButton}>
                     <Text style={gameLemmaStyles.buttonText}>PRÓXIMA</Text>
                 </TouchableOpacity>
