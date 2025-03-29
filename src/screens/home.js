@@ -1,10 +1,20 @@
-import { View, Text, Image, TouchableOpacity } from "react-native"
+import { View, Text, Image, TouchableOpacity, BackHandler } from "react-native"
 import globalStyles from "../styles/home"
+import { useEffect } from "react"
+import alertQuitApp from "../functions/others/alertquitApp"
 
 
 const Home = ({ navigation }) => {
 
+    useEffect(() => {
+        
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress', () => { alertQuitApp();  return true }
+        )
 
+        return () => backHandler.remove()
+
+    }, [])
 
     return (
         <View style={globalStyles.container}>
