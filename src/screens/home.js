@@ -7,14 +7,14 @@ import alertQuitApp from "../functions/others/alertquitApp"
 const Home = ({ navigation }) => {
 
     useEffect(() => {
-        
+
         const backHandler = BackHandler.addEventListener(
             'hardwareBackPress', () => { alertQuitApp();  return true }
         )
 
         return () => backHandler.remove()
 
-    }, [])
+    }, [navigation])
 
     return (
         <View style={globalStyles.container}>
