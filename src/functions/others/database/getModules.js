@@ -1,11 +1,8 @@
-import openDatabase from "./openDataBase"
-
-const getModules = async () => {
+const getModules = async (db) => {
 
     let modules = []
 
     try {
-        const db = await openDatabase()
         const allRows = await db.getAllAsync('SELECT * FROM modules;')
         for (const row of allRows) {
             modules.push(row)
@@ -13,7 +10,7 @@ const getModules = async () => {
     } catch (error) {
         console.log(error)
     }
-
+    
     return modules
 }
 

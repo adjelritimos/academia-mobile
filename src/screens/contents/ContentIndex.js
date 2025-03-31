@@ -15,7 +15,7 @@ const ContentIndex = ({ navigation }) => {
                 style={contentIndexStyles.list}
                 data={contents}
                 renderItem={({ item }) => (
-                    <TouchableOpacity style={contentIndexStyles.content} onPress={() => navigation.navigate('Content', { id: item.id })}>
+                    <TouchableOpacity style={contentIndexStyles.content} onPress={() => navigation.navigate('Lessons', { moduleId: item.id })}>
                         <Text style={contentIndexStyles.contentTitle}>{item.title}</Text>
                     </TouchableOpacity>
                 )}
