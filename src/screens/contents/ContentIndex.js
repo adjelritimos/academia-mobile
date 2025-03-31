@@ -1,9 +1,12 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
-import getContents from '../../functions/contents/getContents'
 import contentIndexStyles from '../../styles/contentIndex'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const ContentIndex = ({ navigation }) => {
-    const contents = getContents()
+
+    const { modules } = useContext(AuthContext)
+    const contents = modules
     return (
         <View style={contentIndexStyles.container}>
             <Text style={contentIndexStyles.title}>Conteúdos</Text>
