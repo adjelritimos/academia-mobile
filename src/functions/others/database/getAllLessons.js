@@ -4,7 +4,6 @@ const getAllLessons = async (db) => {
 
     try {
         const allRows = await db.getAllAsync(`SELECT * FROM lessons;`)
-        console.log(allRows)
         for (const row of allRows) {
             lessons.push(row)
         }

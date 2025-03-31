@@ -51,8 +51,7 @@ export const AuthProvider = ({ children }) => {
             } else {
 
                 const lessonss = await getLessons(my_database)
-                console.log(lessonss)
-
+        
                 if (lessonss) {
                     setLessons(lessonss)
                     await AsyncStorage.setItem('lessonss', JSON.stringify(lessonss))

@@ -5,7 +5,6 @@ const getAllLessonsOfOneModule = async (moduleId) => {
     try {
 
         const storedLessons = await AsyncStorage.getItem('lessons')
-        console.log(storedLessons)
 
         if (!storedLessons) {
             console.warn('Nenhuma lição encontrada no AsyncStorage')

@@ -1,11 +1,29 @@
 import { View, Text } from 'react-native'
+import contentLessonStyles from '../../styles/contentLesson'
+import { ScrollView } from 'react-native'
 
 const Content = ({ route }) => {
-    const { id } = route.params
+    const lesson = route.params.lesson
+
+    const renderTexts = (texto) => {
+        return texto.split('\n').map((word, index) => (
+            <Text key={index} style={word === word.toUpperCase() ? contentLessonStyles.contentTitle : contentLessonStyles.normal}>
+                {word}{' '}
+            </Text>
+        ))
+    }
+
     return (
-        <View>
-            <Text>Conteúdo {id}</Text>
-        </View>
+        <ScrollView>
+            <View style={contentLessonStyles.container}>
+                <Text style={contentLessonStyles.title}>{lesson.title}</Text>
+                <View style={contentLessonStyles.content}>
+                    {
+                        renderTexts(lesson.body)
+                    }
+                </View>
+            </View>
+        </ScrollView>
     )
 }
 

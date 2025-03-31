@@ -30,7 +30,7 @@ const Lessons = ({navigation, route}) => {
                     data={lessonsCopy}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <TouchableOpacity style={lemmaStyles.item}>
+                        <TouchableOpacity onPress={()=> navigation.navigate('Content', {lesson: item})} style={lemmaStyles.item}>
                             <Text style={lemmaStyles.itemText}>{item.title}</Text>
                         </TouchableOpacity>
                     )}

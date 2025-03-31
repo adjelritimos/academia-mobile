@@ -1,8 +1,7 @@
 import * as FileSystem from 'expo-file-system'
 import * as SQLite from 'expo-sqlite'
 import { Asset } from 'expo-asset'
-const dbName = 'academycals.db'
-
+const dbName = 'academiasTESE.db'
 
 
 const getDatabaseUri = async () => {
@@ -14,7 +13,7 @@ const getDatabaseUri = async () => {
   if (!fileExists.exists) {
     console.log('Copiando banco de dados para o diretório do app...')
     await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'SQLite', { intermediates: true })
-    const asset = Asset.fromModule(require('./../../../../assets/academycal.db'))
+    const asset = Asset.fromModule(require('./../../../../assets/academia.db'))
     await asset.downloadAsync()
     await FileSystem.copyAsync({
       from: asset.localUri,
