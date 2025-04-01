@@ -1,21 +1,38 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import contentIndexStyles from '../../styles/contentIndex'
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+import checkIsComplete from '../../functions/others/database/checkIsComplete'
 
 const ContentIndex = ({ navigation }) => {
-
     const { modules } = useContext(AuthContext)
-    const contents = modules
+    const [completionStatus, setCompletionStatus] = useState({})
+
+    useEffect(() => {
+
+        const loadCompletionStatus = async () => {
+            const status = {}
+            for (const module of modules) {
+                status[module.id] = await checkIsComplete(module.id)
+            }
+            setCompletionStatus(status)
+        }
+
+        loadCompletionStatus()
+
+    }, [modules])
+
     return (
         <View style={contentIndexStyles.container}>
+
             <Text style={contentIndexStyles.title}>Conteúdos</Text>
             <View style={contentIndexStyles.line} />
+
             <FlatList
                 style={contentIndexStyles.list}
-                data={contents}
+                data={modules}
                 renderItem={({ item }) => (
-                    <TouchableOpacity style={contentIndexStyles.content} onPress={() => navigation.navigate('Lessons', { moduleId: item.id })}>
+                    <TouchableOpacity disabled={!completionStatus[item.id]} style={[contentIndexStyles.content, !completionStatus[item.id] && contentIndexStyles.disabledContent]} onPress={() => navigation.navigate('Lessons', { moduleId: item.id })}>
                         <Text style={contentIndexStyles.contentTitle}>{item.title}</Text>
                     </TouchableOpacity>
                 )}

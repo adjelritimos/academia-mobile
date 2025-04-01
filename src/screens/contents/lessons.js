@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import lemmaStyles from "../../styles/lemma"
 import { AuthContext } from "../../contexts/AuthContext"
 import filter from "../../functions/others/database/filterContents"
+import checkWasRead from "../../functions/others/database/checkIsRead"
 
 const Lessons = ({navigation, route}) => {
 
@@ -10,6 +11,7 @@ const Lessons = ({navigation, route}) => {
     const {lessons} = useContext(AuthContext)
     const [lessonss, setLessonss] = useState([])
     const [lessonsCopy, setLessonsCopy] = useState([])
+    const [completionStatus, setCompletionStatus] = useState({})
 
     const getLessons = async(id) => {
         const allLessons = lessons.filter(lesson => lesson.moduleId === moduleId)
@@ -21,6 +23,21 @@ const Lessons = ({navigation, route}) => {
         getLessons(moduleId)
     }, [])
 
+    useEffect(() => {
+
+        const loadCompletionStatus = async () => {
+            const status = {}
+
+            for (const lesson of lessonss) {
+                status[lesson.id] = await checkWasRead(lesson.id)
+            }
+
+            setCompletionStatus(status)
+        }
+
+        loadCompletionStatus()
+
+    }, [lessonss])
 
     return (
         <View style={lemmaStyles.container}>
@@ -30,7 +47,7 @@ const Lessons = ({navigation, route}) => {
                     data={lessonsCopy}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={()=> navigation.navigate('Content', {lesson: item})} style={lemmaStyles.item}>
+                        <TouchableOpacity disabled={!completionStatus[item.id]} onPress={()=> navigation.navigate('Content', {lesson: item})} style={[lemmaStyles.item, !completionStatus[item.id] && lemmaStyles.disabledContent]}>
                             <Text style={lemmaStyles.itemText}>{item.title}</Text>
                         </TouchableOpacity>
                     )}

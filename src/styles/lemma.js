@@ -39,6 +39,18 @@ const lemmaStyles = StyleSheet.create({
         alignItems: 'start',
     },
 
+    disabledContent: {
+        minHeight: 60,
+        width: '100%',
+        borderRadius: 10,
+        borderColor: '#0dcaf0',
+        borderWidth: 1,
+        backgroundColor: '#d3d3d3',
+        marginBottom: 2,
+        padding: 10,
+        alignItems: 'start',
+    },
+
     itemText: {
         fontSize: 18,
         marginTop: 'auto',

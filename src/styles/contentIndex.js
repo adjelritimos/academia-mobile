@@ -35,6 +35,20 @@ const contentIndexStyles = StyleSheet.create({
         borderColor: '#0dcaf0',
     },
 
+    disabledContent: {
+        fontSize: 16,
+        color: '#000',
+        backgroundColor: '#d3d3d3',
+        padding: 10,
+        borderRadius: 10,
+        marginTop: 3,
+        width: '100%',
+        height: 90,
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: '#0dcaf0',
+    },
+
     contentTitle: {
         fontSize: 20,
         fontWeight: 'bold',
