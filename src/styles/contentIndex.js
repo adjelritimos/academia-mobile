@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 const contentIndexStyles = StyleSheet.create({
+
     container: {
         flex: 1,
         backgroundColor: '#ECF2F5',
@@ -38,7 +39,7 @@ const contentIndexStyles = StyleSheet.create({
     disabledContent: {
         fontSize: 16,
         color: '#000',
-        backgroundColor: '#d3d3d3',
+        backgroundColor: '#EAEAEA',
         padding: 10,
         borderRadius: 10,
         marginTop: 3,

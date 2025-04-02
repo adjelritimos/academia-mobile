@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchLessons = async () => {
         try {
-
+            
             await AsyncStorage.removeItem('lessons')
 
             const storedLessons = await AsyncStorage.getItem('lessons')

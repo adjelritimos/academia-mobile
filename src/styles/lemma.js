@@ -47,7 +47,7 @@ const lemmaStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#0dcaf0',
         borderWidth: 1,
-        backgroundColor: '#d3d3d3',
+        backgroundColor: '#EAEAEA',
         marginBottom: 2,
         padding: 10,
         alignItems: 'start',
