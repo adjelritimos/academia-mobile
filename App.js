@@ -40,7 +40,7 @@ const Routes = ({ navigation }) => {
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
         <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
         <Stack.Screen options={{ title: "Conteúdos" }} name="ContentIndex" component={ContentIndex} />
-        <Stack.Screen options={{ title: "Licões" }} name="Lessons" component={Lessons} />
+        <Stack.Screen options={{ title: "Lições" }} name="Lessons" component={Lessons} />
         <Stack.Screen options={{ title: "Conteúdo" }} name="Content" component={Content} />
         <Stack.Screen options={{ title: "Conteúdos de prática" }} name="GameContentIndex" component={GameContentIndex} />
         <Stack.Screen options={({ navigation }) => ({ title: "Jogo sobre conteúdos", headerLeft: () => (<ButtonQuitContent navigation={navigation} />) })} name="GameContent" component={QuestionContent} />

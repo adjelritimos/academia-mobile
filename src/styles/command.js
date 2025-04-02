@@ -20,7 +20,7 @@ const commandStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#0dcaf0',
         borderWidth: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'white',
         marginBottom: 10,
         paddingStart: 10,
         paddingEnd: 10,
@@ -33,10 +33,10 @@ const commandStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#0dcaf0',
         borderWidth: 1,
-        backgroundColor: '#f8f9fa',
-        marginBottom: 2,
+        backgroundColor: 'white',
+        marginBottom: 3,
         padding: 10,
-        alignItems: 'start',
+        alignItems: 'flex-start',
     },
 
     itemText: {
@@ -45,7 +45,20 @@ const commandStyles = StyleSheet.create({
         marginBottom: 'auto',
         color: '#0dcaf0',
         fontWeight: 'bold',
+    },
+
+    btnSound: {
+        marginTop: 'auto',
+        marginBottom: 'auto',
+    },
+
+    d_flex: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        gap: 2
     }
+
 })
 
 export default commandStyles

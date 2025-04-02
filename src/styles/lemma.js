@@ -80,7 +80,7 @@ const lemmaStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        gap: 1
+        gap: 2
     }
 })
 
