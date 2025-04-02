@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import contentIndexStyles from '../../styles/contentIndex'
 import { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/app_context'
 import checkIsComplete from '../../functions/others/database/checkIsComplete'
 
 const ContentIndex = ({ navigation }) => {

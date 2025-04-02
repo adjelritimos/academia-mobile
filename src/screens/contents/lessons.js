@@ -1,7 +1,7 @@
 import { TextInput, Text, View, FlatList, TouchableOpacity } from "react-native"
 import { useContext, useEffect, useState } from "react"
 import lemmaStyles from "../../styles/lemma"
-import { AuthContext } from "../../contexts/AuthContext"
+import { AuthContext } from "../../contexts/app_context"
 import filter from "../../functions/others/database/filterContents"
 import checkWasRead from "../../functions/others/database/checkIsRead"
 

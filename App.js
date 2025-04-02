@@ -18,7 +18,7 @@ import GameContentIndex from "./src/screens/game/contents/index.js"
 import QuestionContent from "./src/screens/game/contents/question.js"
 import ButtonQuit from "./src/components/buttonQuit.js"
 import ButtonQuitContent from "./src/components/buttonQuitContent.js"
-import { AuthProvider } from "./src/contexts/AuthContext.js"
+import { AuthProvider } from "./src/contexts/app_context.js"
 import Lessons from "./src/screens/contents/lessons.js"
 
 
