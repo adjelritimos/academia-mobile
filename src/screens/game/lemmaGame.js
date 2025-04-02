@@ -129,10 +129,7 @@ const LemmaGame = ({ navigation }) => {
                     data={lemmas.options}
                     keyExtractor={(index) => String(index)}
                     renderItem={({ item }) => (
-                        <TouchableOpacity
-                            onPress={() => verifyAnswer(item)}
-                            style={{
-                                minHeight: 60,
+                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={{minHeight: 60,
                                 width: '100%',
                                 borderRadius: 10,
                                 borderColor: '#0dcaf0',

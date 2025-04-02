@@ -9,6 +9,8 @@ const lemmaStyles = StyleSheet.create({
         alignItems: 'center',
     },
 
+
+
     list: {
         flex: 1,
         width: '100%'
@@ -66,6 +68,19 @@ const lemmaStyles = StyleSheet.create({
         color: '#0dcaf0',
         fontWeight: 'medium',
         textAlign: 'justify'
+    },
+
+    btnSound: {
+        height: 50,
+        width: 50,
+        borderRadius: 50
+    },
+
+    d_flex: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        gap: 1
     }
 })
 

@@ -28,6 +28,18 @@ const contentLessonStyles = StyleSheet.create({
         textAlign: 'left'
     },
 
+    btnItem: {
+        minHeight: 60,
+        width: '100%',
+        borderRadius: 10,
+        borderColor: '#0dcaf0',
+        borderWidth: 1,
+        backgroundColor: 'white',
+        marginBottom: 2,
+        padding: 10,
+        alignItems: 'center'
+    },
+
     btn: {
         backgroundColor: '#0dcaf0',
         padding: 10,
@@ -40,7 +52,8 @@ const contentLessonStyles = StyleSheet.create({
     },
 
     btnTxt: {
-        fontSize: 18,
+        fontSize: 28,
+        fontWeight: 'bold',
         color: 'white'
     },
 
