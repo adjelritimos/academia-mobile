@@ -13,23 +13,23 @@ const Lessons = ({navigation, route}) => {
     const [lessonsCopy, setLessonsCopy] = useState([])
     const [completionStatus, setCompletionStatus] = useState({})
 
-    const getLessons = async(id) => {
+    const getLessons = () => {
         const allLessons = lessons.filter(lesson => lesson.moduleId === moduleId)
         setLessonss(allLessons)
         setLessonsCopy(allLessons)
     }
 
     useEffect(()=> {
-        getLessons(moduleId)
+        getLessons()
     }, [])
 
     useEffect(() => {
 
-        const loadCompletionStatus = async () => {
+        const loadCompletionStatus = () => {
             const status = {}
 
-            for (const lesson of lessonss) {
-                status[lesson.id] = await checkWasRead(lesson.id)
+            for (const lesson of lessonsCopy) {
+                status[lessonss.indexOf(lesson)] = checkWasRead(lessonss.indexOf(lesson), lessonsCopy)
             }
 
             setCompletionStatus(status)
@@ -47,7 +47,7 @@ const Lessons = ({navigation, route}) => {
                     data={lessonsCopy}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <TouchableOpacity disabled={!completionStatus[item.id]} onPress={()=> navigation.navigate('Content', {lesson: item})} style={[lemmaStyles.item, !completionStatus[item.id] && lemmaStyles.disabledContent]}>
+                        <TouchableOpacity disabled={!completionStatus[lessonsCopy.indexOf(item)]} onPress={()=> navigation.navigate('Content', {lesson: item})} style={[lemmaStyles.item, !completionStatus[lessonsCopy.indexOf(item)] && lemmaStyles.disabledContent]}>
                             <Text style={lemmaStyles.itemText}>{item.title}</Text>
                         </TouchableOpacity>
                     )}

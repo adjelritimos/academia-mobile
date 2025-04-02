@@ -28,16 +28,32 @@ const contentLessonStyles = StyleSheet.create({
         textAlign: 'left'
     },
 
+    btn: {
+        backgroundColor: '#0dcaf0',
+        padding: 10,
+        borderRadius: 10,
+        marginTop: 3,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    },
+
+    btnTxt: {
+        fontSize: 18,
+        color: 'white'
+    },
+
     contentTitle: {
         fontSize: 19,
         fontWeight: 'bold',
         color: '#0dcaf0',
     },
 
-      normal: {
+    normal: {
         fontWeight: 'normal',
         fontSize: 18,
-      },
+    },
 })
 
 export default contentLessonStyles

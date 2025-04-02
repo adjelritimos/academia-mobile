@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
             const storedLessons = await AsyncStorage.getItem('lessons')
 
             if (storedLessons) {
-                setModules(JSON.parse(storedLessons))
+                setLessons(JSON.parse(storedLessons))
             } else {
 
                 const lessonss = await getLessons(my_database)

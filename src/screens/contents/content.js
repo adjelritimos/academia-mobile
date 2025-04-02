@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import contentLessonStyles from '../../styles/contentLesson'
 import { ScrollView } from 'react-native'
 
@@ -22,6 +22,14 @@ const Content = ({ route }) => {
                         renderTexts(lesson.body)
                     }
                 </View>
+
+                <Text style={contentLessonStyles.title}>Questão</Text>
+                <View style={contentLessonStyles.content}>
+                    <TouchableOpacity style={contentLessonStyles.btn}>
+                        <Text style={contentLessonStyles.btnTxt}>Responder</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </ScrollView>
     )
