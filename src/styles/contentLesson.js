@@ -44,7 +44,7 @@ const contentLessonStyles = StyleSheet.create({
         backgroundColor: '#0dcaf0',
         padding: 10,
         borderRadius: 10,
-        marginTop: 3,
+        marginTop: 5,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',

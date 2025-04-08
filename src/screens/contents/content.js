@@ -1,13 +1,18 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import contentLessonStyles from '../../styles/contentLesson'
 import { ScrollView } from 'react-native'
 import Collapsible from "react-native-collapsible"
 import gameLemmaStyles from '../../styles/gameLemma'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import makeAsRead from '../../functions/contents/makeAsRead'
+import { AuthContext } from '../../contexts/app_context'
 
-const Content = ({ route }) => {
+const Content = ({ route, navigation }) => {
 
     const lesson = route.params.lesson
+    const { lessons, setLessons, modules, setModules } = useContext(AuthContext)
+
+    const [question, setQuestion] = useState('ates')
     const [showNextButton, setShowNextButton] = useState(true)
     const [itemSelect, setItemSelect] = useState(-1)
     const [isAnswer, setIsAnswer] = useState(false)
@@ -15,9 +20,9 @@ const Content = ({ route }) => {
 
     const verifyAnswer = (answer) => {
 
-        if(!isAnswer){
+        if (!isAnswer) {
 
-            if(answer === 'resposta 1') {
+            if (answer === 'resposta 1') {
                 setShowNextButton(false)
                 setIsAnswer(true)
                 setColorSelect('green')
@@ -39,6 +44,11 @@ const Content = ({ route }) => {
         ))
     }
 
+    const makeRead = async() => {
+        await makeAsRead(lessons, lesson, setLessons, modules, setModules, navigation)
+       
+    }
+
     return (
         <ScrollView>
 
@@ -48,26 +58,41 @@ const Content = ({ route }) => {
 
                 <View style={contentLessonStyles.content}>{renderTexts(lesson.body)}</View>
 
-                <Text style={[contentLessonStyles.title, { marginTop: 20 }]}>Questão</Text>
+                {
+                    question ?
+                        (
+                            <>
+                                <Text style={[contentLessonStyles.title, { marginTop: 20 }]}>Questão</Text>
 
-                <View style={contentLessonStyles.content}>
-                    <View style={[gameLemmaStyles.questions, { marginBottom: 20 }]}>
-                        <Text style={gameLemmaStyles.questionText}>{'O que vais responder?'}</Text>
-                    </View>
-                    <View style={gameLemmaStyles.list}>
-                        {['resposta 1', 'resposta 2', 'resposta 3', 'resposta 4'].map((item, index) => (
-                            <TouchableOpacity key={String(index)} onPress={() => {verifyAnswer(item); setItemSelect(index)}} style={itemSelect === index ? [contentLessonStyles.btnItem, {backgroundColor: colorSelect}] : contentLessonStyles.btnItem}>
-                                <Text style={gameLemmaStyles.itemText}>{item}</Text>
+                                <View style={contentLessonStyles.content}>
+                                    <View style={[gameLemmaStyles.questions, { marginBottom: 20 }]}>
+                                        <Text style={gameLemmaStyles.questionText}>{'O que vais responder?'}</Text>
+                                    </View>
+                                    <View style={gameLemmaStyles.list}>
+                                        {['resposta 1', 'resposta 2', 'resposta 3', 'resposta 4'].map((item, index) => (
+                                            <TouchableOpacity key={String(index)} onPress={() => { verifyAnswer(item); setItemSelect(index) }} style={itemSelect === index ? [contentLessonStyles.btnItem, { backgroundColor: colorSelect }] : contentLessonStyles.btnItem}>
+                                                <Text style={gameLemmaStyles.itemText}>{item}</Text>
+                                            </TouchableOpacity>
+                                        ))}
+                                    </View>
+
+                                    <Collapsible style={gameLemmaStyles.collaps} collapsed={showNextButton}>
+                                        <TouchableOpacity onPress={() => setShowNextButton(!showNextButton)} style={colorSelect === 'green' ? gameLemmaStyles.nextButton : [gameLemmaStyles.nextButton, { backgroundColor: colorSelect }]}>
+                                            <Text style={contentLessonStyles.btnTxt}>{colorSelect === 'green' ? 'PRÓXIMA' : 'TENTE NOVAMENTE'}</Text>
+                                        </TouchableOpacity>
+                                    </Collapsible>
+                                </View>
+                            </>
+
+                        )
+                        :
+                        (
+                            <TouchableOpacity onPress={()=> makeRead()} style={contentLessonStyles.btn}>
+                                <Text style={contentLessonStyles.btnTxt}>marcar como lido</Text>
                             </TouchableOpacity>
-                        ))}
-                    </View>
+                        )
+                }
 
-                    <Collapsible style={gameLemmaStyles.collaps} collapsed={showNextButton}>
-                        <TouchableOpacity onPress={() => setShowNextButton(!showNextButton)} style={colorSelect === 'green' ? gameLemmaStyles.nextButton: [gameLemmaStyles.nextButton, { backgroundColor: colorSelect}]}>
-                            <Text style={contentLessonStyles.btnTxt}>{colorSelect === 'green' ? 'PRÓXIMA' : 'TENTE NOVAMENTE'}</Text>
-                        </TouchableOpacity>
-                    </Collapsible>
-                </View>
             </View>
         </ScrollView>
     )
