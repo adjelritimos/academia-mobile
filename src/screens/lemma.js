@@ -5,10 +5,12 @@ import { useState } from "react"
 import getLemma from "../functions/lemma/getLemma"
 import filterLemma from "../functions/lemma/filterLemma"
 import Icon from 'react-native-vector-icons/FontAwesome'
+import playSounds from "../functions/lemma/sounds/playSounds"
 
 const Lemma = () => {
 
     const data = getLemma()
+    const [sound, setSound] = useState(null)
     const [dataCoy, setDataCoy] = useState(getLemma())
     const [activeId, setActiveId] = useState(null)
 
@@ -28,7 +30,7 @@ const Lemma = () => {
                         <TouchableOpacity style={lemmaStyles.item} onPress={() => toggleAccordion(item.id)}>
                             <View style={lemmaStyles.d_flex}>
                                 <Text style={lemmaStyles.itemText}>{item.question}</Text>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => playSounds(sound, setSound, item.file)}>
                                     <Icon name="volume-up" size={30} color="#0dcaf0" />
                                 </TouchableOpacity>
                             </View>

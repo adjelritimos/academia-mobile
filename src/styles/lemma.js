@@ -59,6 +59,7 @@ const lemmaStyles = StyleSheet.create({
         marginBottom: 'auto',
         color: '#0dcaf0',
         fontWeight: 'bold',
+        width: '90%'
     },
 
     contentText: {
@@ -73,7 +74,9 @@ const lemmaStyles = StyleSheet.create({
     btnSound: {
         height: 50,
         width: 50,
-        borderRadius: 50
+        borderRadius: 50,
+        marginTop: 'auto',
+        marginBottom: 'auto'
     },
 
     d_flex: {

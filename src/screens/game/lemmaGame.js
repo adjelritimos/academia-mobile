@@ -11,6 +11,7 @@ import alertQuit from "../../functions/others/alertquit"
 const TOTAL_QUESTIONS = 10
 
 const LemmaGame = ({ navigation }) => {
+    
     const initialTime = 15
     const [countdown, setCountdown] = useState(initialTime)
     const [questionsAnswered, setQuestionsAnswered] = useState([])
