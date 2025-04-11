@@ -1,17 +1,19 @@
 import { TextInput, Text, View, FlatList, TouchableOpacity } from "react-native"
 import Collapsible from "react-native-collapsible"
 import lemmaStyles from "../styles/lemma"
-import { useState } from "react"
-import getLemma from "../functions/lemma/getLemma"
+import { useContext, useState } from "react"
 import filterLemma from "../functions/lemma/filterLemma"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import playSounds from "../functions/lemma/sounds/playSounds"
+import { AuthContext } from "../contexts/app_context"
+import getLemmaSound from "../functions/lemma/getLemmaSound"
 
 const Lemma = () => {
 
-    const data = getLemma()
+    const { lemmas } = useContext(AuthContext)
+    const lemmaSound = getLemmaSound()
     const [sound, setSound] = useState(null)
-    const [dataCoy, setDataCoy] = useState(getLemma())
+    const [dataCoy, setDataCoy] = useState(lemmas)
     const [activeId, setActiveId] = useState(null)
 
     const toggleAccordion = (id) => {
@@ -23,14 +25,12 @@ const Lemma = () => {
         <View style={lemmaStyles.container}>
             <TextInput onChange={(newText) => filterLemma(newText.nativeEvent.text, data, setDataCoy)} style={lemmaStyles.input} placeholder="busque por questão do lema" />
             <View style={lemmaStyles.list}>
-                <FlatList style={{ width: '100%' }}
-                    data={dataCoy}
-                    keyExtractor={(item) => item.id}
+                <FlatList style={{ width: '100%' }} data={dataCoy} keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
                         <TouchableOpacity style={lemmaStyles.item} onPress={() => toggleAccordion(item.id)}>
                             <View style={lemmaStyles.d_flex}>
                                 <Text style={lemmaStyles.itemText}>{item.question}</Text>
-                                <TouchableOpacity onPress={() => playSounds(sound, setSound, item.file)}>
+                                <TouchableOpacity onPress={() => playSounds(sound, setSound, lemmaSound[item.id - 1].file)}>
                                     <Icon name="volume-up" size={30} color="#0dcaf0" />
                                 </TouchableOpacity>
                             </View>

@@ -54,7 +54,7 @@ const LemmaGame = ({ navigation }) => {
         let maxAttempts = 20
 
         do {
-            newQuestion = getQuestionAndAnswer(Math.floor(Math.random() * 15))
+            newQuestion = getQuestionAndAnswer(Math.floor(Math.random() * 30))
             maxAttempts--
         } while (questionsAnswered.includes(newQuestion.question) && maxAttempts > 0)
 

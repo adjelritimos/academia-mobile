@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react'
-import getModules from '../functions/others/database/getModules'
-import getLessons from '../functions/others/database/getAllLessons'
 import openDatabase from '../functions/others/database/openDataBase'
-import getLemmas from '../functions/others/database/getLemmas'
+import fetchLessons from '../functions/others/load_data/fetchLessons'
+import fetchLemmas from '../functions/others/load_data/fetchLemma'
+import fetchModules from '../functions/others/load_data/fetchModules'
 
 export const AuthContext = createContext()
 
@@ -21,9 +21,9 @@ export const AuthProvider = ({ children }) => {
     const loadDatas = async () => {
         try {
 
-            await getLessons(my_database, setLessons)
-            await getLemmas(my_database, setLemmas)
-            await getModules(my_database, setModules)
+            await fetchLessons(my_database, setLessons)
+            await fetchLemmas(my_database, setLemmas)
+            await fetchModules(my_database, setModules)
            
         } catch (error) {
             console.error('Erro ao buscar módulos:', error)

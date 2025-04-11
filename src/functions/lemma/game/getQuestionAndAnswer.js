@@ -3,7 +3,7 @@ import _ from "lodash"
 const onlyFourAnswer = (elemnts) => {
     let answers = []
     answers.push(elemnts[0])
-    
+
     while (answers.length < 4) {
         const randomIndex = Math.floor(Math.random() * elemnts.length)
         if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex])) {
@@ -15,7 +15,7 @@ const onlyFourAnswer = (elemnts) => {
 
 }
 
-const existElements = (elements, element)=>{
+const existElements = (elements, element) => {
     return elements.includes(element)
 }
 
@@ -47,14 +47,14 @@ const getQuestionAndAnswer = (number) => {
                 "Jesus é o Filho de Maria e José",
                 "Jesus é o guia espiritual dos cristãos",
                 "Jesus é a personificação da graça"
-              ]
-              
+            ]
+
         },
         {
             id: 2,
             question: "Porquê que ELE é Deus?",
             answer: "Porque ELE é o criador de todas as coisas e antes que tudo existisse ele já existiu",
-            options:[
+            options: [
                 "Porque ELE é o criador de todas as coisas e antes que tudo existisse ele já existiu",
                 "Porque ELE é o filho de Maria",
                 "Porque ELE foi escolhido por um deus superior",
@@ -75,7 +75,7 @@ const getQuestionAndAnswer = (number) => {
                 "Porque ELE é a voz de Deus na Terra",
                 "Porque ELE é a redenção dos pecadores",
                 "Porque ELE é a manifestação da graça divina"
-              ]              
+            ]
         },
         {
             id: 3,
@@ -103,8 +103,8 @@ const getQuestionAndAnswer = (number) => {
                 "Somos parte de um grande plano celestial",
                 "Somos guiados pela sabedoria universal",
                 "Somos portadores da verdade divina"
-              ]
-              
+            ]
+
         },
         {
             id: 4,
@@ -131,8 +131,8 @@ const getQuestionAndAnswer = (number) => {
                 "A nossa autoridade é o poder da ressurreição",
                 "A nossa autoridade é o testemunho de Cristo",
                 "A nossa autoridade é o exemplo de Jesus"
-              ]
-              
+            ]
+
         },
         {
             id: 5,
@@ -159,14 +159,14 @@ const getQuestionAndAnswer = (number) => {
                 "São as forças do egoísmo",
                 "É a corrupção",
                 "São os falsos profetas"
-              ]
-              
+            ]
+
         },
         {
             id: 6,
             question: "Ele existe?",
             answer: "Sim",
-            options:[
+            options: [
                 "Sim",
                 "Não",
                 "Talvez",
@@ -187,8 +187,8 @@ const getQuestionAndAnswer = (number) => {
                 "Ele é uma manifestação da fé",
                 "Ele existe em nossa consciência",
                 "Ele é uma presença espiritual"
-              ]
-              
+            ]
+
         },
         {
             id: 7,
@@ -215,8 +215,8 @@ const getQuestionAndAnswer = (number) => {
                 "Porque ele é identificado pelas suas obras",
                 "Porque ele age nas escolhas erradas",
                 "Porque ele age na tentação"
-              ]
-              
+            ]
+
         },
         {
             id: 8,
@@ -243,8 +243,8 @@ const getQuestionAndAnswer = (number) => {
                 "É a salvação de Deus",
                 "É o poder da ressurreição",
                 "É o testemunho de Cristo"
-              ]
-              
+            ]
+
         },
         {
             id: 9,
@@ -271,8 +271,8 @@ const getQuestionAndAnswer = (number) => {
                 "Tem 58 monições",
                 "Tem 56 monições",
                 "Tem 57 monições"
-              ]
-              
+            ]
+
         },
         {
             id: 10,
@@ -297,8 +297,8 @@ const getQuestionAndAnswer = (number) => {
                 "Gênesis, Salmos, Atos, Filipenses, Hebreus...",
                 "Gênesis, 1 Coríntios, Apocalipse, 2 Tessalonicenses, Lucas...",
                 "Gênesis, 1 João, Romanos, 2 Pedro, Apocalipse..."
-              ]
-              
+            ]
+
         },
         {
             id: 11,
@@ -325,8 +325,8 @@ const getQuestionAndAnswer = (number) => {
                 "Tem 20 calibres",
                 "Tem 19 calibres",
                 "Tem 21 calibres"
-              ]
-              
+            ]
+
         },
         {
             id: 12,
@@ -352,8 +352,8 @@ const getQuestionAndAnswer = (number) => {
                 "Sabedoria, Apócrifos, Cartas Anónimas, Evangelhos",
                 "Pentateuco, Revelações, Profetas Maiores, Históricos",
                 "Evangelhos, Sabedoria, Profetas Menores, Revelações"
-              ]
-              
+            ]
+
         },
         {
             id: 13,
@@ -380,8 +380,8 @@ const getQuestionAndAnswer = (number) => {
                 "Viver com foco e disciplina",
                 "Viver com coragem e persistência",
                 "Viver com compaixão e generosidade"
-              ]
-              
+            ]
+
         },
         {
             id: 14,
@@ -407,8 +407,8 @@ const getQuestionAndAnswer = (number) => {
                 "Em João 10:10, Jesus disse: 'Eu vim para que tenham vida, e a tenham com abundância'",
                 "Em Mateus 11:28, Jesus disse: 'Vinde a mim, todos os que estais cansados e sobrecarregados'",
                 "Em Lucas 9:23, Jesus disse: 'Se alguém quer vir após mim, negue-se a si mesmo e tome a sua cruz'"
-              ]
-              
+            ]
+
         },
         {
             id: 15,
@@ -434,8 +434,192 @@ const getQuestionAndAnswer = (number) => {
                 "Em Lucas 10:17, Jesus disse: 'Os demônios se submetem a nós em teu nome'",
                 "Em João 11:43-44, Jesus disse: 'Lázaro, sai para fora!' e Lázaro ressuscitou",
                 "Em Marcos 6:13, os discípulos expulsaram muitos demônios e curaram os enfermos, ungindo-os com óleo"
-              ]
-              
+            ]
+
+        },
+
+        {
+            id: 16,
+            answerAquestion: "Jesus é de Deus",
+            answer: "Quem é Jesus?",
+            options: [
+                "Quem é Jesus?",
+                "Qual é a identidade de Jesus?",
+                "Quem é o Filho de Deus?",
+                "Quem é o Salvador?",
+                "Quem é o Messias?",
+                "Quem é o Caminho, a Verdade e a Vida?",
+                "Quem é o Cristo?"
+            ]
+        },
+        {
+            id: 17,
+            question: "Porque ELE é o criador de todas as coisas e antes que tudo existisse ele já existiu",
+            answer: "Porquê que ELE é Deus?",
+            options: [
+                "Porquê que ELE é Deus?",
+                "Por que Jesus é divino?",
+                "Como sabemos que Jesus é Deus?",
+                "Por que Cristo é eterno?",
+                "Por que Ele é o Criador?",
+                "Por que Ele é o Alfa e o Ômega?"
+            ]
+        },
+        {
+            id: 18,
+            question: "Somos filhos de Deus",
+            answer: "Quem somos nós?",
+            options: [
+                "Quem somos nós?",
+                "Qual é nossa identidade espiritual?",
+                "Qual é nossa relação com Deus?",
+                "Como a Bíblia nos define?",
+                "Qual é nossa origem divina?"
+            ]
+        },
+        {
+            id: 19,
+            question: "A nossa autoridade é Cristo",
+            answer: "Quem é a nossa autoridade?",
+            options: [
+                "Quem é a nossa autoridade?",
+                "Quem deve guiar nossas vidas?",
+                "A quem devemos obedecer?",
+                "Quem tem o poder supremo?",
+                "Quem representa Deus na Terra?"
+            ]
+        },
+        {
+            id: 20,
+            question: "É o diabo",
+            answer: "Qual é o nosso adversário?",
+            options: [
+                "Qual é o nosso adversário?",
+                "Quem se opõe a Deus?",
+                "Quem tenta os seres humanos?",
+                "Quem é o inimigo espiritual?",
+                "Quem representa o mal?"
+            ]
+        },
+        {
+            id: 21,
+            question: "Sim",
+            answer: "Ele existe?",
+            options: [
+                "Ele existe?",
+                "O diabo é real?",
+                "Há evidências da existência do mal?",
+                "Podemos confirmar a existência do maligno?",
+                "A Bíblia fala sobre um inimigo?"
+            ]
+        },
+        {
+            id: 22,
+            question: "Porque a palavra nos diz e vemos a sua atuação do mal",
+            answer: "E como sabemos que ele existe?",
+            options: [
+                "E como sabemos que ele existe?",
+                "Como a Bíblia prova a existência do diabo?",
+                "Quais são as evidências do maligno?",
+                "Como percebemos a ação do inimigo?",
+                "O que revela a presença do mal?"
+            ]
+        },
+        {
+            id: 23,
+            question: "É a Bíblia Sagrada",
+            answer: "Qual é o nome da nossa arma?",
+            options: [
+                "Qual é o nome da nossa arma?",
+                "O que usamos para combater o mal?",
+                "Qual é nossa ferramenta espiritual?",
+                "O que nos protege do inimigo?",
+                "Qual livro é nossa espada?"
+            ]
+        },
+        {
+            id: 24,
+            question: "Tem 66 monições",
+            answer: "Quantas monições tem a nossa arma?",
+            options: [
+                "Quantas monições tem a nossa arma?",
+                "Quantos livros tem a Bíblia?",
+                "Qual é o número de livros sagrados?",
+                "Quantas partes formam a Bíblia?",
+                "Quantos textos compõem a Palavra?"
+            ]
+        },
+        {
+            id: 25,
+            question: "Os nomes dessas monições são: Gênesis, Êxodo, Levítico, Números, Deuteronômio, Josué, Juízes, Rute, 1 Samuel, 2 Samuel, 1 Reis, 2 Reis, 1 Crônicas, 2 Crônicas, Esdras, Neemias, Ester, Jó, Salmos, Provérbios, Eclesiastes, Cânticos, Isaías, Jeremias, Lamentações, Ezequiel, Daniel, Oséias, Joel, Amós, Obadias, Jonas, Miquéias, Naum, Habacuque, Sofonias, Ageu, Zacarias, Malaquias, Mateus, Marcos, Lucas, João, Atos dos Apóstolos, Romanos, 1 Coríntios, 2 Coríntios, Gálatas, Efésios, Filipenses, Colossenses, 1 Tessalonicenses, 2 Tessalonicenses, 1 Timóteo, 2 Timóteo, Tito, Filemom, Hebreus, Tiago, 1 Pedro, 2 Pedro, 1 João, 2 João, 3 João, Judas, Apocalipse.",
+            answer: "Quais são os nomes dessas monições?",
+            options: [
+                "Quais são os nomes dessas monições?",
+                "Quais livros compõem a Bíblia?",
+                "Quais são os livros do Antigo e Novo Testamento?",
+                "Quais são os textos sagrados?",
+                "Quais são as partes da Bíblia?"
+            ]
+        },
+        {
+            id: 26,
+            question: "Tem 11 calibres",
+            answer: "Quantos calibres tem a nossa arma?",
+            options: [
+                "Quantos calibres tem a nossa arma?",
+                "Quantas divisões tem a Bíblia?",
+                "Em quantas partes se agrupam os livros sagrados?",
+                "Quantas categorias tem a Palavra?",
+                "Quantas seções tem a Bíblia?"
+            ]
+        },
+        {
+            id: 27,
+            question: "Pentateuco, Históricos, Poéticos, Profetas Maiores, Profetas Menores, Os Evangelhos, Históricos de Novo Testamento, Cartas Paulinas, Cartas Gerais, Cartas Anónimas e Revelações",
+            answer: "Quais são os nomes desses calibres?",
+            options: [
+                "Quais são os nomes desses calibres?",
+                "Quais são as divisões da Bíblia?",
+                "Como se classificam os livros sagrados?",
+                "Quais são os grupos de textos bíblicos?",
+                "Quais são as categorias da Palavra?"
+            ]
+        },
+        {
+            id: 28,
+            question: "Viver a verdade, viver a ousadia e ter autoridade para vencer",
+            answer: "E como soldados devemos?",
+            options: [
+                "E como soldados devemos?",
+                "Qual é nosso dever como cristãos?",
+                "Como devemos agir na fé?",
+                "Qual é nosso papel espiritual?",
+                "Como vencer as batalhas espirituais?"
+            ]
+        },
+        {
+            id: 29,
+            question: "Em Marcos 16:15, Jesus disse: 'Ide por todo mundo pregar o evangelho a toda criatura'",
+            answer: "Qual é o nosso grande mandamento?",
+            options: [
+                "Qual é o nosso grande mandamento?",
+                "Qual é a missão dada por Jesus?",
+                "O que Cristo ordenou aos discípulos?",
+                "Qual é nossa principal tarefa?",
+                "O que devemos anunciar ao mundo?"
+            ]
+        },
+        {
+            id: 30,
+            question: "Em Marcos 16: 17-18, Jesus disse: 'Esses sinais hão de acompanhar os que creem: em meu nome expulsarão demônios; falarão novas línguas; pegarão nas serpentes; e, se beberem alguma coisa mortífera, não lhes fará dano algum; imporão as mãos sobre os enfermos, e estes ficarão curados.'",
+            answer: "Quais são os sinais desse grande mandamento?",
+            options: [
+                "Quais são os sinais desse grande mandamento?",
+                "O que acompanha os que creem?",
+                "Quais são as marcas dos fiéis?",
+                "Como se manifesta o poder divino?",
+                "Quais são as promessas de Jesus?"
+            ]
         }
     ]
 
