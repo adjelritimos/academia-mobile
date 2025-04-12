@@ -3,20 +3,24 @@ import contentLessonStyles from '../../styles/contentLesson'
 import { ScrollView } from 'react-native'
 import Collapsible from "react-native-collapsible"
 import gameLemmaStyles from '../../styles/gameLemma'
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import makeAsRead from '../../functions/contents/makeAsRead'
 import { AuthContext } from '../../contexts/app_context'
 
 const Content = ({ route, navigation }) => {
 
     const { lessons, setLessons, modules, setModules } = useContext(AuthContext)
-
     const [lesson, setLesson] = useState(route.params.lesson)
     const [question, setQuestion] = useState()
     const [showNextButton, setShowNextButton] = useState(true)
     const [itemSelect, setItemSelect] = useState(-1)
     const [isAnswer, setIsAnswer] = useState(false)
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
+    const scrollViewRef = useRef(null)
+
+    const goToNextLesson = () => {
+      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+    }
 
     const verifyAnswer = (answer) => {
 
@@ -36,6 +40,7 @@ const Content = ({ route, navigation }) => {
 
             setShowNextButton(false)
         }
+
     }
 
     const renderTexts = (texto) => {
@@ -47,12 +52,12 @@ const Content = ({ route, navigation }) => {
     }
 
     const makeRead = async() => {
-        await makeAsRead(lessons, lesson, setLesson,setLessons, modules, setModules, navigation)
+        await makeAsRead(lessons, lesson, setLesson, setLessons, modules, setModules, goToNextLesson, navigation)
     }
 
     return (
 
-        <ScrollView>
+        <ScrollView ref={scrollViewRef}>
 
             <View style={contentLessonStyles.container}>
 

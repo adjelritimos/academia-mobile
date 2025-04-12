@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setModules, navigation) => {
-  
+const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setModules, goToNextLesson, navigation) => {
+
     try {
 
         const updatedLessons = lessons.map(_lesson => _lesson.id === lesson.id ? { ..._lesson, wasRead: 1 } : _lesson)
@@ -22,16 +22,20 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
         }
 
         if (isAllRead) {
-            
-            const updatedModules = _modules.map(_module => _module.id === lesson.moduleId ? { ..._module, isComplete: 1 } : _module )
-
+            const updatedModules = _modules.map(_module => _module.id === lesson.moduleId ? { ..._module, isComplete: 1 } : _module)
             await AsyncStorage.setItem('modules', JSON.stringify(updatedModules))
             setModules(updatedModules)
             navigation.replace('ContentIndex', { moduleId: lesson.moduleId })
         }
 
-        if (!isAllRead){
-            setLesson(lessonOfModule[lessonOfModule.indexOf(lesson) + 1])
+        if (!isAllRead) {
+            for (let l = 0; l < lessonOfModule.length; l++) {
+                if (lessonOfModule[l].id === lesson.id) {
+                    setLesson(lessonOfModule[l + 1])
+                    goToNextLesson()
+                    break
+                }
+            }
         }
 
 
