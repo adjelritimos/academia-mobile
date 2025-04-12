@@ -9,9 +9,9 @@ import { AuthContext } from '../../contexts/app_context'
 
 const Content = ({ route, navigation }) => {
 
-    const lesson = route.params.lesson
     const { lessons, setLessons, modules, setModules } = useContext(AuthContext)
 
+    const [lesson, setLesson] = useState(route.params.lesson)
     const [question, setQuestion] = useState()
     const [showNextButton, setShowNextButton] = useState(true)
     const [itemSelect, setItemSelect] = useState(-1)
@@ -47,7 +47,7 @@ const Content = ({ route, navigation }) => {
     }
 
     const makeRead = async() => {
-        await makeAsRead(lessons, lesson, setLessons, modules, setModules, navigation)
+        await makeAsRead(lessons, lesson, setLesson,setLessons, modules, setModules, navigation)
     }
 
     return (
@@ -85,7 +85,6 @@ const Content = ({ route, navigation }) => {
                                     </Collapsible>
                                 </View>
                             </>
-
                         )
                         :
                         (
@@ -97,7 +96,7 @@ const Content = ({ route, navigation }) => {
 
             </View>
         </ScrollView>
-        
+
     )
 }
 
