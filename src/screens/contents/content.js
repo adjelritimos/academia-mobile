@@ -12,7 +12,7 @@ const Content = ({ route, navigation }) => {
     const lesson = route.params.lesson
     const { lessons, setLessons, modules, setModules } = useContext(AuthContext)
 
-    const [question, setQuestion] = useState('ates')
+    const [question, setQuestion] = useState()
     const [showNextButton, setShowNextButton] = useState(true)
     const [itemSelect, setItemSelect] = useState(-1)
     const [isAnswer, setIsAnswer] = useState(false)
@@ -27,11 +27,13 @@ const Content = ({ route, navigation }) => {
                 setIsAnswer(true)
                 setColorSelect('green')
             }
+
             else {
                 setShowNextButton(false)
                 setIsAnswer(true)
                 setColorSelect('red')
             }
+
             setShowNextButton(false)
         }
     }
@@ -46,10 +48,10 @@ const Content = ({ route, navigation }) => {
 
     const makeRead = async() => {
         await makeAsRead(lessons, lesson, setLessons, modules, setModules, navigation)
-       
     }
 
     return (
+
         <ScrollView>
 
             <View style={contentLessonStyles.container}>
@@ -95,6 +97,7 @@ const Content = ({ route, navigation }) => {
 
             </View>
         </ScrollView>
+        
     )
 }
 
