@@ -1,18 +1,22 @@
 import { View, Text, FlatList, TouchableOpacity, BackHandler } from "react-native"
 import questionStyles from "../../../styles/question"
 import Collapsible from "react-native-collapsible"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import playSuccessSound from "../../../functions/sounds/playSuccessSound"
 import playErrorSound from "../../../functions/sounds/playErrorSound"
 import playTimeSound from "../../../functions/sounds/playTimeSound"
 import TimeUp from "../../../components/timeUp"
 import alertQuitContent from "../../../functions/others/alertquitcontent"
+import { AuthContext } from "../../../contexts/app_context"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 const TOTAL_QUESTIONS = 1000
 
 
 const QuestionContent = ({ navigation }) => {
+
     const initialTime = 25
+    const { points, setPoints } = useContext(AuthContext)
     const [life, setLife] = useState(50)
     const [correctAnswer, setCorrectAnswer] = useState(0)
     const [countdown, setCountdown] = useState(initialTime)
@@ -25,6 +29,16 @@ const QuestionContent = ({ navigation }) => {
     const [showNextButton, setShowNextButton] = useState(true)
     const [gameOver, setGameOver] = useState(false)
     const [timeUp, setTimeUp] = useState(false)
+
+
+    const upDatePoint = async()=> {
+        if (correctAnswer > points.points) {
+            const point = { points: correctAnswer }
+            setPoints(point)
+            await AsyncStorage.setItem('points', JSON.stringify(point))
+        }
+    }
+
 
     useEffect(() => {
         if (countdown > 0 && !isAnswer) {
@@ -43,14 +57,16 @@ const QuestionContent = ({ navigation }) => {
             setGameOver(true)
         }
 
+        upDatePoint()
+
     }, [countdown, isAnswer, navigation])
 
     useEffect(() => {
 
         const backHandler = BackHandler.addEventListener(
             'hardwareBackPress',
-            () => {
-                alertQuitContent(navigation)
+            async () => {
+                await alertQuitContent(navigation, correctAnswer, setPoints)
                 return true
             }
         )
@@ -63,26 +79,24 @@ const QuestionContent = ({ navigation }) => {
 
     }
 
-    
+
     function doUpdateTimeUp() {
         setTimeUp(false)
         nextQuestion()
     }
 
 
-    const verifyAnswer = (answer) => {
+    const verifyAnswer = async (answer) => {
 
         if (!gameOver && !isAnswer) {
 
             if (answer === 'Conteúdo 1') {
-                setShowNextButton(false)
                 setIsAnswer(true)
                 setCorrectAnswer(correctAnswer + 1)
                 playSuccessSound()
                 setLife(life + 3)
                 setItemSelect(answer)
                 setColorSelect('green')
-
                 if (questionNumber === TOTAL_QUESTIONS) {
                     navigation.replace('GameWin')
                 }
@@ -168,10 +182,7 @@ const QuestionContent = ({ navigation }) => {
                                     <TouchableOpacity
                                         onPress={() => verifyAnswer(item)}
                                         style={{
-                                            minHeight: 60,
-                                            width: '100%',
-                                            borderRadius: 10,
-                                            borderColor: '#0dcaf0',
+                                            minHeight: 60, width: '100%', borderRadius: 10, borderColor: '#0dcaf0',
                                             backgroundColor: itemSelect === item ? colorSelect : 'white',
                                             borderWidth: 1,
                                             marginBottom: 2,
