@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const loadDatas = async () => {
-        
+
         try {
 
             await fetchLessons(my_database, setLessons)
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
             await fetchPoints(setPoints)
            
         } catch (error) {
-            console.error('Erro ao buscar módulos:', error)
+            console.error('Erro ao carregar os dados:', error)
         }
     }
 
