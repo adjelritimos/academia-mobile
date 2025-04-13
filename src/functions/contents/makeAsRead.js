@@ -36,8 +36,7 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
                 }
             }
         }
-
-
+        
     } catch (error) {
         console.error('Erro em makeAsRead:', error)
     }
