@@ -20,6 +20,7 @@ import ButtonQuit from "./src/components/buttonQuit.js"
 import ButtonQuitContent from "./src/components/buttonQuitContent.js"
 import { AuthProvider } from "./src/contexts/app_context.js"
 import Lessons from "./src/screens/contents/lessons.js"
+import ButtonGoHome from "./src/components/buttonGoHome.js"
 
 
 const Stack = createStackNavigator()
@@ -39,7 +40,7 @@ const Routes = ({ navigation }) => {
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="GameOver" component={GameOver} />
         <Stack.Screen options={{ title: "Fim do Jogo", headerShown: false }} name="TimeUp" component={TimeUp} />
         <Stack.Screen options={{ title: "VITÓRIA", headerShown: false }} name="GameWin" component={GameWin} />
-        <Stack.Screen options={{ title: "Conteúdos" }} name="ContentIndex" component={ContentIndex} />
+        <Stack.Screen options={({ navigation }) => ({ title: "Módulos", headerLeft: () => (<ButtonGoHome navigation={navigation} />) })} name="ContentIndex" component={ContentIndex} />
         <Stack.Screen options={{ title: "Lições" }} name="Lessons" component={Lessons} />
         <Stack.Screen options={{ title: "Conteúdo" }} name="Content" component={Content} />
         <Stack.Screen options={{ title: "Conteúdos de prática" }} name="GameContentIndex" component={GameContentIndex} />
