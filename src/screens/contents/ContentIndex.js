@@ -5,21 +5,10 @@ import { AuthContext } from '../../contexts/app_context'
 import checkIsComplete from '../../functions/others/database/checkIsComplete'
 
 const ContentIndex = ({ navigation }) => {
+    
     const { modules } = useContext(AuthContext)
     const [completionStatus, setCompletionStatus] = useState({})
 
-    useEffect(() => {
-
-        const backHandler = BackHandler.addEventListener(
-            'hardwareBackPress', () => {
-                navigation.navigate('Home')
-                return true
-            }
-        )
-
-        return () => backHandler.remove()
-
-    }, [navigation])
 
     const loadCompletionStatus = async () => {
         const status = {}
