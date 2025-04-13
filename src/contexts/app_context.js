@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const loadDatas = async () => {
+        
         try {
 
             await fetchLessons(my_database, setLessons)
