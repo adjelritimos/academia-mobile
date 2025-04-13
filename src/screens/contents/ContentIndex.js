@@ -8,18 +8,17 @@ const ContentIndex = ({ navigation }) => {
     const { modules } = useContext(AuthContext)
     const [completionStatus, setCompletionStatus] = useState({})
 
-    useEffect(() => {
-
-        const loadCompletionStatus = async () => {
-            const status = {}
-            for (const module of modules) {
-                status[module.id] = await checkIsComplete(module.id)
-            }
-            setCompletionStatus(status)
+    const loadCompletionStatus = async () => {
+        const status = {}
+        for (const module of modules) {
+            status[module.id] = await checkIsComplete(module.id)
         }
 
-        loadCompletionStatus()
+        setCompletionStatus(status)
+    }
 
+    useEffect(() => {
+        loadCompletionStatus()
     }, [modules])
 
     return (

@@ -9,7 +9,6 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
         await AsyncStorage.setItem('lessons', JSON.stringify(updatedLessons))
         setLessons(updatedLessons)
 
-
         const lessonOfModule = updatedLessons.filter(le => le.moduleId === lesson.moduleId)
 
         let isAllRead = true
@@ -21,12 +20,23 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
             }
         }
 
-        if (isAllRead) {
+        if (isAllRead && lessonOfModule[lessonOfModule.length - 1].id === lesson.id) {
             const updatedModules = _modules.map(_module => _module.id === lesson.moduleId ? { ..._module, isComplete: 1 } : _module)
             await AsyncStorage.setItem('modules', JSON.stringify(updatedModules))
             setModules(updatedModules)
             navigation.replace('ContentIndex', { moduleId: lesson.moduleId })
         }
+
+        else if (isAllRead && !(lessonOfModule[lessonOfModule.length - 1].id === lesson.id)) {
+            for (let l = 0; l < lessonOfModule.length; l++) {
+                if (lessonOfModule[l].id === lesson.id) {
+                    setLesson(lessonOfModule[l + 1])
+                    goToNextLesson()
+                    break
+                }
+            }
+        }
+
 
         if (!isAllRead) {
             for (let l = 0; l < lessonOfModule.length; l++) {

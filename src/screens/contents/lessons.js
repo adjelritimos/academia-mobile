@@ -18,9 +18,11 @@ const Lessons = ({ navigation, route }) => {
         const allLessons = lessons.filter(lesson => lesson.moduleId === moduleId)
         setLessonss(allLessons)
         setLessonsCopy(allLessons)
+        loadCompletionStatus()
     }
 
     const loadCompletionStatus = () => {
+       
         const status = {}
 
         for (const lesson of lessonsCopy) {
@@ -31,19 +33,14 @@ const Lessons = ({ navigation, route }) => {
     }
 
     useEffect(() => {
-        getLessons()
-    }, [])
-
-    useEffect(() => {
         loadCompletionStatus()
     }, [lessonss, lessonsCopy, lessons])
+
     
     useFocusEffect(
         useCallback(() => {
             getLessons()
-            loadCompletionStatus()
-        }, [])
-
+        }, [moduleId])
     )
 
     return (
