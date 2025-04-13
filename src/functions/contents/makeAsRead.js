@@ -27,18 +27,7 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
             navigation.replace('ContentIndex', { moduleId: lesson.moduleId })
         }
 
-        else if (isAllRead && !(lessonOfModule[lessonOfModule.length - 1].id === lesson.id)) {
-            for (let l = 0; l < lessonOfModule.length; l++) {
-                if (lessonOfModule[l].id === lesson.id) {
-                    setLesson(lessonOfModule[l + 1])
-                    goToNextLesson()
-                    break
-                }
-            }
-        }
-
-
-        if (!isAllRead) {
+        else if ((isAllRead && !(lessonOfModule[lessonOfModule.length - 1].id === lesson.id)) || !isAllRead) {
             for (let l = 0; l < lessonOfModule.length; l++) {
                 if (lessonOfModule[l].id === lesson.id) {
                     setLesson(lessonOfModule[l + 1])
