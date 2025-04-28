@@ -9,7 +9,10 @@ const Home = ({ navigation }) => {
     useEffect(() => {
 
         const backHandler = BackHandler.addEventListener(
-            'hardwareBackPress', () => { alertQuitApp();  return true }
+            'hardwareBackPress', () => {
+                alertQuitApp()
+                return true
+            }
         )
 
         return () => backHandler.remove()
