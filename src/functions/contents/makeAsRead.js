@@ -24,7 +24,7 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
             const updatedModules = _modules.map(_module => _module.id === lesson.moduleId ? { ..._module, isComplete: 1 } : _module)
             await AsyncStorage.setItem('modules', JSON.stringify(updatedModules))
             setModules(updatedModules)
-            navigation.replace('ContentIndex', { moduleId: lesson.moduleId })
+            navigation.goBack()
         }
 
         else if ((isAllRead && !(lessonOfModule[lessonOfModule.length - 1].id === lesson.id)) || !isAllRead) {
