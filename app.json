@@ -32,7 +32,7 @@
         "projectId": "04a0fa29-2d70-47bd-842c-95fdf233e48a"
       }
     },
-   "plugins": [
+    "plugins": [
       [
         "expo-camera",
         {

@@ -1,94 +1,63 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native'
-import * as Camera from 'expo-camera'
+import { View, Text, TouchableOpacity, Alert, qrcodeStylesheet } from 'react-native'
+import { CameraView, useCameraPermissions } from 'expo-camera'
+import qrcodeStyles from '../styles/qrcode'
 
 const QRCodeScannerScreen = ({ navigation }) => {
-    const [hasPermission, setHasPermission] = useState(null)
-    const [scannedData, setScannedData] = useState(null)
+  const [facing, setFacing] = useState('back')
+  const [permission, requestPermission] = useCameraPermissions()
+  const [scanned, setScanned] = useState(false)
+  const [scannedData, setScannedData] = useState(null)
 
-    
-    useEffect(() => {
-        (async () => {
-            const { status } = await Camera.requestCameraPermissionsAsync()
-            setHasPermission(status === 'granted')
-        })()
-    }, [])
+  useEffect(() => {
+    requestPermission()
+  }, [])
 
-    const handleBarCodeScanned = ({ data }) => {
-        if (!data || scannedData) return
+  const handleBarCodeScanned = ({ type, data }) => {
+    if (scanned) return
 
-        setScannedData(data)
-        Alert.alert('QR Code Lido', data, [
-            {
-                text: 'OK',
-                onPress: () => console.log('Dados:', data),
-            },
-        ])
-    }
+    setScanned(true)
+    setScannedData(data)
+    Alert.alert('QR Code Lido', data, [
+      {
+        text: 'OK',
+        onPress: () => setScanned(false),
+      },
+    ])
+  }
 
+  if (!permission) {
+    return <View style={qrcodeStyles.container}><Text>Carregando...</Text></View>
+  }
 
-
+  if (!permission.granted) {
     return (
-        <View style={styles.container}>
-
-            <Camera style={styles.camera} onBarCodeScanned={handleBarCodeScanned} barCodeTypes={['qr']} />
-
-            {
-                scannedData &&
-                (
-                    <View style={styles.overlay}>
-                        <Text style={styles.text}>QR Code Encontrado:</Text>
-                        <Text style={styles.codeText}>{scannedData}</Text>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => setScannedData(null)}
-                        >
-                            <Text style={styles.buttonText}>Escanear Novamente</Text>
-                        </TouchableOpacity>
-                    </View>
-                )
-            }
-        </View>
+      <View style={qrcodeStyles.container}>
+        <Text style={{ textAlign: 'center' }}>Precisamos da sua permissão para acessar a câmera</Text>
+        <TouchableOpacity onPress={requestPermission} style={qrcodeStyles.button}>
+          <Text style={qrcodeStyles.buttonText}>Conceder Permissão</Text>
+        </TouchableOpacity>
+      </View>
     )
+  }
+
+  return (
+    <View style={qrcodeStyles.container}>
+      <CameraView style={qrcodeStyles.camera} facing={facing}  onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} barcodeScannerSettings={{ barcodeTypes: ['qr'],}}>
+        <View style={qrcodeStyles.cameraInnerView} />
+      </CameraView>
+
+      {scannedData && (
+        <View style={qrcodeStyles.overlay}>
+          <Text style={qrcodeStyles.text}>QR Code Encontrado:</Text>
+          <Text style={qrcodeStyles.codeText}>{scannedData}</Text>
+          <TouchableOpacity style={qrcodeStyles.button} onPress={() => { setScanned(false); setScannedData(null)}}>
+            <Text style={qrcodeStyles.buttonText}>Escanear Novamente</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </View>
+  )
 }
 
 export default QRCodeScannerScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    camera: {
-        flex: 1
-    },
-    overlay: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        padding: 20,
-        alignItems: 'center',
-    },
-    text: {
-        color: '#fff',
-        fontSize: 16,
-        marginBottom: 10
-    },
-    codeText: {
-        color: '#00ff99',
-        textAlign: 'center',
-        marginBottom: 20
-    },
-    button: {
-        backgroundColor: '#007AFF',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 8,
-    },
-
-    buttonText: {
-        color: '#fff',
-        fontWeight: 'bold'
-    },
-})
