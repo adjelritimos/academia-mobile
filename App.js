@@ -28,7 +28,8 @@ import SyncDataScreen from "./src/screens/syncData.js"
 
 const Stack = createStackNavigator()
 
-const Routes = ({ navigation }) => {
+const Routes = () => {
+
   return (
     <NavigationContainer >
       <Stack.Navigator>

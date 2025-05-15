@@ -31,7 +31,7 @@ const LemmaGame = ({ navigation }) => {
             }
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
-            navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
+            navigation.replace('TimeUp', { from: 'GameLemma', answer: lemmas.correct_answer })
         }
     }, [countdown, isAnswer, navigation])
 
@@ -50,11 +50,12 @@ const LemmaGame = ({ navigation }) => {
     }, [navigation])
 
     function getNewQuestion() {
+
         let newQuestion
         let maxAttempts = 20
 
         do {
-            newQuestion = getQuestionAndAnswer(Math.floor(Math.random() * 30))
+            newQuestion = getQuestionAndAnswer()
             maxAttempts--
         } while (questionsAnswered.includes(newQuestion.question) && maxAttempts > 0)
 
@@ -62,7 +63,7 @@ const LemmaGame = ({ navigation }) => {
     }
 
     const verifyAnswer = (answer) => {
-        if (answer === lemmas.answer && !isAnswer) {
+        if (answer === lemmas.correct_answer && !isAnswer) {
             setShowNextButton(false)
             setIsAnswer(true)
             setItemSelect(lemmas.options.indexOf(answer))
