@@ -1,17 +1,24 @@
 import { Alert } from "react-native"
 
-const alertQrCode = (navigation, isValid) => {
-    
+const alertQrCode = (navigation, setScannedData, setScanned, isValid) => {
+
     if (isValid) {
-        // Alerta padrão para QR válido
         Alert.alert(
-            "Desistir da prática",
-            "Tem certeza de que deseja interromper ou abandonar o seu quiz da prática?",
+            "Sucesso na leitura",
+            "O QR Code ainda está válido. Clique em 'Continuar' para prosseguir com a sincronização de dados.",
             [
-                { text: "Não", style: "cancel" },
                 { 
-                    text: "Sim", 
-                    onPress: () => navigation.replace('GameContentIndex') 
+                    text: "Cancelar e voltar a ler",
+                    style: "cancel",
+                    onPress: () => {
+                        setScannedData(null)
+                        setScanned(false)
+                    },
+                },
+               
+                { 
+                    text: "Continuar", 
+                    onPress: () => navigation.replace('SyncData') 
                 },
             ]
         )

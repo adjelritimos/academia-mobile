@@ -23,6 +23,7 @@ import Lessons from "./src/screens/contents/lessons.js"
 import ButtonGoHome from "./src/components/buttonGoHome.js"
 import ButtonGoScann from "./src/components/buttonGoScann.js"
 import QRCodeScannerScreen from "./src/screens/scannQrCode.js"
+import SyncDataScreen from "./src/screens/syncData.js"
 
 
 const Stack = createStackNavigator()
@@ -33,6 +34,7 @@ const Routes = ({ navigation }) => {
       <Stack.Navigator>
         <Stack.Screen options={({ navigation }) => ({ title: "Academia Evangelística", headerRight: () => (<ButtonGoScann navigation={ navigation }/>) })} name="Home" component={Home} />
         <Stack.Screen options={{ title: "Sincronização de dados" }} name="ScannQrCode" component={QRCodeScannerScreen} />
+        <Stack.Screen options={{ title: "Sincronização de dados" }} name="SyncData" component={SyncDataScreen} />
         <Stack.Screen options={{ title: "Lema" }} name="Lemma" component={Lemma} />
         <Stack.Screen options={{ title: "Comando de voz" }} name="CommandVoice" component={CommandVoice} />
         <Stack.Screen options={{ title: "Especificação do Comando" }} name="CommandSpecification" component={CommandSpecification} />

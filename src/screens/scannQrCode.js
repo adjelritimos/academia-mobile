@@ -21,7 +21,7 @@ const QRCodeScannerScreen = ({ navigation }) => {
     if (scanned) return
     setScanned(true)
     setScannedData(data)
-    alertQrCode(navigation, checkQrCode(data))
+    alertQrCode(navigation, setScannedData, setScanned, checkQrCode(data))
   }
 
   if (!permission) {
@@ -44,14 +44,6 @@ const QRCodeScannerScreen = ({ navigation }) => {
       <CameraView style={qrcodeStyles.camera} facing={facing} onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} barcodeScannerSettings={{ barcodeTypes: ['qr'], }}>
         <View style={qrcodeStyles.cameraInnerView} />
       </CameraView>
-
-      {scannedData && (
-        <View style={qrcodeStyles.overlay}>
-          <TouchableOpacity style={qrcodeStyles.button} onPress={() => { setScanned(false); setScannedData(null) }}>
-            <Text style={qrcodeStyles.buttonText}>Voltar a escanear</Text>
-          </TouchableOpacity>
-        </View>
-      )}
     </View>
   )
 }
