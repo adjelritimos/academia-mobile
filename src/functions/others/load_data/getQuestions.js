@@ -13,6 +13,7 @@ const getQuestions = async (setQuestions) => {
         } else {
 
         }
+        
     } catch (error) {
         console.error('Erro ao buscar licoes:', error)
     }
