@@ -2,11 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 
 
-
-const fetchPoints = async (setPoints) => {
+const getPoints = async (setPoints) => {
+   
     try {
-
-        //await AsyncStorage.removeItem('points')
 
         let storedpoint = await AsyncStorage.getItem('points')
 
@@ -22,4 +20,4 @@ const fetchPoints = async (setPoints) => {
     }
 }
 
-export default fetchPoints
+export default getPoints

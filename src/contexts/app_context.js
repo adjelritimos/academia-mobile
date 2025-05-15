@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react'
 import openDatabase from '../functions/others/database/openDataBase'
-import fetchLessons from '../functions/others/load_data/fetchLessons'
-import fetchLemmas from '../functions/others/load_data/fetchLemma'
-import fetchModules from '../functions/others/load_data/fetchModules'
-import fetchPoints from '../functions/others/load_data/fetchPoints'
+import fetchLessons from '../functions/others/load_data/getLessons'
+import fetchLemmas from '../functions/others/load_data/getlemmas'
+import fetchModules from '../functions/others/load_data/getModules'
+import fetchPoints from '../functions/others/load_data/getPoints'
 
 export const AuthContext = createContext()
 
