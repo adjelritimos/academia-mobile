@@ -76,8 +76,6 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         setQuestions(questions)
         setAnswers(answers)
 
-
-
         console.log('✅ Todos os dados foram salvos com sucesso!')
     } catch (error) {
         console.error('❌ Erro ao salvar os dados:', error)
