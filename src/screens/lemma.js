@@ -3,10 +3,10 @@ import Collapsible from "react-native-collapsible"
 import lemmaStyles from "../styles/lemma"
 import { useContext, useState } from "react"
 import filterLemma from "../functions/lemma/filterLemma"
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Ionicons } from "@expo/vector-icons"
 import playSounds from "../functions/lemma/sounds/playSounds"
 import { AuthContext } from "../contexts/app_context"
-import getLemmaSound from "../functions/lemma/getLemmaSound"
+
 
 const Lemma = () => {
 
@@ -30,7 +30,7 @@ const Lemma = () => {
                             <View style={lemmaStyles.d_flex}>
                                 <Text style={lemmaStyles.itemText}>{item.question}</Text>
                                 <TouchableOpacity onPress={() => playSounds(sound, setSound, item.sound)}>
-                                    <Icon name="volume-up" size={30} color="#0dcaf0" />
+                                     <Ionicons name="volume-high" size={30} color="#0dcaf0"/>
                                 </TouchableOpacity>
                             </View>
                             <Collapsible collapsed={activeId !== item.id}>
