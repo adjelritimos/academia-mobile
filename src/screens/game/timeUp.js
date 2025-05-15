@@ -6,6 +6,7 @@ import timeUpStyles from "../../styles/timeUp"
 const TimeUp = ({ route, navigation }) => {
 
 
+    console.log("resposta correcta: ",route.params.answer)
 
     return (
         <View style={globalStyles.container}>
@@ -17,7 +18,7 @@ const TimeUp = ({ route, navigation }) => {
 
             <View style={timeUpStyles.container}>
                 <Text style={timeUpStyles.answer}>Resposta correcta:</Text>
-                <Text style={timeUpStyles.corret}>{route.params.command.answer}</Text>
+                <Text style={timeUpStyles.corret}>{route.params.answer || "Sem resposta"}</Text>
                 <TouchableOpacity style={timeUpStyles.button} onPress={() => navigation.replace(route.params.from)}>
                     <Text style={timeUpStyles.buttonText}>Tentar Novamente</Text>
                 </TouchableOpacity>

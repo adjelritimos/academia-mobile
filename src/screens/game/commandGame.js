@@ -48,6 +48,7 @@ const CommandGame = ({ navigation }) => {
         }, [navigation])
 
     function getNewQuestion() {
+        
         let newQuestion
         let maxAttempts = 20
 

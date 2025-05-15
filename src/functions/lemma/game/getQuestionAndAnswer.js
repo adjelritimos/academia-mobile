@@ -1,14 +1,20 @@
+import AsyncStorage from "@react-native-async-storage/async-storage"
 import _ from "lodash"
 
-const onlyFourAnswer = (elemnts, correct_answer) => {
+const questions = await AsyncStorage.getItem('questions')
+const questionss = JSON.parse(questions)
 
+const answers = await AsyncStorage.getItem('answers')
+const answerss = JSON.parse(answers)
+
+
+const onlyFourAnswer = (elemnts, corret_answer) => {
     let answers = []
-    answers.push(correct_answer)
+    answers.push(corret_answer)
 
-    while (answers.length <= 3) {
-        
+    while (answers.length < 4) {
         const randomIndex = Math.floor(Math.random() * elemnts.length)
-        if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex])) {
+        if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex].answer)) {
             answers.push(elemnts[randomIndex].answer)
         }
     }
@@ -21,13 +27,19 @@ const existElements = (elements, element) => {
     return elements.includes(element)
 }
 
-const getQuestionAndAnswer = (number, questions, answers) => {
+const getQuestionAndAnswer = () => {
 
-    const question = questions[number]
-    const answersOfQuestion = answers.filter(answer => answer.questionId === question.id)
-    question.options = _.shuffle(onlyFourAnswer(answersOfQuestion, question.correct_answer))
+    const lemmasQuestions = questionss.filter(question => question.lemmaId !== null)
 
-    return question
+    const number = Math.floor(Math.random() * lemmasQuestions.length)
+
+    const randomQuestion = lemmasQuestions[number]
+
+    const answersOfQuestion = answerss.filter(answer => answer.questionId === randomQuestion.id)
+
+    randomQuestion[number].options = _.shuffle(onlyFourAnswer(answersOfQuestion, randomQuestion.corret_answer))
+
+    return randomQuestion
 }
 
 export default getQuestionAndAnswer

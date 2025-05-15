@@ -53,7 +53,7 @@ const gameLemmaStyles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#0dcaf0',
         borderWidth: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'white',
         marginBottom: 2,
         padding: 10,
         alignItems: 'center',

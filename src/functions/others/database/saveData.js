@@ -38,7 +38,7 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         const updatedLemmas = await Promise.all(
             lemmas.map(async (lemma) => {
 
-                const audioLocalPath = lemma.sound ? await downloadFile(`http://194.210.88.53:5349/admin${lemma.sound}`) : null
+                const audioLocalPath = lemma.sound ? await downloadFile(`http://192.168.1.5:5349/admin${lemma.sound}`) : null
 
                 return {
                     ...lemma,
@@ -51,8 +51,8 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         const updatedCommands = await Promise.all(
             commands.map(async (command) => {
 
-                const demonstration = command.demonstration ? await downloadFile(`http://194.210.88.53:5349/admin${command.demonstration}`) : null
-                const audioLocalPath = command.sound ? await downloadFile(`http://194.210.88.53:5349/admin${command.sound}`) : null
+                const demonstration = command.demonstration ? await downloadFile(`http://192.168.1.5:5349/admin${command.demonstration}`) : null
+                const audioLocalPath = command.sound ? await downloadFile(`http://192.168.1.5:5349/admin${command.sound}`) : null
 
                 return {
                     ...command,

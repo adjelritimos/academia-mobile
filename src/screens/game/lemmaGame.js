@@ -1,21 +1,18 @@
 import { View, Text, FlatList, TouchableOpacity, BackHandler } from "react-native"
 import gameLemmaStyles from "../../styles/gameLemma"
 import Collapsible from "react-native-collapsible"
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import getQuestionAndAnswer from "../../functions/lemma/game/getQuestionAndAnswer"
 import playSuccessSound from "../../functions/sounds/playSuccessSound"
 import playErrorSound from "../../functions/sounds/playErrorSound"
 import playTimeSound from "../../functions/sounds/playTimeSound"
 import alertQuit from "../../functions/others/alertquit"
-import { AuthContext } from "../../contexts/app_context"
 
 const TOTAL_QUESTIONS = 10
 
 const LemmaGame = ({ navigation }) => {
-
+    
     const initialTime = 15
-    const { questions, answers } = useContext(AuthContext)
-    const [lemmaQuestions, setLemmaQuestion] = useState(questions.filter(question => question.lemmaId !== null))
     const [countdown, setCountdown] = useState(initialTime)
     const [questionsAnswered, setQuestionsAnswered] = useState([])
     const [questionNumber, setQuestionNumber] = useState(1)
@@ -34,9 +31,8 @@ const LemmaGame = ({ navigation }) => {
             }
             return () => clearTimeout(timer)
         } else if (countdown === 0 && !isAnswer) {
-            navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas.correct_answer })
+            navigation.replace('TimeUp', { from: 'GameLemma', command: lemmas })
         }
-        
     }, [countdown, isAnswer, navigation])
 
     useEffect(() => {
@@ -58,7 +54,7 @@ const LemmaGame = ({ navigation }) => {
         let maxAttempts = 20
 
         do {
-            newQuestion = getQuestionAndAnswer(Math.floor(Math.random() * lemmaQuestions.length), lemmaQuestions, answers)
+            newQuestion = getQuestionAndAnswer(Math.floor(Math.random() * 30))
             maxAttempts--
         } while (questionsAnswered.includes(newQuestion.question) && maxAttempts > 0)
 
@@ -134,17 +130,16 @@ const LemmaGame = ({ navigation }) => {
                     data={lemmas.options}
                     keyExtractor={(index) => String(index)}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={{
-                            minHeight: 60,
-                            width: '100%',
-                            borderRadius: 10,
-                            borderColor: '#0dcaf0',
-                            borderWidth: 1,
-                            backgroundColor: itemSelect === lemmas.options.indexOf(item) ? colorSelect : '#f8f9fa',
-                            marginBottom: 2,
-                            padding: 10,
-                            alignItems: 'center'
-                        }}>
+                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={{minHeight: 60,
+                                width: '100%',
+                                borderRadius: 10,
+                                borderColor: '#0dcaf0',
+                                borderWidth: 1,
+                                backgroundColor: itemSelect === lemmas.options.indexOf(item) ? colorSelect : '#f8f9fa',
+                                marginBottom: 2,
+                                padding: 10,
+                                alignItems: 'center'
+                            }}>
                             <Text style={gameLemmaStyles.itemText}>{item}</Text>
                         </TouchableOpacity>
                     )}
