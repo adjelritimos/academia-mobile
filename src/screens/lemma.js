@@ -19,7 +19,6 @@ const Lemma = () => {
         setActiveId(activeId === id ? null : id)
     }
 
-
     return (
         <View style={lemmaStyles.container}>
             <TextInput onChangeText={(text) => filterLemma(text, lemmas, setDataCoy)} style={lemmaStyles.input} placeholder="busque por questão do lema" />
