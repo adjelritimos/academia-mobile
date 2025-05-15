@@ -11,7 +11,6 @@ import getLemmaSound from "../functions/lemma/getLemmaSound"
 const Lemma = () => {
 
     const { lemmas } = useContext(AuthContext)
-    const lemmaSound = getLemmaSound()
     const [sound, setSound] = useState(null)
     const [dataCoy, setDataCoy] = useState(lemmas)
     const [activeId, setActiveId] = useState(null)
@@ -30,7 +29,7 @@ const Lemma = () => {
                         <TouchableOpacity style={lemmaStyles.item} onPress={() => toggleAccordion(item.id)}>
                             <View style={lemmaStyles.d_flex}>
                                 <Text style={lemmaStyles.itemText}>{item.question}</Text>
-                                <TouchableOpacity onPress={() => playSounds(sound, setSound, lemmaSound[item.id - 1].file)}>
+                                <TouchableOpacity onPress={() => playSounds(sound, setSound, item.sound)}>
                                     <Icon name="volume-up" size={30} color="#0dcaf0" />
                                 </TouchableOpacity>
                             </View>

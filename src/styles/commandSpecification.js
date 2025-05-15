@@ -9,12 +9,12 @@ const commandSpecificationStyles = StyleSheet.create({
         alignItems: 'start',
     },
 
-    title:{
+    title: {
         fontSize: 30,
         fontWeight: 'bold',
         color: '#0dcaf0',
         marginTop: 'auto',
-        marginBottom:'auto',
+        marginBottom: 'auto',
         width: '85%'
     },
 
@@ -26,14 +26,13 @@ const commandSpecificationStyles = StyleSheet.create({
 
     btn: {
         marginTop: 'auto',
-        marginBottom:'auto',
+        marginBottom: 'auto',
         backgroundColor: 'white',
         padding: 10,
         borderRadius: '50%'
     },
 
-    desciption:{
-        padding: 10,
+    desciption: {
         backgroundColor: 'white',
         borderColor: '#0dcaf0',
         borderWidth: 1,
@@ -41,19 +40,19 @@ const commandSpecificationStyles = StyleSheet.create({
         marginTop: 10,
     },
 
-    desciption_text:{
+    desciption_text: {
         fontSize: 20,
         marginBottom: 2,
     },
 
-    desciption_title:{
+    desciption_title: {
         fontSize: 25,
         fontWeight: 'bold',
         color: '#0dcaf0',
         marginBottom: 2,
     },
 
-    desciption_title_1:{
+    desciption_title_1: {
         fontSize: 25,
         fontWeight: 'bold',
         color: '#0dcaf0',
@@ -61,10 +60,11 @@ const commandSpecificationStyles = StyleSheet.create({
         marginBottom: 1,
     },
 
-    desciption_image:{
-       height: 500,
-       width: '100%',
-       alignSelf: 'center'
+    desciption_image: {
+        height: 500,
+        width: '100%',
+        alignSelf: 'center',
+        borderRadius: 10,
     }
 })
 

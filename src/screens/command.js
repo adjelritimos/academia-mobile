@@ -5,11 +5,13 @@ import filterCommand from "../functions/command/filterCommand"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/app_context"
+import playSounds from "../functions/lemma/sounds/playSounds"
 
 const CommandVoice = ({ navigation }) => {
 
     const { commands } = useContext(AuthContext)
     const [commandsCopy, setCommands] = useState(commands)
+    const [sound, setSound] = useState(null)
 
     return (
         <View style={commandStyles.container}>
@@ -22,7 +24,7 @@ const CommandVoice = ({ navigation }) => {
                         <TouchableOpacity onPress={() => navigation.navigate('CommandSpecification', { command: item })} style={commandStyles.item}>
                             <View style={commandStyles.d_flex}>
                                 <Text style={commandStyles.itemText}>{item.name}</Text>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => playSounds(sound, setSound, item.sound)}>
                                     <Icon style={commandStyles.btnSound} name="volume-up" size={30} color="#0dcaf0" />
                                 </TouchableOpacity>
                             </View>

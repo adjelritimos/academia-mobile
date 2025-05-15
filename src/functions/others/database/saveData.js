@@ -64,15 +64,15 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
 
         await AsyncStorage.setItem('modules', JSON.stringify(modules))
         await AsyncStorage.setItem('lessons', JSON.stringify(lessons))
-        await AsyncStorage.setItem('lemmas', JSON.stringify(lemmas))
-        await AsyncStorage.setItem('commands', JSON.stringify(commands))
+        await AsyncStorage.setItem('lemmas', JSON.stringify(updatedLemmas))
+        await AsyncStorage.setItem('commands', JSON.stringify(updatedCommands))
         await AsyncStorage.setItem('questions', JSON.stringify(questions))
         await AsyncStorage.setItem('answers', JSON.stringify(answers))
 
         setModules(modules)
         setLessons(lessons)
-        setLemmas(lemmas)
-        setCommands(commands)
+        setLemmas(updatedLemmas)
+        setCommands(updatedCommands)
         setQuestions(questions)
         setAnswers(answers)
 
