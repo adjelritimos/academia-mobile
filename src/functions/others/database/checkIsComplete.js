@@ -1,15 +1,12 @@
-import AsyncStorage from "@react-native-async-storage/async-storage"
+const checkIsComplete = async (index, modules) => {
 
-const checkIsComplete = async (moduleId) => {
-
-    const number = moduleId - 1
+    const number = index
    
     if (number === 0)
         return true
 
     else {
-        const modules = JSON.parse(await AsyncStorage.getItem('modules'))
-        const modulo = modules.find(m => m.id === number)
+        const modulo = modules[number]
         return modulo ? modulo.isComplete === 1 : false
     }
 }

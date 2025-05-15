@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const saveDataToStorage = async (data) => {
+const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers) => {
 
     try {
 
@@ -12,6 +12,15 @@ const saveDataToStorage = async (data) => {
         await AsyncStorage.setItem('commands', JSON.stringify(commands))
         await AsyncStorage.setItem('questions', JSON.stringify(questions))
         await AsyncStorage.setItem('answers', JSON.stringify(answers))
+
+        setModules(modules)
+        setLessons(lessons)
+        setLemmas(lemmas)
+        setCommands(commands)
+        setQuestions(questions)
+        setAnswers(answers)
+        
+
 
         console.log('✅ Todos os dados foram salvos com sucesso!')
     } catch (error) {

@@ -10,7 +10,7 @@ const CommandSpecification = ({ route }) => {
         <ScrollView>
             <View style={commandSpecificationStyles.container}>
                 <View style={commandSpecificationStyles.d_flex}>
-                    <Text style={commandSpecificationStyles.title}>{command.commad}</Text>
+                    <Text style={commandSpecificationStyles.title}>{command.name}</Text>
                     <TouchableOpacity style={commandSpecificationStyles.btn}>
                         <Icon name="volume-up" size={30} color="#0dcaf0" />
                     </TouchableOpacity>
@@ -18,7 +18,7 @@ const CommandSpecification = ({ route }) => {
 
                 <View style={commandSpecificationStyles.desciption}>
                     <Text style={commandSpecificationStyles.desciption_title}>Descrição: </Text>
-                    <Text style={commandSpecificationStyles.desciption_text}>Aqui vai mostrar a descrição do comando em causa e muito que deves saber sobre o comando </Text>
+                    <Text style={commandSpecificationStyles.desciption_text}> {command.description} </Text>
                 </View>
 
                 <Text style={commandSpecificationStyles.desciption_title_1}>Demonstração: </Text>

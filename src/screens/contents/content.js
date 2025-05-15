@@ -61,7 +61,7 @@ const Content = ({ route, navigation }) => {
 
             <View style={contentLessonStyles.container}>
 
-                <Text style={contentLessonStyles.title}>{lesson.title}</Text>
+                <Text style={contentLessonStyles.title}>{lesson.content}</Text>
 
                 <View style={contentLessonStyles.content}>{renderTexts(lesson.body)}</View>
 

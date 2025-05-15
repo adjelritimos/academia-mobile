@@ -23,7 +23,7 @@ const Lemma = () => {
 
     return (
         <View style={lemmaStyles.container}>
-            <TextInput onChange={(newText) => filterLemma(newText.nativeEvent.text, lemmas, setDataCoy)} style={lemmaStyles.input} placeholder="busque por questão do lema" />
+            <TextInput onChangeText={(text) => filterLemma(text, lemmas, setDataCoy)} style={lemmaStyles.input} placeholder="busque por questão do lema" />
             <View style={lemmaStyles.list}>
                 <FlatList style={{ width: '100%' }} data={dataCoy} keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (

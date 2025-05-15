@@ -52,7 +52,7 @@ const Lessons = ({ navigation, route }) => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
                         <TouchableOpacity disabled={!completionStatus[lessonsCopy.indexOf(item)]} onPress={() => navigation.navigate('Content', { lesson: item })} style={[lemmaStyles.item, !completionStatus[lessonsCopy.indexOf(item)] && lemmaStyles.disabledContent]}>
-                            <Text style={lemmaStyles.itemText}>{item.title}</Text>
+                            <Text style={lemmaStyles.itemText}>{item.content}</Text>
                         </TouchableOpacity>
                     )}
                 />

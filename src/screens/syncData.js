@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import api from '../server/api'
 import saveDataToStorage from '../functions/others/database/saveData'
+import { AuthContext } from '../contexts/app_context'
 
 
 const SyncDataScreen = ({ navigation, route }) => {
@@ -11,12 +12,14 @@ const SyncDataScreen = ({ navigation, route }) => {
     const [syncing, setSyncing] = useState(true)
     const [data, setData] = useState(null)
 
+    const { setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints } = useContext(AuthContext)
+
     useEffect(() => {
-        handleSyncData()
+        handleSyncData(setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints)
     }, [])
 
 
-    const handleSyncData = async () => {
+    const handleSyncData = async (setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints) => {
 
         setSyncing(true)
 
@@ -26,7 +29,7 @@ const SyncDataScreen = ({ navigation, route }) => {
 
             if (alldata.status === 200) {
                 setData(alldata.data)
-                await saveDataToStorage(alldata.data)
+                await saveDataToStorage(alldata.data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints)
                 setSyncing(false)
                 setError( false)
             }
