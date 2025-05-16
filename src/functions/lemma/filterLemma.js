@@ -1,11 +1,6 @@
 const filterLemma =(txt, list, result) => {
 
-    if(!txt){
-        result(list) 
-        return
-    }
-
-    if (list.length > 0 && typeof txt === 'string') {
+    if (list && list.length > 0) {
         const filter = list.filter((item) => item.question.toLowerCase().includes(txt.toLowerCase()))
         result(filter)
     }
