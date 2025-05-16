@@ -36,17 +36,17 @@ const getAnswers = async () => {
     return answers
 }
 
-const getQuestionAndAnswerCommands = async() => {
+const getQuestionAndAnswerContents = async() => {
 
     const questions = await getQuestion()
     
     const answers = await getAnswers()
 
-    const commandsQuestions = questions.filter(question => question.commandId !== null)
+    const contentsQuestions = questions.filter(question => question.lessonId !== null)
     
-    const number = Math.floor(Math.random() * commandsQuestions.length)
+    const number = Math.floor(Math.random() * contentsQuestions.length)
 
-    const randomQuestion = commandsQuestions[number]
+    const randomQuestion = contentsQuestions[number]
 
     const answersOfQuestion = answers.filter(answer => answer.questionId === randomQuestion.id)
   
@@ -55,4 +55,4 @@ const getQuestionAndAnswerCommands = async() => {
     return randomQuestion
 }
 
-export default getQuestionAndAnswerCommands
+export default getQuestionAndAnswerContents

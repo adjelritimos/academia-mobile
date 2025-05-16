@@ -22,7 +22,7 @@ const Lessons = ({ navigation, route }) => {
     }
 
     const loadCompletionStatus = () => {
-       
+
         const status = {}
 
         for (const lesson of lessonsCopy) {
@@ -36,7 +36,7 @@ const Lessons = ({ navigation, route }) => {
         loadCompletionStatus()
     }, [lessonss, lessonsCopy, lessons])
 
-    
+
     useFocusEffect(
         useCallback(() => {
             getLessons()
@@ -45,16 +45,13 @@ const Lessons = ({ navigation, route }) => {
 
     return (
         <View style={lemmaStyles.container}>
-            <TextInput onChange={(newText) => filter(newText.nativeEvent.text, lessonss, setLessonsCopy)} style={lemmaStyles.input} placeholder="busque lições pelo titulo" />
+            <TextInput onChangeText={(newText) => filter(newText, lessonss, setLessonsCopy)} style={lemmaStyles.input} placeholder="busque lições pelo titulo" />
             <View style={lemmaStyles.list}>
-                <FlatList style={{ width: '100%' }}
-                    data={lessonsCopy}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity disabled={!completionStatus[lessonsCopy.indexOf(item)]} onPress={() => navigation.navigate('Content', { lesson: item })} style={[lemmaStyles.item, !completionStatus[lessonsCopy.indexOf(item)] && lemmaStyles.disabledContent]}>
-                            <Text style={lemmaStyles.itemText}>{item.content}</Text>
-                        </TouchableOpacity>
-                    )}
+                <FlatList style={{ width: '100%' }} data={lessonsCopy} keyExtractor={(item) => item.id} renderItem={({ item }) => (
+                    <TouchableOpacity disabled={!completionStatus[lessonsCopy.indexOf(item)]} onPress={() => navigation.navigate('Content', { lesson: item })} style={[lemmaStyles.item, !completionStatus[lessonsCopy.indexOf(item)] && lemmaStyles.disabledContent]}>
+                        <Text style={lemmaStyles.itemText}>{item.content}</Text>
+                    </TouchableOpacity>
+                )}
                 />
             </View>
         </View>

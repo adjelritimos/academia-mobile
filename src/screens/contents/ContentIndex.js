@@ -40,14 +40,11 @@ const ContentIndex = ({ navigation }) => {
             <Text style={contentIndexStyles.title}>Conteúdos</Text>
             <View style={contentIndexStyles.line} />
 
-            <FlatList
-                style={contentIndexStyles.list}
-                data={modules}
-                renderItem={({ item }) => (
-                    <TouchableOpacity disabled={!completionStatus[modules.indexOf(item)]} style={[contentIndexStyles.content, !completionStatus[modules.indexOf(item)] && contentIndexStyles.disabledContent]} onPress={() => navigation.navigate('Lessons', { moduleId: item.id })}>
-                        <Text style={contentIndexStyles.contentTitle}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
+            <FlatList style={contentIndexStyles.list} data={modules} renderItem={({ item }) => (
+                <TouchableOpacity disabled={!completionStatus[modules.indexOf(item)]} style={[contentIndexStyles.content, !completionStatus[modules.indexOf(item)] && contentIndexStyles.disabledContent]} onPress={() => navigation.navigate('Lessons', { moduleId: item.id })}>
+                    <Text style={contentIndexStyles.contentTitle}>{item.name}</Text>
+                </TouchableOpacity>
+            )}
             />
         </View>
     )

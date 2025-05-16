@@ -9,7 +9,7 @@ const GameContentIndex = ({ navigation }) => {
     const [point, setPoint] = useState(0)
 
 
-    useEffect(()=> {
+    useEffect(() => {
         setPoint(points.points)
     }, [point])
 
@@ -23,6 +23,6 @@ const GameContentIndex = ({ navigation }) => {
             </TouchableOpacity>
         </View>
     )
-}   
+}
 
 export default GameContentIndex

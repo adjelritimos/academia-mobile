@@ -10,6 +10,7 @@ import TimeUp from "../../../components/timeUp"
 import alertQuitContent from "../../../functions/others/alertquitcontent"
 import { AuthContext } from "../../../contexts/app_context"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import getQuestionAndAnswerContents from "../../../functions/contents/game/getQuestionAndAnswerContents"
 const TOTAL_QUESTIONS = 1000
 
 
@@ -22,7 +23,7 @@ const QuestionContent = ({ navigation }) => {
     const [countdown, setCountdown] = useState(initialTime)
     const [questionsAnswered, setQuestionsAnswered] = useState([])
     const [questionNumber, setQuestionNumber] = useState(1)
-    const [questions, setQuestions] = useState(getNewQuestion())
+    const [questions, setQuestions] = useState({})
     const [isAnswer, setIsAnswer] = useState(false)
     const [itemSelect, setItemSelect] = useState(-1)
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
@@ -31,7 +32,17 @@ const QuestionContent = ({ navigation }) => {
     const [timeUp, setTimeUp] = useState(false)
 
 
-    const upDatePoint = async()=> {
+    const question = async () => {
+        setQuestions(await getNewQuestion())
+    }
+
+    useEffect(() => {
+        question()
+    }, [])
+
+
+    const upDatePoint = async () => {
+
         if (correctAnswer > points.points) {
             const point = { points: correctAnswer }
             setPoints(point)
@@ -75,8 +86,16 @@ const QuestionContent = ({ navigation }) => {
 
     }, [navigation])
 
-    function getNewQuestion() {
+    async function getNewQuestion() {
+        let newQuestion
+        let maxAttempts = 20
 
+        do {
+            newQuestion = await getQuestionAndAnswerContents()
+            maxAttempts--
+        } while (questionsAnswered.includes(newQuestion.question) && maxAttempts > 0)
+
+        return newQuestion
     }
 
 
@@ -114,7 +133,7 @@ const QuestionContent = ({ navigation }) => {
         }, 1000)
     }
 
-    const nextQuestion = () => {
+    const nextQuestion = async () => {
         setShowNextButton(true)
         setIsAnswer(false)
         setItemSelect(-1)
@@ -125,7 +144,7 @@ const QuestionContent = ({ navigation }) => {
         }
 
         else if (questionNumber < TOTAL_QUESTIONS) {
-            const newQuestion = getNewQuestion()
+            const newQuestion = await getNewQuestion()
             setQuestions(newQuestion)
             setQuestionsAnswered([...questionsAnswered, 'kkkk'])
             setQuestionNumber(questionNumber + 1)
@@ -160,7 +179,7 @@ const QuestionContent = ({ navigation }) => {
                 </View>
 
                 <View style={questionStyles.questions}>
-                    <Text style={questionStyles.questionText}>{'Qual é o conteúdo que você quer praticar?'}</Text>
+                    <Text style={questionStyles.questionText}> {questions.question} </Text>
                 </View>
             </View>
 
@@ -174,24 +193,11 @@ const QuestionContent = ({ navigation }) => {
                     (
 
                         <View style={questionStyles.list}>
-                            <FlatList
-                                style={{ width: '100%' }}
-                                data={['Conteúdo 1', 'Conteúdo 2', 'Conteúdo 3', 'Conteúdo 4']}
-                                keyExtractor={(index) => String(index)}
-                                renderItem={({ item }) => (
-                                    <TouchableOpacity
-                                        onPress={() => verifyAnswer(item)}
-                                        style={{
-                                            minHeight: 60, width: '100%', borderRadius: 10, borderColor: '#0dcaf0',
-                                            backgroundColor: itemSelect === item ? colorSelect : 'white',
-                                            borderWidth: 1,
-                                            marginBottom: 2,
-                                            padding: 10,
-                                            alignItems: 'center'
-                                        }}>
-                                        <Text style={questionStyles.itemText}>{item}</Text>
-                                    </TouchableOpacity>
-                                )}
+                            <FlatList style={{ width: '100%' }} data={questions.options} keyExtractor={(index) => String(index)} renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => verifyAnswer(item)} style={[questionStyles.item, { backgroundColor: itemSelect === item ? colorSelect : 'white', }]}>
+                                    <Text style={questionStyles.itemText}>{item}</Text>
+                                </TouchableOpacity>
+                            )}
                             />
                         </View>
                     )
