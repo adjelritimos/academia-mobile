@@ -48,7 +48,8 @@ const contentLessonStyles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginBottom: 20
     },
 
     btnTxt: {

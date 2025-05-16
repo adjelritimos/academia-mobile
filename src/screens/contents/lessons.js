@@ -40,6 +40,7 @@ const Lessons = ({ navigation, route }) => {
     useFocusEffect(
         useCallback(() => {
             getLessons()
+            loadCompletionStatus()
         }, [moduleId])
     )
 
