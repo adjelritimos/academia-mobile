@@ -6,7 +6,7 @@ const onlyFourAnswer = (elemnts, corret_answer) => {
     let answers = []
     answers.push(corret_answer)
 
-    while (answers.length < 4) {
+    while (answers.length <= 2) {
         const randomIndex = Math.floor(Math.random() * elemnts.length)
         if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex].answer)) {
             answers.push(elemnts[randomIndex].answer)
@@ -36,20 +36,20 @@ const getAnswers = async () => {
     return answers
 }
 
-const getQuestionAndAnswerContentsByLessonId = async(lesson) => {
+const getQuestionAndAnswerContentsByLessonId = async (lessonId) => {
 
     const questions = await getQuestion()
-    
+
     const answers = await getAnswers()
 
-    const contentsQuestions = questions.filter(question => question.lessonId !== null && question.lessonId === lesson.id)
-    
+    const contentsQuestions = questions.filter(question => question.lessonId === lessonId)
+
     const number = Math.floor(Math.random() * contentsQuestions.length)
 
     const randomQuestion = contentsQuestions[number]
 
     const answersOfQuestion = answers.filter(answer => answer.questionId === randomQuestion.id)
-  
+
     randomQuestion.options = _.shuffle(onlyFourAnswer(answersOfQuestion, randomQuestion.correct_answer))
 
     return randomQuestion

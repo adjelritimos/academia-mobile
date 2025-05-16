@@ -6,7 +6,7 @@ const onlyFourAnswer = (elemnts, corret_answer) => {
     let answers = []
     answers.push(corret_answer)
 
-    while (answers.length < 4) {
+    while (answers.length < 3) {
         const randomIndex = Math.floor(Math.random() * elemnts.length)
         if (randomIndex != 0 && !existElements(answers, elemnts[randomIndex].answer)) {
             answers.push(elemnts[randomIndex].answer)

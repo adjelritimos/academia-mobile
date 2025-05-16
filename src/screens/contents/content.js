@@ -6,7 +6,6 @@ import gameLemmaStyles from '../../styles/gameLemma'
 import { useContext, useEffect, useRef, useState } from 'react'
 import makeAsRead from '../../functions/contents/makeAsRead'
 import { AuthContext } from '../../contexts/app_context'
-import getQuestionAndAnswerContents from '../../functions/contents/game/getQuestionAndAnswerContents'
 import getQuestionAndAnswerContentsByLessonId from '../../functions/contents/game/getQuestionAndAnswerContentsByLessonId'
 
 const Content = ({ route, navigation }) => {
@@ -20,55 +19,44 @@ const Content = ({ route, navigation }) => {
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const scrollViewRef = useRef(null)
 
-    const questionn = async () => {
-        setQuestion(await getNewQuestion())
+    const getQuestion = async () => {
+        setQuestion(await getNewQuestion(lesson.id))
     }
 
     useEffect(() => {
-        questionn()
-    }, [])
+        getQuestion()
+    }, [lesson])
 
     const goToNextLesson = () => {
-        scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+        scrollViewRef.current?.scrollTo({ y: 0, animated: true })
     }
 
-    async function getNewQuestion() {
-
-        let newQuestion
-        let maxAttempts = 20
-
-        do {
-            newQuestion = await getQuestionAndAnswerContentsByLessonId(lesson)
-            maxAttempts--
-        } while (questionsAnswered.includes(newQuestion.question) && maxAttempts > 0)
-
-        return newQuestion
+    async function getNewQuestion(id) {
+        return await getQuestionAndAnswerContentsByLessonId(id)
     }
 
     const verifyAnswer = (answer) => {
+
         if (answer === question.correct_answer && !isAnswer) {
             setShowNextButton(false)
-            setIsAnswer(true)
             setItemSelect(question.options.indexOf(answer))
             setColorSelect('green')
-            playSuccessSound()
-
-        } else {
+        } else if (!isAnswer) {
             setItemSelect(question.options.indexOf(answer))
-            setIsAnswer(true)
             setColorSelect('red')
-            playErrorSound()
+            setShowNextButton(false)
         }
+
+         setIsAnswer(true)
+
     }
 
     const nextQuestion = async () => {
         setShowNextButton(true)
         setIsAnswer(false)
         setItemSelect(-1)
-        const newQuestion = await getNewQuestion()
+        const newQuestion = await getNewQuestion(lesson.id)
         setQuestion(newQuestion)
-        setQuestionsAnswered([...questionsAnswered, newQuestion.question])
-        setQuestionNumber(questionNumber + 1)
     }
 
     const renderTexts = (texto) => {
@@ -87,24 +75,24 @@ const Content = ({ route, navigation }) => {
 
         <ScrollView ref={scrollViewRef}>
 
-            <View style={contentLessonStyles.container}>
+            <View style={[contentLessonStyles.container, { marginBottom: 20 }]}>
 
                 <Text style={contentLessonStyles.title}>{lesson.content}</Text>
 
                 <View style={contentLessonStyles.content}>{renderTexts(lesson.body)}</View>
 
                 {
-                    question ?
+                    question.options ?
                         (
                             <>
                                 <Text style={[contentLessonStyles.title, { marginTop: 20 }]}>Questão</Text>
 
-                                <View style={contentLessonStyles.content}>
+                                <View style={[contentLessonStyles.content, { marginBottom: 20 }]}>
                                     <View style={[gameLemmaStyles.questions, { marginBottom: 20 }]}>
                                         <Text style={gameLemmaStyles.questionText}>{question.question}</Text>
                                     </View>
                                     <View style={gameLemmaStyles.list}>
-                                        {question?.options.map((item, index) => (
+                                        {question.options.map((item, index) => (
                                             <TouchableOpacity key={String(index)} onPress={() => { verifyAnswer(item); setItemSelect(index) }} style={itemSelect === index ? [contentLessonStyles.btnItem, { backgroundColor: colorSelect }] : contentLessonStyles.btnItem}>
                                                 <Text style={gameLemmaStyles.itemText}>{item}</Text>
                                             </TouchableOpacity>
@@ -112,13 +100,17 @@ const Content = ({ route, navigation }) => {
                                     </View>
 
                                     <Collapsible style={gameLemmaStyles.collaps} collapsed={showNextButton}>
-                                        <TouchableOpacity onPress={() => {
-                                            setShowNextButton(!showNextButton);
-                                            if (colorSelect !== 'green')
-                                                nextQuestion()
+                                        <TouchableOpacity onPress={async () => {
+                                            setShowNextButton(!showNextButton)
+                                            if (colorSelect === 'green') {
+                                                makeRead()
+                                            }
+                                            else {
+                                                await nextQuestion()
+                                            }
                                         }
                                         } style={colorSelect === 'green' ? gameLemmaStyles.nextButton : [gameLemmaStyles.nextButton, { backgroundColor: colorSelect }]}>
-                                            <Text style={contentLessonStyles.btnTxt}>{colorSelect === 'green' ? 'PRÓXIMA' : 'TENTE NOVAMENTE'}</Text>
+                                            <Text style={contentLessonStyles.btnTxt}>{colorSelect === 'green' ? 'PRÓXIMA LIÇÃO' : 'TENTE NOVAMENTE'}</Text>
                                         </TouchableOpacity>
                                     </Collapsible>
                                 </View>
