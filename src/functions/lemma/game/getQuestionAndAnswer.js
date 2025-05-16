@@ -2,9 +2,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import _ from "lodash"
 
-
-
 const onlyFourAnswer = (elemnts, corret_answer) => {
+
     let answers = []
     answers.push(corret_answer)
 

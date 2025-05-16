@@ -22,12 +22,12 @@ const LemmaGame = ({ navigation }) => {
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const [showNextButton, setShowNextButton] = useState(true)
 
-     const question = async () => {
-         setLemmas(await getNewQuestion())
-       }
+    const question = async () => {
+        setLemmas(await getNewQuestion())
+    }
 
-    useEffect(()=> {
-       question()
+    useEffect(() => {
+        question()
     }, [])
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const LemmaGame = ({ navigation }) => {
 
     }, [navigation])
 
-    async function  getNewQuestion() {
+    async function getNewQuestion() {
 
         let newQuestion
         let maxAttempts = 20
@@ -91,7 +91,7 @@ const LemmaGame = ({ navigation }) => {
         }
     }
 
-    const nextQuestion = async() => {
+    const nextQuestion = async () => {
         setShowNextButton(true)
         setIsAnswer(false)
         setItemSelect(-1)
