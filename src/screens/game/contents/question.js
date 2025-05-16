@@ -109,7 +109,7 @@ const QuestionContent = ({ navigation }) => {
 
         if (!gameOver && !isAnswer) {
 
-            if (answer === 'Conteúdo 1') {
+            if (answer === questions.correct_answer) {
                 setIsAnswer(true)
                 setCorrectAnswer(correctAnswer + 1)
                 playSuccessSound()
