@@ -3,7 +3,8 @@ import contentLessonStyles from '../../styles/contentLesson'
 import { ScrollView } from 'react-native'
 import Collapsible from "react-native-collapsible"
 import gameLemmaStyles from '../../styles/gameLemma'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
 import makeAsRead from '../../functions/contents/makeAsRead'
 import { AuthContext } from '../../contexts/app_context'
 import getQuestionAndAnswerContentsByLessonId from '../../functions/contents/game/getQuestionAndAnswerContentsByLessonId'
@@ -19,20 +20,29 @@ const Content = ({ route, navigation }) => {
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const scrollViewRef = useRef(null)
 
-    const getQuestion = async () => {
-        setQuestion(await getNewQuestion(lesson.id))
+    const getQuestion = async (id) => {
+        try {
+            const question = await getQuestionAndAnswerContentsByLessonId(id)
+            setQuestion(question)
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
-    useEffect(() => {
-        getQuestion()
-    }, [lesson])
+    useFocusEffect(
+        useCallback(() => {
+            getQuestion(lesson.id)
+        }, [lesson])
+    )
 
     const goToNextLesson = () => {
         scrollViewRef.current?.scrollTo({ y: 0, animated: true })
     }
 
     async function getNewQuestion(id) {
-        return await getQuestionAndAnswerContentsByLessonId(id)
+        const question = await getQuestionAndAnswerContentsByLessonId(id)
+        return question
     }
 
     const verifyAnswer = (answer) => {
@@ -47,7 +57,7 @@ const Content = ({ route, navigation }) => {
             setShowNextButton(false)
         }
 
-         setIsAnswer(true)
+        setIsAnswer(true)
 
     }
 
@@ -68,7 +78,10 @@ const Content = ({ route, navigation }) => {
     }
 
     const makeRead = async () => {
-        await makeAsRead(lessons, lesson, setLesson, setLessons, modules, setModules, goToNextLesson, navigation)
+        await makeAsRead(lessons, lesson, setLesson, setLessons, modules, setModules, goToNextLesson, getQuestion, navigation)
+        setItemSelect(-1)
+        setColorSelect('')
+        setIsAnswer(false)
     }
 
     return (
@@ -82,7 +95,7 @@ const Content = ({ route, navigation }) => {
                 <View style={contentLessonStyles.content}>{renderTexts(lesson.body)}</View>
 
                 {
-                    question.options ?
+                    question?.options ?
                         (
                             <>
                                 <Text style={[contentLessonStyles.title, { marginTop: 20 }]}>Questão</Text>
@@ -118,7 +131,7 @@ const Content = ({ route, navigation }) => {
                         )
                         :
                         (
-                            <TouchableOpacity onPress={() => makeRead()} style={contentLessonStyles.btn}>
+                            <TouchableOpacity onPress={() => {makeRead()}} style={contentLessonStyles.btn}>
                                 <Text style={contentLessonStyles.btnTxt}>marcar como lido</Text>
                             </TouchableOpacity>
                         )

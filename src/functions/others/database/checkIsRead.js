@@ -5,7 +5,7 @@ const checkWasRead = (index, lessons) => {
     }
        
     else {
-        return lessons[ index - 1 ].wasRead === 1
+        return lessons[ index - 1 ]?.wasRead === 1
     }
 
 }

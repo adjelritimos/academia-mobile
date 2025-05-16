@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setModules, goToNextLesson, navigation) => {
+const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setModules, goToNextLesson, getQuestion, navigation) => {
 
     try {
 
@@ -31,6 +31,7 @@ const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setM
             for (let l = 0; l < lessonOfModule.length; l++) {
                 if (lessonOfModule[l].id === lesson.id) {
                     setLesson(lessonOfModule[l + 1])
+                    getQuestion(lessonOfModule[l + 1].id)
                     goToNextLesson()
                     break
                 }

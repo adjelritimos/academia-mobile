@@ -48,9 +48,10 @@ const getQuestionAndAnswerContentsByLessonId = async (lessonId) => {
 
     const randomQuestion = contentsQuestions[number]
 
-    const answersOfQuestion = answers.filter(answer => answer.questionId === randomQuestion.id)
+    const answersOfQuestion = answers.filter(answer => answer.questionId === randomQuestion?.id)
 
-    randomQuestion.options = _.shuffle(onlyFourAnswer(answersOfQuestion, randomQuestion.correct_answer))
+    if (answersOfQuestion.length > 0)
+        randomQuestion.options = _.shuffle(onlyFourAnswer(answersOfQuestion, randomQuestion.correct_answer))
 
     return randomQuestion
 }

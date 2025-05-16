@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList, BackHandler } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import contentIndexStyles from '../../styles/contentIndex'
-import { useContext, useState, useEffect, useCallback } from 'react'
+import { useContext, useState, useCallback } from 'react'
 import { AuthContext } from '../../contexts/app_context'
 import checkIsComplete from '../../functions/others/database/checkIsComplete'
 

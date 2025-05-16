@@ -37,7 +37,8 @@ const contentLessonStyles = StyleSheet.create({
         backgroundColor: 'white',
         marginBottom: 2,
         padding: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
     btn: {

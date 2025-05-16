@@ -25,8 +25,8 @@ const Lessons = ({ navigation, route }) => {
 
         const status = {}
 
-        for (const lesson of lessonsCopy) {
-            status[lessonss.indexOf(lesson)] = checkWasRead(lessonss.indexOf(lesson), lessonsCopy)
+        for (const lesson of lessons) {
+            status[lessons.indexOf(lesson)] = checkWasRead(lessons.indexOf(lesson), lessons)
         }
 
         setCompletionStatus(status)
