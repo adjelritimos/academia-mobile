@@ -11,17 +11,24 @@ import alertQuit from "../../functions/others/alertquit"
 const TOTAL_QUESTIONS = 10
 
 const LemmaGame = ({ navigation }) => {
-    
+
     const initialTime = 15
     const [countdown, setCountdown] = useState(initialTime)
     const [questionsAnswered, setQuestionsAnswered] = useState([])
     const [questionNumber, setQuestionNumber] = useState(1)
-    const [lemmas, setLemmas] = useState(getNewQuestion())
+    const [lemmas, setLemmas] = useState({})
     const [isAnswer, setIsAnswer] = useState(false)
     const [itemSelect, setItemSelect] = useState(-1)
     const [colorSelect, setColorSelect] = useState('#0dcaf0')
     const [showNextButton, setShowNextButton] = useState(true)
 
+     const question = async () => {
+         setLemmas(await getNewQuestion())
+       }
+
+    useEffect(()=> {
+       question()
+    }, [])
 
     useEffect(() => {
         if (countdown > 0 && !isAnswer) {
@@ -33,6 +40,7 @@ const LemmaGame = ({ navigation }) => {
         } else if (countdown === 0 && !isAnswer) {
             navigation.replace('TimeUp', { from: 'GameLemma', answer: lemmas.correct_answer })
         }
+
     }, [countdown, isAnswer, navigation])
 
     useEffect(() => {
@@ -49,13 +57,13 @@ const LemmaGame = ({ navigation }) => {
 
     }, [navigation])
 
-    function getNewQuestion() {
+    async function  getNewQuestion() {
 
         let newQuestion
         let maxAttempts = 20
 
         do {
-            newQuestion = getQuestionAndAnswer()
+            newQuestion = await getQuestionAndAnswer()
             maxAttempts--
         } while (questionsAnswered.includes(newQuestion.question) && maxAttempts > 0)
 
@@ -83,14 +91,14 @@ const LemmaGame = ({ navigation }) => {
         }
     }
 
-    const nextQuestion = () => {
+    const nextQuestion = async() => {
         setShowNextButton(true)
         setIsAnswer(false)
         setItemSelect(-1)
         setCountdown(initialTime)
 
         if (questionNumber < TOTAL_QUESTIONS) {
-            const newQuestion = getNewQuestion()
+            const newQuestion = await getNewQuestion()
             setLemmas(newQuestion)
             setQuestionsAnswered([...questionsAnswered, newQuestion.question])
             setQuestionNumber(questionNumber + 1)
@@ -126,21 +134,9 @@ const LemmaGame = ({ navigation }) => {
             </View>
 
             <View style={gameLemmaStyles.list}>
-                <FlatList
-                    style={{ width: '100%' }}
-                    data={lemmas.options}
-                    keyExtractor={(index) => String(index)}
+                <FlatList style={{ width: '100%' }} data={lemmas.options} keyExtractor={(index) => String(index)}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={{minHeight: 60,
-                                width: '100%',
-                                borderRadius: 10,
-                                borderColor: '#0dcaf0',
-                                borderWidth: 1,
-                                backgroundColor: itemSelect === lemmas.options.indexOf(item) ? colorSelect : '#f8f9fa',
-                                marginBottom: 2,
-                                padding: 10,
-                                alignItems: 'center'
-                            }}>
+                        <TouchableOpacity onPress={() => verifyAnswer(item)} style={[gameLemmaStyles.item, { backgroundColor: itemSelect === lemmas.options.indexOf(item) ? colorSelect : '#f8f9fa' }]}>
                             <Text style={gameLemmaStyles.itemText}>{item}</Text>
                         </TouchableOpacity>
                     )}
