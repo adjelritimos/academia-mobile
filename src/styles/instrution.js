@@ -14,6 +14,12 @@ const instrutionStyles = StyleSheet.create({
         alignItems: 'start',
     },
 
+    containerNoQuestion: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
     title: {
         fontSize: 35,
         fontWeight: 'bold',
