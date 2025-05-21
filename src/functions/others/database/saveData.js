@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as FileSystem from 'expo-file-system'
-import api_image from '../../../server/api_image'
+import api_image from '../../../server/api_midia'
 
 const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers) => {
 
@@ -38,6 +38,8 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         // Processa os lemmas para baixar midias
         const updatedLemmas = await Promise.all(
             lemmas.map(async (lemma) => {
+
+                console.log(api_image(lemma.sound))
 
                 const audioLocalPath = lemma.sound ? await downloadFile(api_image(lemma.sound)) : null
 
