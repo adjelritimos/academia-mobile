@@ -13,7 +13,7 @@ const checkQrCode = (qrData) => {
                 return false
             }
         } catch (error) {
-            console.error("Erro ao analisar os dados do QR Code:", error)
+            console.log("Erro ao analisar os dados do QR Code:", error)
             return false
         }
     } else {

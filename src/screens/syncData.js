@@ -36,7 +36,7 @@ const SyncDataScreen = ({ navigation, route }) => {
 
 
         } catch (error) {
-            console.error("Erro ao sincronizar:", error)
+            console.log("Erro ao sincronizar:", error)
             setError(true)
             setData(null)
         } finally {
