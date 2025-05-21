@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as FileSystem from 'expo-file-system'
+import api_image from '../../../server/api_image'
 
 const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers) => {
 
@@ -38,7 +39,7 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         const updatedLemmas = await Promise.all(
             lemmas.map(async (lemma) => {
 
-                const audioLocalPath = lemma.sound ? await downloadFile(`http://192.168.1.5:5349/admin${lemma.sound}`) : null
+                const audioLocalPath = lemma.sound ? await downloadFile(api_image(lemma.sound)) : null
 
                 return {
                     ...lemma,
@@ -51,8 +52,8 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         const updatedCommands = await Promise.all(
             commands.map(async (command) => {
 
-                const demonstration = command.demonstration ? await downloadFile(`http://192.168.1.5:5349/admin${command.demonstration}`) : null
-                const audioLocalPath = command.sound ? await downloadFile(`http://192.168.1.5:5349/admin${command.sound}`) : null
+                const demonstration = command.demonstration ? await downloadFile(api_image(command.demonstration)) : null
+                const audioLocalPath = command.sound ? await downloadFile(api_image(command.sound)) : null
 
                 return {
                     ...command,
