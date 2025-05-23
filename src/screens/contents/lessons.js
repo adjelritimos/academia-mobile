@@ -2,9 +2,11 @@ import { TextInput, Text, View, FlatList, TouchableOpacity } from "react-native"
 import { useFocusEffect } from '@react-navigation/native'
 import { useCallback, useContext, useEffect, useState } from "react"
 import lemmaStyles from "../../styles/lemma"
+import { Ionicons } from "@expo/vector-icons"
 import { AuthContext } from "../../contexts/app_context"
 import filter from "../../functions/others/database/filterContents"
 import checkWasRead from "../../functions/others/database/checkIsRead"
+import instrutionStyles from "../../styles/instrution"
 
 const Lessons = ({ navigation, route }) => {
 
@@ -46,15 +48,29 @@ const Lessons = ({ navigation, route }) => {
 
     return (
         <View style={lemmaStyles.container}>
-            <TextInput onChangeText={(newText) => filter(newText, lessonss, setLessonsCopy)} style={lemmaStyles.input} placeholder="busque lições pelo titulo" />
-            <View style={lemmaStyles.list}>
-                <FlatList style={{ width: '100%' }} data={lessonsCopy} keyExtractor={(item) => item.id} renderItem={({ item }) => (
-                    <TouchableOpacity disabled={!completionStatus[lessonsCopy.indexOf(item)]} onPress={() => navigation.navigate('Content', { lesson: item })} style={[lemmaStyles.item, !completionStatus[lessonsCopy.indexOf(item)] && lemmaStyles.disabledContent]}>
-                        <Text style={lemmaStyles.itemText}>{item.content}</Text>
-                    </TouchableOpacity>
-                )}
-                />
-            </View>
+            <TextInput onChangeText={(value) => filter(value, lessonss, setLessonsCopy)} style={lemmaStyles.input} placeholder="busque lições pelo titulo" />
+            {
+               lessonsCopy.length ?
+                    (
+                        <View style={lemmaStyles.list}>
+                            <FlatList style={{ width: '100%' }} data={lessonsCopy} keyExtractor={(item) => item.id} renderItem={({ item }) => (
+                                <TouchableOpacity disabled={!completionStatus[lessonsCopy.indexOf(item)]} onPress={() => navigation.navigate('Content', { lesson: item })} style={[lemmaStyles.item, !completionStatus[lessonsCopy.indexOf(item)] && lemmaStyles.disabledContent]}>
+                                    <Text style={lemmaStyles.itemText}>{item.content}</Text>
+                                </TouchableOpacity>
+                            )}
+                            />
+                        </View>
+                    )
+                    :
+                    (
+                        <>
+                            <View style={instrutionStyles.containerNoQuestion}>
+                                <Ionicons name="file-tray-stacked-outline" size={200} color="#0dcaf0" />
+                                <Text>O módulo ainda não tem lições</Text>
+                            </View>
+                        </>
+                    )
+            }
         </View>
     )
 }

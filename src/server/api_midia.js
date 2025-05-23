@@ -1,5 +1,5 @@
 const api_midia = (image) => {
-    return 'http://194.210.91.209:5349/admin' + image
+    return 'http://192.168.1.187:5349/admin' + image
 }
 
 export default api_midia
