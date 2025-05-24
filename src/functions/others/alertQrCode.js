@@ -29,7 +29,7 @@ const alertQrCode = async (navigation, setScannedData, setScanned, data) => {
         // Alerta de erro para QR inválido/expirado
         Alert.alert(
             "Erro",
-            "O QR Code está expirado ou inválido. Por favor, gere um novo para continuar.",
+            "O QR Code está expirado ou inválido. Por favor, informe ao intrutor para poder ter um codigo valido.",
             [
                 { text: "OK", onPress: () => navigation.goBack(), style: "default" }
             ]
