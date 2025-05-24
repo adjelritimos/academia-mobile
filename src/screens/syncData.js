@@ -12,14 +12,14 @@ const SyncDataScreen = ({ navigation, route }) => {
     const [syncing, setSyncing] = useState(true)
     const [data, setData] = useState(null)
 
-    const { setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints } = useContext(AuthContext)
+    const { setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, modules, lessons } = useContext(AuthContext)
 
     useEffect(() => {
-        handleSyncData(setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints)
+        handleSyncData(setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers)
     }, [])
 
 
-    const handleSyncData = async (setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints) => {
+    const handleSyncData = async (setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers) => {
 
         setSyncing(true)
 
@@ -29,7 +29,7 @@ const SyncDataScreen = ({ navigation, route }) => {
 
             if (alldata.status === 200) {
                 setData(alldata.data)
-                await saveDataToStorage(alldata.data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, setPoints)
+                await saveDataToStorage(alldata.data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, modules, lessons)
                 setSyncing(false)
                 setError( false)
             }

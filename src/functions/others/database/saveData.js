@@ -2,11 +2,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as FileSystem from 'expo-file-system'
 import api_image from '../../../server/api_midia'
 
-const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers) => {
+const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLessons, setQuestions, setAnswers, my_modules, my_lessons) => {
 
     try {
 
         const { modules, lessons, lemmas, commands, questions, answers } = data
+
+        const modulesComplete = my_modules.filter(mo => mo.isComplete === 1)
+        const lessonsRead = my_lessons.filter(le => le.wasRead === 1)
+
+        console.log("Nº liçoes lidas: ", lessonsRead.length)
+        console.log("Nº modulos completos: ", modulesComplete.length)
 
         // Caminho da pasta onde queremos salvar os arquivos
         const directory = `${FileSystem.documentDirectory}media/`
@@ -65,15 +71,34 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
             })
         )
 
-        await AsyncStorage.setItem('modules', JSON.stringify(modules))
-        await AsyncStorage.setItem('lessons', JSON.stringify(lessons))
+        const updatedModules = modules.map((mod) => {
+            
+            const isComplete = modulesComplete.some((CompleteMod) => CompleteMod.id === mod.id) ? 1 : 0
+
+            return {
+                ...mod,
+                isComplete
+            }
+        })
+
+        const updatedLessons = lessons.map((lesson) => {
+            const wasRead = lessonsRead.some((lessonRead) => lessonRead.id === lesson.id) ? 1 : 0
+
+            return {
+                ...lesson,
+                wasRead
+            }
+        })
+
+        await AsyncStorage.setItem('modules', JSON.stringify(updatedModules))
+        await AsyncStorage.setItem('lessons', JSON.stringify(updatedLessons))
         await AsyncStorage.setItem('lemmas', JSON.stringify(updatedLemmas))
         await AsyncStorage.setItem('commands', JSON.stringify(updatedCommands))
         await AsyncStorage.setItem('questions', JSON.stringify(questions))
         await AsyncStorage.setItem('answers', JSON.stringify(answers))
 
-        setModules(modules)
-        setLessons(lessons)
+        setModules(updatedModules)
+        setLessons(updatedLessons)
         setLemmas(updatedLemmas)
         setCommands(updatedCommands)
         setQuestions(questions)
