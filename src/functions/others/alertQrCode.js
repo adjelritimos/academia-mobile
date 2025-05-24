@@ -1,13 +1,16 @@
 import { Alert } from "react-native"
+import checkQrCode from "./checkQrCode"
 
-const alertQrCode = (navigation, setScannedData, setScanned, isValid) => {
+const alertQrCode = async (navigation, setScannedData, setScanned, data) => {
 
+    const isValid = await checkQrCode(data)
+    console.log(data)
     if (isValid) {
         Alert.alert(
             "Sucesso na leitura",
             "O QR Code ainda está válido. Clique em 'Continuar' para prosseguir com a sincronização de dados.",
             [
-                { 
+                {
                     text: "Cancelar e voltar a ler",
                     style: "cancel",
                     onPress: () => {
@@ -15,10 +18,10 @@ const alertQrCode = (navigation, setScannedData, setScanned, isValid) => {
                         setScanned(false)
                     },
                 },
-               
-                { 
-                    text: "Continuar", 
-                    onPress: () => navigation.replace('SyncData') 
+
+                {
+                    text: "Continuar",
+                    onPress: () => navigation.replace('SyncData')
                 },
             ]
         )
@@ -28,7 +31,7 @@ const alertQrCode = (navigation, setScannedData, setScanned, isValid) => {
             "Erro",
             "O QR Code está expirado ou inválido. Por favor, gere um novo para continuar.",
             [
-                { text: "OK", style: "default" }
+                { text: "OK", onPress: () => navigation.goBack(), style: "default" }
             ]
         )
     }

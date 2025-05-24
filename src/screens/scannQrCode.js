@@ -14,14 +14,17 @@ const QRCodeScannerScreen = ({ navigation }) => {
 
   useEffect(() => {
     requestPermission()
-
   }, [])
+
+  const processAlert = async (value) =>{
+    await alertQrCode(navigation, setScannedData, setScanned, value)
+  }
 
   const handleBarCodeScanned = ({ type, data }) => {
     if (scanned) return
     setScanned(true)
-    setScannedData(data)
-    alertQrCode(navigation, setScannedData, setScanned, checkQrCode(data))
+    const qr_data = JSON.parse(data)
+    processAlert(qr_data)
   }
 
   if (!permission) {
@@ -41,9 +44,7 @@ const QRCodeScannerScreen = ({ navigation }) => {
 
   return (
     <View style={qrcodeStyles.container}>
-      <CameraView style={qrcodeStyles.camera} facing={facing} onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} barcodeScannerSettings={{ barcodeTypes: ['qr'], }}>
-        <View style={qrcodeStyles.cameraInnerView} />
-      </CameraView>
+      <CameraView style={qrcodeStyles.camera} facing={facing} onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} barcodeScannerSettings={{ barcodeTypes: ['qr'], }}/>
     </View>
   )
 }
