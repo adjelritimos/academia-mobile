@@ -8,9 +8,6 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
 
         const { modules, lessons, lemmas, commands, questions, answers } = data
 
-        const modulesComplete = my_modules.filter(mo => mo.isComplete === 1)
-        const lessonsRead = my_lessons.filter(le => le.wasRead === 1)
-
         // Caminho da pasta onde queremos salvar os arquivos
         const directory = `${FileSystem.documentDirectory}media/`
 
@@ -41,8 +38,6 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         // Processa os lemmas para baixar midias
         const updatedLemmas = await Promise.all(
             lemmas.map(async (lemma) => {
-
-                console.log(api_image(lemma.sound))
 
                 const audioLocalPath = lemma.sound ? await downloadFile(api_image(lemma.sound)) : null
 
@@ -97,10 +92,8 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         setCommands(updatedCommands)
         setQuestions(questions)
         setAnswers(answers)
-
-        console.log('✅ Todos os dados foram salvos com sucesso!')
     } catch (error) {
-        console.error('❌ Erro ao salvar os dados:', error)
+        console.log('❌ Erro ao salvar os dados:', error)
     }
 }
 

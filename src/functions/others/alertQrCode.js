@@ -4,7 +4,7 @@ import checkQrCode from "./checkQrCode"
 const alertQrCode = async (navigation, setScannedData, setScanned, data) => {
 
     const isValid = await checkQrCode(data)
-    console.log(data)
+    
     if (isValid) {
         Alert.alert(
             "Sucesso na leitura",

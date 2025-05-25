@@ -27,7 +27,7 @@ const Lemma = () => {
                 dataCopy.length > 0 ?
                     (
                         <View style={lemmaStyles.list}>
-                            <FlatList style={{ width: '100%' }} data={dataCoy} keyExtractor={(item) => item.id}
+                            <FlatList style={{ width: '100%' }} data={dataCopy} keyExtractor={(item) => item.id}
                                 renderItem={({ item }) => (
                                     <TouchableOpacity style={lemmaStyles.item} onPress={() => toggleAccordion(item.id)}>
                                         <View style={lemmaStyles.d_flex}>
