@@ -78,7 +78,7 @@ const Content = ({ route, navigation }) => {
     }
 
     const makeRead = async () => {
-        await makeAsRead(lessons, lesson, setLesson, setLessons, modules, setModules, goToNextLesson, getQuestion, navigation)
+        await makeAsRead(lesson.moduleId, lessons, lesson, setLesson, setLessons, modules, setModules, goToNextLesson, getQuestion, navigation)
         setItemSelect(-1)
         setColorSelect('')
         setIsAnswer(false)

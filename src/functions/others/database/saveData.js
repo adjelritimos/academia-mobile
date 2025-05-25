@@ -11,9 +11,6 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
         const modulesComplete = my_modules.filter(mo => mo.isComplete === 1)
         const lessonsRead = my_lessons.filter(le => le.wasRead === 1)
 
-        console.log("Nº liçoes lidas: ", lessonsRead.length)
-        console.log("Nº modulos completos: ", modulesComplete.length)
-
         // Caminho da pasta onde queremos salvar os arquivos
         const directory = `${FileSystem.documentDirectory}media/`
 
@@ -71,22 +68,19 @@ const saveDataToStorage = async (data, setModules, setLemmas, setCommands, setLe
             })
         )
 
-        const updatedModules = modules.map((mod) => {
-            
-            const isComplete = modulesComplete.some((CompleteMod) => CompleteMod.id === mod.id) ? 1 : 0
-
+        const updatedModules = modules.map(mod => {
+            const localModule = my_modules.find(m => m.id === mod.id)
             return {
                 ...mod,
-                isComplete
+                isComplete: localModule?.isComplete || 0
             }
         })
 
-        const updatedLessons = lessons.map((lesson) => {
-            const wasRead = lessonsRead.some((lessonRead) => lessonRead.id === lesson.id) ? 1 : 0
-
+        const updatedLessons = lessons.map(lesson => {
+            const localLesson = my_lessons.find(l => l.id === lesson.id)
             return {
                 ...lesson,
-                wasRead
+                wasRead: localLesson?.wasRead || 0
             }
         })
 

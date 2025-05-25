@@ -27,8 +27,8 @@ const Lessons = ({ navigation, route }) => {
 
         const status = {}
 
-        for (const lesson of lessons) {
-            status[lessons.indexOf(lesson)] = checkWasRead(lessons.indexOf(lesson), lessons)
+        for (const lesson of lessonsCopy) {
+            status[lessonsCopy.indexOf(lesson)] = checkWasRead(lessonsCopy.indexOf(lesson), lessonsCopy)
         }
 
         setCompletionStatus(status)
@@ -43,7 +43,7 @@ const Lessons = ({ navigation, route }) => {
         useCallback(() => {
             getLessons()
             loadCompletionStatus()
-        }, [moduleId])
+        }, [lessons])
     )
 
     return (

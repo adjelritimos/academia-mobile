@@ -1,42 +1,40 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-const makeAsRead = async (lessons, lesson, setLesson, setLessons, _modules, setModules, goToNextLesson, getQuestion, navigation) => {
+const makeAsRead = async (moduleId, lessons, lesson, setLesson, setLessons, _modules, setModules, goToNextLesson, getQuestion, navigation) => {
 
     try {
-
         const updatedLessons = lessons.map(_lesson => _lesson.id === lesson.id ? { ..._lesson, wasRead: 1 } : _lesson)
 
         await AsyncStorage.setItem('lessons', JSON.stringify(updatedLessons))
-        setLessons(updatedLessons)
 
-        const lessonOfModule = updatedLessons.filter(le => le.moduleId === lesson.moduleId)
+        const lessonOfModule = updatedLessons.filter(le => le.moduleId === moduleId)
+        const lessonOfModuleSorted = [...lessonOfModule].sort((a, b) => a.order - b.order)
+        const lastLessonId = lessonOfModuleSorted[lessonOfModuleSorted.length - 1]?.id
+        const isAllRead = lessonOfModuleSorted.every(l => l.wasRead === 1)
 
-        let isAllRead = true
-
-        for (const l of lessonOfModule) {
-            if (l.wasRead === 0) {
-                isAllRead = false
-                break
-            }
-        }
-
-        if (isAllRead && lessonOfModule[lessonOfModule.length - 1].id === lesson.id) {
-            const updatedModules = _modules.map(_module => _module.id === lesson.moduleId ? { ..._module, isComplete: 1 } : _module)
+        if (isAllRead && lastLessonId === lesson.id) {
+            const updatedModules = _modules.map(_module =>
+                _module.id === moduleId ? { ..._module, isComplete: 1 } : _module
+            )
             await AsyncStorage.setItem('modules', JSON.stringify(updatedModules))
             setModules(updatedModules)
             navigation.goBack()
-        }
 
-        else if ((isAllRead && !(lessonOfModule[lessonOfModule.length - 1].id === lesson.id)) || !isAllRead) {
-            for (let l = 0; l < lessonOfModule.length; l++) {
-                if (lessonOfModule[l].id === lesson.id) {
-                    setLesson(lessonOfModule[l + 1])
-                    getQuestion(lessonOfModule[l + 1].id)
-                    goToNextLesson()
-                    break
-                }
+        } else {
+            const currentIndex = lessonOfModuleSorted.findIndex(le => le.id === lesson.id)
+            const nextLesson = lessonOfModuleSorted[currentIndex + 1]
+
+            if (nextLesson) {
+                setLesson(nextLesson)
+                getQuestion(nextLesson.id)
+                goToNextLesson()
+            } else {
+                navigation.goBack()
             }
         }
+
+        const updatedLessonsSaved = await AsyncStorage.getItem('lessons')
+        setLessons(JSON.parse(updatedLessonsSaved))
         
     } catch (error) {
         console.error('Erro em makeAsRead:', error)
