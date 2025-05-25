@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, Alert, qrcodeStylesheet } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import qrcodeStyles from '../styles/qrcode'
-import checkQrCode from '../functions/others/checkQrCode'
+import Toast from 'react-native-toast-message'
 import alertQrCode from '../functions/others/alertQrCode'
+import error_message from '../functions/feedbaks/error_message'
 
 const QRCodeScannerScreen = ({ navigation }) => {
 
@@ -16,15 +17,19 @@ const QRCodeScannerScreen = ({ navigation }) => {
     requestPermission()
   }, [])
 
-  const processAlert = async (value) =>{
+  const processAlert = async (value) => {
     await alertQrCode(navigation, setScannedData, setScanned, value)
   }
 
   const handleBarCodeScanned = ({ type, data }) => {
     if (scanned) return
-    setScanned(true)
-    const qr_data = JSON.parse(data)
-    processAlert(qr_data)
+    try {
+      setScanned(true)
+      const qr_data = JSON.parse(data)
+      processAlert(qr_data)
+    } catch (error) {
+      error_message('falha ao ler o código QR, sai da tela e tente novamente')
+    }
   }
 
   if (!permission) {
@@ -44,7 +49,8 @@ const QRCodeScannerScreen = ({ navigation }) => {
 
   return (
     <View style={qrcodeStyles.container}>
-      <CameraView style={qrcodeStyles.camera} facing={facing} onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} barcodeScannerSettings={{ barcodeTypes: ['qr'], }}/>
+      <CameraView style={qrcodeStyles.camera} facing={facing} onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} barcodeScannerSettings={{ barcodeTypes: ['qr'], }} />
+      <Toast />
     </View>
   )
 }
