@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native"
 import instrutionStyles from "../../styles/instrution"
-import { Ionicons, MaterialIcons } from "@expo/vector-icons"
+import { Ionicons } from "@expo/vector-icons"
 import hasQuestions from "../../functions/others/hasQuestions"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/app_context"
@@ -57,11 +57,11 @@ const Instrucion = ({ route, navigation }) => {
                                                 <Text style={instrutionStyles.text}>Você começará com 50 pontos de vida, a cada resposta errada você perderá 10 pontos de vida, e a cada resposta certa você ganhará 3. Se você perder todas as vidas, o jogo termina.</Text>
                                             </View>
                                             <View style={instrutionStyles.rule}>
-                                                <Ionicons name="check" size={20} color="white" />
+                                                 <Ionicons name="checkmark" solid size={20} color="white" /> 
                                                 <Text style={instrutionStyles.text_1}>A cada resposta certa você ganhará 1 ponto.</Text>
                                             </View>
                                             <View style={instrutionStyles.ruleError}>
-                                                <Ionicons name="clock" size={20} color="white" />
+                                                <Ionicons name="time" size={20} color="white" />
                                                 <Text style={instrutionStyles.text_1}>Você terá 25 segundos para responder cada questão.</Text>
                                             </View>
                                             <Text style={instrutionStyles.text_2}>Bom proveito!</Text>

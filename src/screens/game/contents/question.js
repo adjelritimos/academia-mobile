@@ -2,7 +2,7 @@ import { View, Text, FlatList, TouchableOpacity, BackHandler } from "react-nativ
 import questionStyles from "../../../styles/question"
 import Collapsible from "react-native-collapsible"
 import { useState, useEffect, useContext } from "react"
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import { Ionicons } from "@expo/vector-icons"
 import playSuccessSound from "../../../functions/sounds/playSuccessSound"
 import playErrorSound from "../../../functions/sounds/playErrorSound"
 import playTimeSound from "../../../functions/sounds/playTimeSound"
@@ -166,15 +166,15 @@ const QuestionContent = ({ navigation }) => {
                 <View style={questionStyles.dflex}>
 
                     <Text style={questionStyles.title}>
-                        <Icon name="heart" solid size={20} color="#0dcaf0" /> {life}
+                       <Ionicons name="heart" solid size={20} color="#0dcaf0" /> {life}
                     </Text>
 
                     <Text style={questionStyles.title}>
-                        <Icon name="check" solid size={20} color="#0dcaf0" /> {correctAnswer}
+                        <Ionicons name="checkmark" solid size={20} color="#0dcaf0" /> {correctAnswer}
                     </Text>
 
                     <Text style={[questionStyles.title, { color: getTimeColor() }]}>
-                        <Icon name="clock" solid size={20} color="#0dcaf0" /> {countdown}
+                        <Ionicons name="time" solid size={20} color="#0dcaf0" /> {countdown}
                     </Text>
                 </View>
 
