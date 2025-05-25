@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native"
 import instrutionStyles from "../../styles/instrution"
-import { Ionicons } from "@expo/vector-icons"
+import { Ionicons, MaterialIcons } from "@expo/vector-icons"
 import hasQuestions from "../../functions/others/hasQuestions"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/app_context"
@@ -23,7 +23,7 @@ const Instrucion = ({ route, navigation }) => {
                     (
                         <>
                             <View style={instrutionStyles.containerNoQuestion}>
-                                <Ionicons name="file-tray-stacked-outline" size={200} color="#0dcaf0" />
+                                <Ionicons name="search-outline" size={200} color="#0dcaf0" />
                                 <Text>Não há perguntas para praticares</Text>
                             </View>
                         </>
