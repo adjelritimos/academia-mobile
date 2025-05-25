@@ -10,8 +10,10 @@ const getModules = async (setModules) => {
 
         if (storedModules) {
             setModules(JSON.parse(storedModules))
-        } else {
-
+        }else {
+            const storedModules = []
+            setModules(storedModules)
+            await AsyncStorage.setItem('modules', JSON.stringify(storedModules))
         }
     } catch (error) {
         console.error('Erro ao buscar módulos:', error)

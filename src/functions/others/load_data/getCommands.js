@@ -9,7 +9,9 @@ const getCommands = async (setCommands) => {
         if (storedCommands) {
             setCommands(JSON.parse(storedCommands))
         } else {
-
+            const storedCommands = []
+            setCommands(storedCommands)
+            await AsyncStorage.setItem('commands', JSON.stringify(storedCommands))
         }
     } catch (error) {
         console.error('Erro ao buscar licoes:', error)

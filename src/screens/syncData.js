@@ -6,7 +6,7 @@ import saveDataToStorage from '../functions/others/database/saveData'
 import { AuthContext } from '../contexts/app_context'
 
 
-const SyncDataScreen = ({ navigation, route }) => {
+const SyncDataScreen = ({ navigation }) => {
 
     const [error, setError] = useState(false)
     const [syncing, setSyncing] = useState(true)

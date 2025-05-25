@@ -9,8 +9,10 @@ const getLessons = async (setLessons) => {
 
         if (storedLessons) {
             setLessons(JSON.parse(storedLessons))
-        } else {
-
+        }else {
+            const storedLessons = []
+            setLessons(storedLessons)
+            await AsyncStorage.setItem('lessons', JSON.stringify(storedLessons))
         }
     } catch (error) {
         console.error('Erro ao buscar licoes:', error)
