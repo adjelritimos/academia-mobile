@@ -1,5 +1,5 @@
-const api_midia = (image) => {
-    return 'http://192.168.1.187:5349/admin' + image
+const api_midia = (imageOrAudio) => {
+    return 'https://academia-ev.onrender.com/admin' + imageOrAudio
 }
 
 export default api_midia
