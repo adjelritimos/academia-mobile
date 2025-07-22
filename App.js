@@ -20,10 +20,11 @@ import ButtonQuit from "./src/components/buttonQuit.js"
 import ButtonQuitContent from "./src/components/buttonQuitContent.js"
 import { AuthProvider } from "./src/contexts/app_context.js"
 import Lessons from "./src/screens/contents/lessons.js"
-import ButtonGoHome from "./src/components/buttonGoHome.js"
 import ButtonGoScann from "./src/components/buttonGoScann.js"
 import QRCodeScannerScreen from "./src/screens/scannQrCode.js"
 import SyncDataScreen from "./src/screens/syncData.js"
+import Splash from "./src/screens/splash.js"
+import Login from "./src/screens/login.js"
 
 
 const Stack = createStackNavigator()
@@ -33,6 +34,8 @@ const Routes = () => {
   return (
     <NavigationContainer >
       <Stack.Navigator>
+        <Stack.Screen options={{  headerShown: false  }} name="splash" component={Splash} />
+        <Stack.Screen options={{  headerShown: false  }} name="Login" component={Login} />
         <Stack.Screen options={({ navigation }) => ({ title: "Academia Evangelística", headerRight: () => (<ButtonGoScann navigation={ navigation }/>) })} name="Home" component={Home} />
         <Stack.Screen options={{ title: "Sincronização de dados" }} name="ScannQrCode" component={QRCodeScannerScreen} />
         <Stack.Screen options={{ title: "Sincronização de dados" }} name="SyncData" component={SyncDataScreen} />

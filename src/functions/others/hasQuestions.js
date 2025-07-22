@@ -9,7 +9,7 @@ const hasQuestions = (what, questions) => {
         } else if (what.includes('GameCommand')) {
             filtered = questions.filter(q => q.commandId !== null)
         } else if (what.includes('GameContent')) {
-            filtered = questions.filter(q => q.contentId !== null)
+            filtered = questions.filter(q => q.lessonId !== null)
         }
 
         return filtered.length > 0 ? false : true

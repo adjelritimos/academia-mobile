@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 
 const globalStyles = StyleSheet.create({
+
     container: {
         flex: 1,
         padding: 20,
@@ -18,6 +19,7 @@ const globalStyles = StyleSheet.create({
 
     d_flex:{
         display: 'flex',
+        width: '100%',
         flexDirection: 'row',
         marginTop: 20
     },
@@ -26,6 +28,7 @@ const globalStyles = StyleSheet.create({
         fontSize: 20,
         color: '#0dcaf0',
         fontWeight: 'bold',
+        textAlign: 'center'
     },
 
     textGameButtons:{

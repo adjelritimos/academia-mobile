@@ -5,6 +5,7 @@ const qrcodeStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center'
   },
 
   camera: {
@@ -45,7 +46,9 @@ const qrcodeStyles = StyleSheet.create({
   button: {
     backgroundColor: '#0dcaf0',
     padding: 10,
+    marginTop: 10,
     justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
     borderRadius: 8,
     width: '80%',

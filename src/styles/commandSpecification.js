@@ -37,7 +37,18 @@ const commandSpecificationStyles = StyleSheet.create({
         borderColor: '#0dcaf0',
         borderWidth: 1,
         borderRadius: 10,
+        marginTop: 10
+    },
+
+    desciptionImage: {
+        backgroundColor: 'white',
+        borderColor: '#0dcaf0',
+        borderWidth: 1,
+        borderRadius: 10,
         marginTop: 10,
+        height: 500,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
     desciption_text: {
@@ -60,11 +71,11 @@ const commandSpecificationStyles = StyleSheet.create({
         marginBottom: 1,
     },
 
-    desciption_image: {
-        height: 500,
-        width: '100%',
-        alignSelf: 'center',
+    description_image: {
+        height: 490,
+        width: '90%',
         borderRadius: 10,
+        resizeMode: 'stretch',
     }
 })
 

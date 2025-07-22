@@ -25,8 +25,8 @@ const CommandSpecification = ({ route }) => {
                 </View>
 
                 <Text style={commandSpecificationStyles.desciption_title_1}>Demonstração: </Text>
-                <View style={commandSpecificationStyles.desciption}>
-                    <Image source={{ uri: command.demonstration }} style={commandSpecificationStyles.desciption_image} />
+                <View style={commandSpecificationStyles.desciptionImage}>
+                    <Image source={{ uri: command.demonstration }} style={commandSpecificationStyles.description_image} />
                 </View>
 
             </View>

@@ -104,28 +104,34 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#fff',
     },
+
     title: {
         fontSize: 22,
         fontWeight: 'bold',
         marginBottom: 20,
         textAlign: 'center',
     },
+
     warning: {
         color: 'red',
         marginBottom: 20,
         textAlign: 'center',
     },
+
     margin: {
         marginRight: 'auto',
         marginBottom: 'auto',
     },
+
     syncingText: {
         marginTop: 15,
         textAlign: 'center',
         fontStyle: 'italic',
     },
+
     result: {
         marginTop: 20,
         padding: 10,
@@ -133,6 +139,7 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderRadius: 8,
     },
+
     resultTitle: {
         fontWeight: 'bold',
         marginBottom: 5,
@@ -144,8 +151,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         height: 60,
         justifyContent: 'center',
-        width: '100%'
+        width: '100%',
+        alignSelf: 'center'
     },
+    
     textBtn: {
         fontSize: 18,
         textAlign: 'center',
@@ -153,6 +162,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
         marginBottom: 'auto'
     },
+
     containerResponse: {
         justifyContent: 'center',
         alignItems: 'center',
