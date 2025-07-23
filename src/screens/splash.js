@@ -10,9 +10,9 @@ const Splash = ({ navigation }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (user)
-                navigation.navigate('Home')
+                navigation.replace('Home')
             else
-                navigation.navigate('Login')
+                navigation.replace('Login')
         }, 3000);
 
         return () => clearTimeout(timer)
@@ -20,10 +20,7 @@ const Splash = ({ navigation }) => {
 
     return (
         <View style={splashStyle.container}>
-            <Image
-                source={require('./../../assets/logo.png')}
-                style={splashStyle.image}
-            />
+            <Image source={require('./../../assets/logo.png')} style={splashStyle.image}/>
         </View>
     );
 };
